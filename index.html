@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inkwell · AI 英文写作批改</title>
+<title>Inkwell · AI English Writing Coach</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Noto+Serif+SC:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -40,7 +40,7 @@ body{
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .028 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 ::selection{background:var(--red);color:#fff}
-
+ 
 /* ---------- header ---------- */
 header{
   max-width:1180px;margin:0 auto;padding:26px 28px 0;
@@ -50,7 +50,7 @@ header{
 .wordmark em{font-style:italic;font-weight:400}
 .wordmark .dot{color:var(--red)}
 .tagline{font-size:12.5px;color:var(--ink-faint);margin-top:7px;letter-spacing:.4px}
-.header-actions{display:flex;gap:10px}
+.header-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .btn-ghost{
   font-family:var(--sans);font-size:13px;color:var(--ink-soft);
   background:transparent;border:1px solid var(--line-strong);border-radius:99px;
@@ -60,12 +60,18 @@ header{
 .btn-ghost:hover{border-color:var(--ink);color:var(--ink);transform:translateY(-1px)}
 .btn-ghost.active{background:#8B5E3C;color:var(--paper);border-color:#8B5E3C}
 .btn-ghost svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
-
+ 
+/* ---------- locale switcher ---------- */
+.locale-switch{display:inline-flex;gap:0;border:1px solid var(--line-strong);border-radius:99px;padding:3px;background:var(--paper);align-self:center}
+.locale-opt{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:none;background:transparent;color:var(--ink-faint);cursor:pointer;border-radius:99px;transition:all .15s}
+.locale-opt:hover{color:var(--ink)}
+.locale-opt.active{background:var(--ink);color:var(--paper)}
+ 
 /* ---------- layout ---------- */
 main{max-width:1180px;margin:0 auto;padding:26px 28px 90px}
 .rule{border:none;border-top:1px solid var(--line-strong);margin:18px 0 30px;position:relative}
 .rule::after{content:"";position:absolute;left:0;top:-1px;width:72px;border-top:3px solid var(--red)}
-
+ 
 /* ---------- editor ---------- */
 .editor-wrap{display:grid;grid-template-columns:1fr;gap:18px}
 .editor-card{
@@ -117,7 +123,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 }
 .api-hint.show{display:block}
 .api-hint a{color:var(--gold);cursor:pointer;text-decoration:underline}
-
+ 
 /* ---------- loading ---------- */
 .loading{display:none;padding:70px 20px;text-align:center}
 .loading.show{display:block}
@@ -130,7 +136,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .loading-bar{width:210px;height:2px;background:var(--line);margin:20px auto 0;overflow:hidden;border-radius:2px}
 .loading-bar i{display:block;height:100%;width:38%;background:var(--red);animation:slide 1.3s ease-in-out infinite}
 @keyframes slide{0%{transform:translateX(-110%)}100%{transform:translateX(320%)}}
-
+ 
 /* ---------- results ---------- */
 #result{display:none}
 #result.show{display:block}
@@ -139,7 +145,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
 .reveal{animation:rise .55s cubic-bezier(.2,.7,.2,1) both}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-
+ 
 /* score card */
 .score-card{padding:26px 24px;text-align:center;position:relative;overflow:hidden}
 .score-card::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:var(--red)}
@@ -173,7 +179,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
   padding:6px 13px;cursor:pointer;color:var(--ink-soft);transition:all .15s;
 }
 .mini-btn:hover{border-color:var(--ink);color:var(--ink)}
-
+ 
 /* tabs + panels */
 .workbench{overflow:hidden}
 .tabs{display:flex;border-bottom:1px solid var(--line);background:var(--paper);padding:0 10px}
@@ -188,7 +194,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .panel{display:none;padding:26px 28px}
 .panel.active{display:block}
 @media(max-width:640px){.panel{padding:20px 16px}}
-
+ 
 /* annotated text */
 .annotated{
   font-family:var(--serif);font-size:16.5px;line-height:2.1;color:var(--ink);
@@ -203,7 +209,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .legend i{display:inline-block;width:22px;border-bottom:2px solid;margin-right:6px;vertical-align:middle}
 .legend .e i{border-color:var(--red)}
 .legend .p i{border-color:var(--blue)}
-
+ 
 /* correction cards */
 .correction{
   border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px;
@@ -221,7 +227,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .c-change .new{color:var(--green);font-weight:600;font-family:var(--serif)}
 .c-why{font-size:13px;line-height:1.8;color:var(--ink-soft);background:var(--paper);border-left:3px solid var(--line-strong);border-radius:0 8px 8px 0;padding:10px 14px}
 .c-why::before{content:"为什么";display:block;font-size:10.5px;font-weight:600;letter-spacing:1.5px;color:var(--ink-faint);margin-bottom:4px}
-
+ 
 /* polished */
 .polished-box{position:relative}
 .polished-text{
@@ -236,7 +242,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
   border-radius:99px;padding:7px 16px;cursor:pointer;transition:all .15s;
 }
 .btn-copy:hover{background:var(--red);border-color:var(--red)}
-
+ 
 /* notes */
 .notes-sec{margin-bottom:30px}
 .notes-sec:last-child{margin-bottom:0}
@@ -263,7 +269,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 }
 .hl-phrase{font-family:var(--serif);font-size:15px;font-weight:600;margin-bottom:4px}
 .hl-note{font-size:13px;color:var(--ink-soft);line-height:1.7}
-
+ 
 /* ---------- modal / drawer ---------- */
 .overlay{
   position:fixed;inset:0;background:rgba(34,28,20,.42);backdrop-filter:blur(3px);
@@ -290,7 +296,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .field input:focus{border-color:var(--red);box-shadow:0 0 0 3px var(--red-soft)}
 .field .tip{font-size:11.5px;color:var(--ink-faint);margin-top:5px;line-height:1.6}
 .modal-foot{display:flex;justify-content:flex-end;gap:10px;margin-top:22px}
-
+ 
 /* save-to-bank modal */
 .pick-list{max-height:320px;overflow-y:auto;margin:14px 0;border:1px solid var(--line);border-radius:10px;padding:8px}
 .pick-item{display:flex;align-items:flex-start;gap:10px;padding:10px;border-radius:8px;cursor:pointer;transition:background .15s}
@@ -322,7 +328,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .h-time{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:7px}
 .h-empty{text-align:center;color:var(--ink-faint);font-size:13px;padding:50px 20px;line-height:2}
 .h-clear{text-align:center;padding:12px}
-
+ 
 /* ---------- expression bank ---------- */
 .due-badge{font-family:var(--mono);font-size:10px;background:var(--red);color:#fff;border-radius:8px;padding:1px 6px}
 #bank{display:none}
@@ -399,7 +405,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
   background:none;border:none;font-size:20px;color:var(--ink-faint);cursor:pointer;line-height:1;padding:2px 6px;
 }
 .drawer .close-x:hover,.modal .close-x:hover{color:var(--red)}
-
+ 
 /* ======= daily study ======= */
 #study{display:none;max-width:880px;margin:56px auto 90px;animation:fadeUp .4s ease both}
 #study.show{display:block}
@@ -464,7 +470,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .study-add-form textarea{min-height:80px;resize:vertical}
 .study-add-actions{display:flex;gap:12px;justify-content:center;margin-top:20px}
 @media(max-width:640px){.study-body{padding:20px 16px}.study-head{flex-direction:column;align-items:flex-start}}
-
+ 
 /* toast */
 .toast{
   position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(16px);
@@ -474,50 +480,55 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.err{background:var(--red)}
-
+ 
 footer{max-width:1180px;margin:0 auto;padding:0 28px 34px;font-size:11.5px;color:var(--ink-faint);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 footer span{font-family:var(--mono)}
 </style>
 </head>
 <body>
-
+ 
 <header>
   <div>
     <div class="wordmark"><em>Inkwell</em><span class="dot">.</span></div>
-    <div class="tagline">AI 英文写作批改 · Native Speaker 级别的修改与讲解</div>
+    <div class="tagline" data-i18n="tagline">AI 英文写作批改 · Native Speaker 级别的修改与讲解</div>
   </div>
   <div class="header-actions">
     <button class="btn-ghost" id="historyBtn">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-      历史记录
+      <span data-i18n="nav.history">历史记录</span>
     </button>
     <button class="btn-ghost" id="navWrite">
       <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-      写作
+      <span data-i18n="nav.write">写作</span>
     </button>
     <button class="btn-ghost" id="bankBtn">
       <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-      表达库 <span class="due-badge" id="dueBadge" style="display:none">0</span>
+      <span data-i18n="nav.bank">表达库</span><span class="due-badge" id="dueBadge" style="display:none">0</span>
     </button>
     <button class="btn-ghost" id="studyBtn">
       <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-      每日背诵
+      <span data-i18n="nav.study">每日背诵</span>
     </button>
+    <div class="locale-switch" id="localeSwitch">
+      <button class="locale-opt" data-loc="zh-CN">中</button>
+      <button class="locale-opt" data-loc="zh-TW">繁</button>
+      <button class="locale-opt" data-loc="en">EN</button>
+    </div>
     <button class="btn-ghost" id="settingsBtn">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-      API 设置
+      <span data-i18n="nav.settings">API 设置</span>
     </button>
   </div>
 </header>
-
+ 
 <main>
   <hr class="rule">
-
+ 
   <!-- ======= editor ======= -->
   <section class="editor-wrap">
     <div class="editor-card">
       <div class="editor-head">
-        <div class="editor-title">你的原文 <span>Paste or write your English here</span></div>
+        <div class="editor-title"><span data-i18n="editor.yourText">你的原文</span> <span data-i18n="editor.placeholderNote">Paste or write your English here</span></div>
       </div>
       <div class="chips" id="chips"></div>
       <textarea id="editor" placeholder="Write or paste your English text here…&#10;&#10;e.g. I am agree that technology brings more benefits than drawbacks…" spellcheck="false"></textarea>
@@ -533,18 +544,18 @@ footer span{font-family:var(--mono)}
         </div>
       </div>
     </div>
-    <div class="api-hint" id="apiHint">
+    <div class="api-hint" id="apiHint" data-i18n="editor.apiHint">
       还没有配置 API Key — 点击右上角「API 设置」填入你的 MiniMax Key 后开始真实批改；或先点「试试示例」查看演示效果。
     </div>
   </section>
-
+ 
   <!-- ======= loading ======= -->
   <div class="loading" id="loading">
     <svg class="quill" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8L2 22"/><path d="M17.5 15H9"/></svg>
     <div class="loading-step" id="loadingStep">正在通读全文…</div>
     <div class="loading-bar"><i></i></div>
   </div>
-
+ 
   <!-- ======= results ======= -->
   <section id="result">
     <div class="result-grid">
@@ -568,7 +579,7 @@ footer span{font-family:var(--mono)}
           <button class="mini-btn" id="backEditBtn">返回修改原文</button>
         </div>
       </div>
-
+ 
       <!-- workbench -->
       <div class="card workbench reveal" style="animation-delay:.08s">
         <div class="tabs">
@@ -576,7 +587,7 @@ footer span{font-family:var(--mono)}
           <button class="tab" data-tab="polished">润色全文</button>
           <button class="tab" data-tab="notes">学习笔记</button>
         </div>
-
+ 
         <div class="panel active" id="panel-annotate">
           <div class="legend">
             <span class="e"><i></i>错误 · 必须修改</span>
@@ -586,7 +597,7 @@ footer span{font-family:var(--mono)}
           <div class="annotated" id="annotated"></div>
           <div id="corrList"></div>
         </div>
-
+ 
         <div class="panel" id="panel-polished">
           <div class="copy-row">
             <div class="panel-note">在保留原意的基础上，以 native speaker 的方式重写</div>
@@ -594,7 +605,7 @@ footer span{font-family:var(--mono)}
           </div>
           <div class="polished-text" id="polishedText"></div>
         </div>
-
+ 
         <div class="panel" id="panel-notes">
           <div class="notes-sec">
             <div class="notes-h">本次错误分布</div>
@@ -619,7 +630,7 @@ footer span{font-family:var(--mono)}
   <section id="bank">
     <div class="bank-head">
       <div>
-        <div class="bank-title">Native <em>表达库</em></div>
+        <div class="bank-title">Native <em data-i18n="bank.title">表达库</em></div>
         <div class="bank-stats" id="bankStats"></div>
       </div>
     </div>
@@ -638,8 +649,8 @@ footer span{font-family:var(--mono)}
   <section id="study">
     <div class="study-head">
       <div>
-        <div class="bank-title">每日 <em>背诵</em></div>
-        <div class="study-sub" id="studySub">每天新学 5 个 native expression，学完可复习</div>
+        <div class="bank-title"><span data-i18n="study.titlePrefix">每日</span> <em data-i18n="study.title">背诵</em></div>
+        <div class="study-sub" id="studySub" data-i18n="study.sub">每天新学 5 个 native expression，学完可复习</div>
       </div>
       <div class="study-actions">
         <button class="btn-ghost" id="studyAddBtn">
@@ -657,12 +668,12 @@ footer span{font-family:var(--mono)}
     </div>
   </section>
 </main>
-
+ 
 <footer>
   <div>Inkwell · 为英语学习者与国际学校学生设计</div>
   <span id="footModel">model: –</span>
 </footer>
-
+ 
 <!-- ======= settings modal ======= -->
 <div class="overlay" id="overlay"></div>
 <div class="modal" id="settingsModal">
@@ -689,7 +700,7 @@ footer span{font-family:var(--mono)}
     <button class="btn-primary" id="saveCfg">保存设置</button>
   </div>
 </div>
-
+ 
 <!-- ======= save-to-bank modal ======= -->
 <div class="modal" id="bankPickModal">
   <div style="display:flex;justify-content:space-between;align-items:flex-start">
@@ -707,7 +718,7 @@ footer span{font-family:var(--mono)}
     <button class="btn-primary" id="pickConfirm">保存所选</button>
   </div>
 </div>
-
+ 
 <!-- ======= history drawer ======= -->
 <div class="drawer" id="historyDrawer">
   <div class="drawer-head">
@@ -717,14 +728,14 @@ footer span{font-family:var(--mono)}
   <div class="drawer-body" id="historyList"></div>
   <div class="h-clear"><button class="mini-btn" id="clearHistory">清空全部记录</button></div>
 </div>
-
+ 
 <div class="toast" id="toast"></div>
-
+ 
 <script>
 /* ============================================================
-   Inkwell — AI 英文写作批改（单文件版）
+   Inkwell — AI English Writing Coach（single-file, i18n-ready）
    ============================================================ */
-
+ 
 // ---------- config ----------
 const DEFAULTS = {
   endpoint: 'https://api.minimaxi.com/v1/chat/completions',
@@ -736,7 +747,7 @@ const getCfg = () => ({
   endpoint: localStorage.getItem(LS.ep)    || DEFAULTS.endpoint,
   model:    localStorage.getItem(LS.model) || DEFAULTS.model
 });
-
+ 
 // ---------- scoring weights (overall = Σ dimension × weight) ----------
 const WEIGHTS = {
   general:  { grammar:25, vocabulary:25, coherence:25, naturalness:25 },
@@ -754,7 +765,7 @@ function computeOverall(scores, type){
     s('coherence')*w.coherence/100 + s('naturalness')*w.naturalness/100
   );
 }
-
+ 
 // ---------- writing types ----------
 const TYPES = [
   { id:'general',  label:'通用写作',   note:'Evaluate as general-purpose written English.' },
@@ -765,14 +776,14 @@ const TYPES = [
   { id:'speaking', label:'口语表达',   note:'Treat the text as a transcript of spoken English. Judge by conversational naturalness: contractions, fillers and informal phrasing are acceptable; the polished version must read like natural, fluent speech a native speaker would actually say, NOT formal written prose.' }
 ];
 let currentType = 'general';
-
+ 
 // ---------- dom ----------
 const $ = s => document.querySelector(s);
 const editor=$('#editor'), chipsEl=$('#chips'), wordcount=$('#wordcount');
 const gradeBtn=$('#gradeBtn'), clearBtn=$('#clearBtn'), demoBtn=$('#demoBtn'), apiHint=$('#apiHint');
 const loading=$('#loading'), loadingStep=$('#loadingStep');
 const result=$('#result'), toastEl=$('#toast');
-
+ 
 // ---------- helpers ----------
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let toastTimer;
@@ -783,7 +794,7 @@ function toast(msg, isErr){
   toastTimer = setTimeout(()=>toastEl.classList.remove('show'), isErr ? 4200 : 2200);
 }
 function countWords(t){ const w=t.trim().split(/\s+/).filter(Boolean); return w.length; }
-
+ 
 // ---------- chips ----------
 TYPES.forEach(t=>{
   const c=document.createElement('button');
@@ -792,7 +803,7 @@ TYPES.forEach(t=>{
   c.onclick=()=>{ currentType=t.id; [...chipsEl.children].forEach(x=>x.classList.toggle('active',x.dataset.id===t.id)); };
   chipsEl.appendChild(c);
 });
-
+ 
 // ---------- editor ----------
 function refreshCount(){
   const t=editor.value;
@@ -800,7 +811,7 @@ function refreshCount(){
 }
 editor.addEventListener('input', refreshCount);
 clearBtn.onclick=()=>{ editor.value=''; refreshCount(); editor.focus(); };
-
+ 
 // ---------- settings ----------
 const overlay=$('#overlay'), settingsModal=$('#settingsModal'), historyDrawer=$('#historyDrawer');
 const bankPickModal=$('#bankPickModal');
@@ -821,14 +832,14 @@ overlay.onclick=closeAll;
 document.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeAll);
 function updateApiHint(){ apiHint.classList.toggle('show', !getCfg().key); }
 function updateFoot(){ $('#footModel').textContent = 'model: ' + getCfg().model; }
-
+ 
 // ---------- prompt ----------
 function buildSystemPrompt(){
   const t = TYPES.find(x=>x.id===currentType);
   return `You are Inkwell, an English writing coach with native-speaker proficiency. Your students are Chinese-speaking English learners and international school students.
-
+ 
 TASK: Review the user's text (type: ${t.label}). ${t.note}
-
+ 
 Return ONLY a valid JSON object — no markdown fences, no commentary — with this exact schema:
 {
   "cefr": "<estimated CEFR level: A1/A2/B1/B2/C1/C2>",
@@ -849,7 +860,7 @@ Return ONLY a valid JSON object — no markdown fences, no commentary — with t
   ],
   "focus_points": ["<中文，本条文本暴露出的最值得记住的学习点，共 3 条，具体可执行>"]
 }
-
+ 
 RULES:
 - Do NOT output any "overall_score" field. The overall score is computed downstream as a weighted average of the four dimension scores.
 - Score each dimension with these anchors: 90-100 = near-native, only minor slips; 75-89 = solid, occasional errors, generally fluent; 60-74 = frequent errors but meaning mostly clear; 40-59 = errors often impede understanding; below 40 = severe difficulty.
@@ -860,7 +871,7 @@ RULES:
 - If the input is not English or too short to assess, return the schema with low scores and explain in "summary".
 - Output raw JSON only.`;
 }
-
+ 
 // ---------- API ----------
 async function callMiniMax(text){
   const cfg = getCfg();
@@ -869,7 +880,7 @@ async function callMiniMax(text){
   try{
     res = await fetch(cfg.endpoint, {
       method:'POST',
-      headers:{ 'Content-Type':'application/json', 'Authorization':'Bearer '+cfg.key },
+      headers:{ 'Content-Type': 'application/json', 'Authorization':'Bearer '+cfg.key },
       body: JSON.stringify({
         model: cfg.model,
         temperature: 0.2,
@@ -899,7 +910,7 @@ function extractJSON(content){
   if(a>=0 && b>a){ try{ return JSON.parse(s.slice(a,b+1)); }catch(_){} }
   const e=new Error('模型返回内容无法解析为 JSON，请点击「重新批改」再试一次。'); e.code='PARSE'; throw e;
 }
-
+ 
 // ---------- loading ----------
 const STEPS=['正在通读全文…','逐句检查语法与拼写…','评估词汇与连贯性…','以 native 水准重写润色…','整理学习笔记…'];
 let stepTimer;
@@ -910,7 +921,7 @@ function startLoading(){
   loading.scrollIntoView({behavior:'smooth',block:'center'});
 }
 function stopLoading(){ clearInterval(stepTimer); loading.classList.remove('show'); }
-
+ 
 // ---------- main flow ----------
 let lastResult=null, lastText='';
 gradeBtn.onclick=async ()=>{
@@ -933,7 +944,7 @@ gradeBtn.onclick=async ()=>{
 };
 $('#regradeBtn').onclick=()=>{ if(lastText){ editor.value=lastText; refreshCount(); gradeBtn.click(); } };
 $('#backEditBtn').onclick=()=>{ editor.scrollIntoView({behavior:'smooth',block:'center'}); editor.focus(); };
-
+ 
 // ---------- render ----------
 const DIMS = [['语法','grammar'],['词汇','vocabulary'],['连贯','coherence'],['地道','naturalness']];
 function renderResult(r, text){
@@ -943,46 +954,46 @@ function renderResult(r, text){
   $('#cefrVal').textContent = r.cefr || '–';
   const C=351.86;
   requestAnimationFrame(()=>{ $('#ringFg').style.strokeDashoffset = C*(1-score/100); });
-
+ 
   // formula note (how overall is computed)
   const w = WEIGHTS[currentType] || WEIGHTS.general;
   $('#formulaNote').textContent =
     `总分 = 语法×${w.grammar}% + 词汇×${w.vocabulary}% + 连贯×${w.coherence}% + 地道×${w.naturalness}%`;
-
+ 
   // radar chart
   renderRadar(r.scores);
-
+ 
   // summary
   $('#summaryText').innerHTML = esc(r.summary||'').replace(/(亮点|提升|建议|注意)/g,'<b>$1</b>');
-
+ 
   // corrections
   const corrs = Array.isArray(r.corrections)?r.corrections:[];
   $('#corrCnt').textContent = corrs.length;
   renderAnnotated(text, corrs);
   renderCorrList(corrs);
-
+ 
   // polished
   $('#polishedText').textContent = r.polished || '（未生成润色稿）';
-
+ 
   // notes
   renderNotes(corrs, r);
-
+ 
   result.classList.add('show');
   result.scrollIntoView({behavior:'smooth',block:'start'});
 }
-
+ 
 function renderRadar(scores){
   const size=240, c=size/2, R=66, LR=88;
   const ang=i=>-Math.PI/2+i*Math.PI/2;
   const pt=(i,r)=>[c+Math.cos(ang(i))*r, c+Math.sin(ang(i))*r];
   const vals=DIMS.map(([_,k])=>Math.max(0,Math.min(100,Math.round(Number(scores?.[k])||0))));
-
+ 
   let rings='';
   [25,50,75,100].forEach(v=>{
     const p=DIMS.map((_,i)=>pt(i,R*v/100).map(n=>n.toFixed(1)).join(',')).join(' ');
     rings+=`<polygon points="${p}" fill="${v===100?'rgba(34,28,20,.03)':'none'}" stroke="#DCD3BE" stroke-width="1"/>`;
   });
-
+ 
   let axes='', labels='';
   DIMS.forEach(([label],i)=>{
     const [x,y]=pt(i,R);
@@ -992,11 +1003,11 @@ function renderRadar(scores){
     labels+=`<text x="${lx.toFixed(1)}" y="${(ly-5).toFixed(1)}" text-anchor="${anchor}" class="radar-label">${label}</text>`
           +`<text x="${lx.toFixed(1)}" y="${(ly+10).toFixed(1)}" text-anchor="${anchor}" class="radar-val">${vals[i]}</text>`;
   });
-
+ 
   const pts=DIMS.map((_,i)=>pt(i,R*vals[i]/100));
   const poly=pts.map(p=>p.map(n=>n.toFixed(1)).join(',')).join(' ');
   const dots=pts.map(p=>`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3.2" fill="#C8391F"/>`).join('');
-
+ 
   $('#radarWrap').innerHTML =
     `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" role="img" aria-label="四维评分雷达图">
        ${rings}${axes}
@@ -1007,7 +1018,7 @@ function renderRadar(scores){
        ${labels}
      </svg>`;
 }
-
+ 
 function renderAnnotated(text, corrs){
   // locate each correction's original in the text (exact → case-insensitive)
   const ranges=[];
@@ -1037,7 +1048,7 @@ function renderAnnotated(text, corrs){
   });
 }
 function escapeReg(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
-
+ 
 function renderCorrList(corrs){
   const box=$('#corrList');
   if(!corrs.length){ box.innerHTML='<div class="h-empty">没有发现需要修改的地方，写得很好！</div>'; return; }
@@ -1067,7 +1078,7 @@ function flash(idx){
   const card=document.getElementById('corr-'+idx);
   if(card){ card.classList.add('hl'); setTimeout(()=>card.classList.remove('hl'),1400); }
 }
-
+ 
 function renderNotes(corrs, r){
   // category distribution
   const cats={};
@@ -1077,20 +1088,20 @@ function renderNotes(corrs, r){
   $('#catBars').innerHTML = entries.length
     ? entries.map(([k,v])=>`<div class="cat-row"><span class="name">${esc(k)}</span><div class="bar"><i style="width:${Math.round(v/max*100)}%"></i></div><span class="n">${v}</span></div>`).join('')
     : '<div class="panel-note">本次没有错误记录。</div>';
-
+ 
   // focus points
   const fps=Array.isArray(r.focus_points)?r.focus_points:[];
   $('#focusList').innerHTML = fps.length
     ? fps.map(p=>`<li>${esc(p)}</li>`).join('')
     : '<li>继续保持，多读多写地道英文。</li>';
-
+ 
   // highlights
   const hls=Array.isArray(r.highlights)?r.highlights:[];
   $('#hlList').innerHTML = hls.length
     ? hls.map(h=>`<div class="hl-item"><div class="hl-phrase">${esc(h.phrase||'')}</div><div class="hl-note">${esc(h.note||'')}</div></div>`).join('')
     : '<div class="panel-note">暂无推荐表达。</div>';
 }
-
+ 
 // tabs
 document.querySelectorAll('.tab').forEach(t=>{
   t.onclick=()=>{
@@ -1098,7 +1109,7 @@ document.querySelectorAll('.tab').forEach(t=>{
     document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.id==='panel-'+t.dataset.tab));
   };
 });
-
+ 
 // copy polished
 $('#copyPolished').onclick=async ()=>{
   const t=$('#polishedText').textContent;
@@ -1108,7 +1119,7 @@ $('#copyPolished').onclick=async ()=>{
     ta.select(); document.execCommand('copy'); ta.remove(); toast('润色稿已复制');
   }
 };
-
+ 
 // ---------- history ----------
 function getHistory(){ try{ return JSON.parse(localStorage.getItem(LS.hist)||'[]'); }catch(_){ return []; } }
 function saveHistory(text, r){
@@ -1143,7 +1154,7 @@ function renderHistory(){
 }
 $('#historyBtn').onclick=()=>{ renderHistory(); overlay.classList.add('show'); historyDrawer.classList.add('show'); };
 $('#clearHistory').onclick=()=>{ localStorage.removeItem(LS.hist); renderHistory(); toast('历史记录已清空'); };
-
+ 
 // ---------- demo ----------
 const DEMO_TEXT = `I am agree with the statement that technology brings more benefits than drawbacks. Firstly, it make our life more convenient. For example, we can use smart phones to paying bills and booking tickets, which saves a lots of time. Secondly, technology help students to study more efficiency. They can search informations on the internet at any time. However, every coin has two sides. Spend too much time on screens is harmful for our eyes and health. In conclusion, I think we should use technology in a right way, so that it can serve us better and better.`;
 const DEMO_RESULT = {
@@ -1182,7 +1193,7 @@ demoBtn.onclick=()=>{
   renderResult(DEMO_RESULT, DEMO_TEXT);
   toast('示例已载入，点「保存到表达库」可手动提炼表达');
 };
-
+ 
 // ---------- expression bank（提炼 + 间隔重复 + 检测） ----------
 const LS_EXPR='inkwell_exprs';
 const BOX_DAYS=[0,1,2,4,7,15]; // Leitner 箱 1-5 的复习间隔（天）
@@ -1192,7 +1203,7 @@ const setExprs=a=>localStorage.setItem(LS_EXPR,JSON.stringify(a));
 const normPhrase=s=>String(s||'').toLowerCase().trim();
 const shuffle=a=>{ const x=[...a]; for(let i=x.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [x[i],x[j]]=[x[j],x[i]]; } return x; };
 const fmtDate=ts=>{ const d=new Date(ts); return `${d.getMonth()+1}/${d.getDate()}`; };
-
+ 
 function collectFromResult(r){
   const hls=Array.isArray(r.highlights)?r.highlights:[];
   if(!hls.length) return 0;
@@ -1209,7 +1220,7 @@ function collectFromResult(r){
   updateDueBadge();
   return added;
 }
-
+ 
 /* ---- 手动保存到表达库（选择模态框） ---- */
 let pickData=[]; // 当前可选的 highlights
 $('#saveToBankBtn').onclick=()=>{
@@ -1272,7 +1283,7 @@ function updateDueBadge(){
   const b=$('#dueBadge'); if(b){ b.textContent=n; b.style.display=n?'inline-block':'none'; }
   const c=$('#dueCnt'); if(c) c.textContent=n;
 }
-
+ 
 /* 视图切换 */
 function showBank(){
   document.querySelector('.editor-wrap').style.display='none';
@@ -1295,7 +1306,7 @@ $('#navWrite').onclick=showWriter;
 $('#navWrite').classList.add('active');
 $('#bankBtn').onclick=showBank;
 $('#studyBtn').onclick=showStudy;
-
+ 
 /* bank tabs */
 document.querySelectorAll('.btab').forEach(t=>{
   t.onclick=()=>{
@@ -1306,7 +1317,7 @@ document.querySelectorAll('.btab').forEach(t=>{
     if(t.dataset.btab==='all') renderBankAll();
   };
 });
-
+ 
 /* 全部表达列表 */
 function renderBankAll(){
   const arr=getExprs();
@@ -1332,7 +1343,7 @@ function renderBankAll(){
     renderBankAll(); updateDueBadge(); toast('已删除');
   });
 }
-
+ 
 /* 闪卡复习 */
 let flashQueue=[], flashPos=0;
 function startFlash(){
@@ -1386,7 +1397,7 @@ function nextFlash(){
     renderBankAll();
   } else renderFlash();
 }
-
+ 
 /* 检测（四选一 · AI 生成干扰项） */
 let quizSet=[], quizPos=0, quizRight=0, quizAnswered=false;
 function quizPool(){
@@ -1445,48 +1456,47 @@ function nextQuiz(){
     renderBankAll(); updateDueBadge();
   } else renderQuizQ();
 }
-
+ 
 // ---------- daily study ----------
 const LS_STUDY='inkwell_study';
 const DAILY_NEW=5;
 const getStudy=()=>{ try{return JSON.parse(localStorage.getItem(LS_STUDY)||'{}');}catch(_){return {};} };
 const setStudy=o=>localStorage.setItem(LS_STUDY,JSON.stringify(o));
 const todayStr=()=>{ const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; };
-
-/* 预置 30 条 native expression（含精心设计的中文干扰项） */
+ 
 const PRESET=[
 {id:'p1',phrase:'play it by ear',meaning:'随机应变，到时再看情况',example:"Let's play it by ear and see how the weather turns out.",exampleCn:'我们随机应变，看看天气怎么样。',distractors:['提前精心计划','按乐谱演奏','充耳不闻'],status:'new'},
-{id:'p2',phrase:'hit the nail on the head',meaning:'一针见血，说得完全准确',example:'You hit the nail on the head — that\'s exactly the problem.',exampleCn:'你说得一针见血——问题正是如此。',distractors:['敲钉子','白费力气','半途而废'],status:'new'},
+{id:'p2',phrase:'hit the nail on the head',meaning:'一针见血，说得完全准确',example:"You hit the nail on the head — that's exactly the problem.",exampleCn:'你说得一针见血——问题正是如此。',distractors:['敲钉子','白费力气','半途而废'],status:'new'},
 {id:'p3',phrase:'a blessing in disguise',meaning:'因祸得福，看似坏事实则是好事',example:'Losing that job was a blessing in disguise.',exampleCn:'失去那份工作反倒是因祸得福。',distractors:['伪装的祝福','明显的灾难','公开的恩惠'],status:'new'},
 {id:'p4',phrase:'beat around the bush',meaning:'拐弯抹角，不直截了当',example:'Stop beating around the bush and tell me what you really think.',exampleCn:'别拐弯抹角了，告诉我你真正的想法。',distractors:['在灌木丛里打','开门见山','打扫庭院'],status:'new'},
 {id:'p5',phrase:'cost an arm and a leg',meaning:'价格极其昂贵',example:'That new phone costs an arm and a leg.',exampleCn:'那部新手机贵得离谱。',distractors:['断手断脚','免费赠送','锻炼身体'],status:'new'},
-{id:'p6',phrase:'under the weather',meaning:'身体不舒服，有点小病',example:'I\'m feeling a bit under the weather today.',exampleCn:'我今天感觉有点不舒服。',distractors:['在天气下面','心情超好','天气预报'],status:'new'},
+{id:'p6',phrase:'under the weather',meaning:'身体不舒服，有点小病',example:"I'm feeling a bit under the weather today.",exampleCn:'我今天感觉有点不舒服。',distractors:['在天气下面','心情超好','天气预报'],status:'new'},
 {id:'p7',phrase:'break the ice',meaning:'打破沉默，活跃气氛',example:'He told a joke to break the ice.',exampleCn:'他讲了个笑话来活跃气氛。',distractors:['打破冰块','制造尴尬','结束会议'],status:'new'},
 {id:'p8',phrase:'on the ball',meaning:'机敏的，很在行，反应快',example:'You need to be on the ball in this job.',exampleCn:'做这份工作你得反应快。',distractors:['在球上面','掉链子','浪费时间'],status:'new'},
-{id:'p9',phrase:'call it a day',meaning:'今天就到这里，收工',example:'Let\'s call it a day and finish tomorrow.',exampleCn:'今天就到这里，明天再完成。',distractors:['叫它一天','继续加班','开始新的一天'],status:'new'},
+{id:'p9',phrase:'call it a day',meaning:'今天就到这里，收工',example:"Let's call it a day and finish tomorrow.",exampleCn:'今天就到这里，明天再完成。',distractors:['叫它一天','继续加班','开始新的一天'],status:'new'},
 {id:'p10',phrase:'get cold feet',meaning:'临阵退缩，紧张害怕',example:'She got cold feet before the wedding.',exampleCn:'她在婚礼前临阵退缩了。',distractors:['脚很冷','勇敢前进','热身运动'],status:'new'},
-{id:'p11',phrase:'in the same boat',meaning:'处境相同，同病相怜',example:'We\'re all in the same boat — nobody got a bonus this year.',exampleCn:'我们处境相同——今年谁都没拿到奖金。',distractors:['在同一条船上','各自为政','一帆风顺'],status:'new'},
-{id:'p12',phrase:'the ball is in your court',meaning:'轮到你了，该你行动了',example:'I\'ve done my part. Now the ball is in your court.',exampleCn:'我已经做完我的部分了，现在轮到你了。',distractors:['球在你场上','与我无关','你赢了'],status:'new'},
-{id:'p13',phrase:'bark up the wrong tree',meaning:'找错对象，方向错误',example:'If you think I took your keys, you\'re barking up the wrong tree.',exampleCn:'如果你认为是我拿了钥匙，那你找错人了。',distractors:['对树叫','找对人','爬错树'],status:'new'},
+{id:'p11',phrase:'in the same boat',meaning:'处境相同，同病相怜',example:"We're all in the same boat — nobody got a bonus this year.",exampleCn:'我们处境相同——今年谁都没拿到奖金。',distractors:['在同一条船上','各自为政','一帆风顺'],status:'new'},
+{id:'p12',phrase:'the ball is in your court',meaning:'轮到你了，该你行动了',example:"I've done my part. Now the ball is in your court.",exampleCn:'我已经做完我的部分了，现在轮到你了。',distractors:['球在你场上','与我无关','你赢了'],status:'new'},
+{id:'p13',phrase:'bark up the wrong tree',meaning:'找错对象，方向错误',example:"If you think I took your keys, you're barking up the wrong tree.",exampleCn:'如果你认为是我拿了钥匙，那你找错人了。',distractors:['对树叫','找对人','爬错树'],status:'new'},
 {id:'p14',phrase:'bite off more than you can chew',meaning:'贪多嚼不烂，承担过多',example:'I think I bit off more than I can chew with this project.',exampleCn:'我觉得这个项目我贪多嚼不烂了。',distractors:['吃得太多','细嚼慢咽','消化不良'],status:'new'},
-{id:'p15',phrase:'burn the midnight oil',meaning:'挑灯夜战，熬夜工作',example:'I\'ve been burning the midnight oil to finish this report.',exampleCn:'我一直在熬夜赶这份报告。',distractors:['烧午夜油','早睡早起','浪费能源'],status:'new'},
+{id:'p15',phrase:'burn the midnight oil',meaning:'挑灯夜战，熬夜工作',example:"I've been burning the midnight oil to finish this report.",exampleCn:'我一直在熬夜赶这份报告。',distractors:['烧午夜油','早睡早起','浪费能源'],status:'new'},
 {id:'p16',phrase:'cut corners',meaning:'偷工减料，走捷径',example:'The builder cut corners and the wall collapsed.',exampleCn:'建筑商偷工减料，结果墙塌了。',distractors:['切角落','精益求精','绕远路'],status:'new'},
-{id:'p17',phrase:'down to earth',meaning:'务实的，脚踏实地的',example:'She\'s very down to earth despite her success.',exampleCn:'尽管很成功，她仍然很务实。',distractors:['在地球上','不切实际','飞上天'],status:'new'},
-{id:'p18',phrase:'face the music',meaning:'承担后果，接受惩罚',example:'It\'s time to face the music and admit your mistake.',exampleCn:'是时候承担后果并承认错误了。',distractors:['面对音乐','逃避责任','享受音乐会'],status:'new'},
+{id:'p17',phrase:'down to earth',meaning:'务实的，脚踏实地的',example:"She's very down to earth despite her success.",exampleCn:'尽管很成功，她仍然很务实。',distractors:['在地球上','不切实际','飞上天'],status:'new'},
+{id:'p18',phrase:'face the music',meaning:'承担后果，接受惩罚',example:"It's time to face the music and admit your mistake.",exampleCn:'是时候承担后果并承认错误了。',distractors:['面对音乐','逃避责任','享受音乐会'],status:'new'},
 {id:'p19',phrase:'get out of hand',meaning:'失控，变得难以管理',example:'The party got out of hand and the police came.',exampleCn:'派对失控了，警察都来了。',distractors:['从手里出来','井井有条','握手'],status:'new'},
-{id:'p20',phrase:'give the benefit of the doubt',meaning:'疑罪从无，姑且相信',example:'I\'ll give you the benefit of the doubt this time.',exampleCn:'这次我姑且相信你。',distractors:['怀疑的好处','完全不信','质疑到底'],status:'new'},
+{id:'p20',phrase:'give the benefit of the doubt',meaning:'疑罪从无，姑且相信',example:"I'll give you the benefit of the doubt this time.",exampleCn:'这次我姑且相信你。',distractors:['怀疑的好处','完全不信','质疑到底'],status:'new'},
 {id:'p21',phrase:'go the extra mile',meaning:'付出额外努力，精益求精',example:'She always goes the extra mile for her clients.',exampleCn:'她总是为客户付出额外努力。',distractors:['多走一英里','半途而废','偷工减料'],status:'new'},
-{id:'p22',phrase:'hit the sack',meaning:'去睡觉',example:'I\'m exhausted — I\'m going to hit the sack.',exampleCn:'我累坏了——我要去睡觉了。',distractors:['打袋子','开始工作','吃早餐'],status:'new'},
-{id:'p23',phrase:'in hot water',meaning:'惹上麻烦，陷入困境',example:'He\'s in hot water with the boss for being late again.',exampleCn:'他又迟到了，惹老板生气了。',distractors:['在热水里','很安全','泡温泉'],status:'new'},
-{id:'p24',phrase:'it takes two to tango',meaning:'一个巴掌拍不响，双方都有责任',example:'Don\'t just blame him — it takes two to tango.',exampleCn:'别只怪他——一个巴掌拍不响。',distractors:['跳探戈要两人','全是他的错','独自跳舞'],status:'new'},
+{id:'p22',phrase:'hit the sack',meaning:'去睡觉',example:"I'm exhausted — I'm going to hit the sack.",exampleCn:'我累坏了——我要去睡觉了。',distractors:['打袋子','开始工作','吃早餐'],status:'new'},
+{id:'p23',phrase:'in hot water',meaning:'惹上麻烦，陷入困境',example:"He's in hot water with the boss for being late again.",exampleCn:'他又迟到了，惹老板生气了。',distractors:['在热水里','很安全','泡温泉'],status:'new'},
+{id:'p24',phrase:'it takes two to tango',meaning:'一个巴掌拍不响，双方都有责任',example:"Don't just blame him — it takes two to tango.",exampleCn:'别只怪他——一个巴掌拍不响。',distractors:['跳探戈要两人','全是他的错','独自跳舞'],status:'new'},
 {id:'p25',phrase:'keep your chin up',meaning:'别灰心，振作起来',example:'Keep your chin up — things will get better.',exampleCn:'别灰心——事情会好起来的。',distractors:['抬起下巴','低头认输','保持沉默'],status:'new'},
 {id:'p26',phrase:'let the cat out of the bag',meaning:'泄露秘密',example:'She let the cat out of the bag about the surprise party.',exampleCn:'她把惊喜派对的秘密泄露了。',distractors:['把猫放出袋子','保守秘密','养猫'],status:'new'},
-{id:'p27',phrase:'miss the boat',meaning:'错过机会',example:'If you don\'t apply now, you\'ll miss the boat.',exampleCn:'如果你现在不申请，就会错过机会。',distractors:['错过船','赶上机会','坐船'],status:'new'},
+{id:'p27',phrase:'miss the boat',meaning:'错过机会',example:"If you don't apply now, you'll miss the boat.",exampleCn:'如果你现在不申请，就会错过机会。',distractors:['错过船','赶上机会','坐船'],status:'new'},
 {id:'p28',phrase:'once in a blue moon',meaning:'千载难逢，非常罕见',example:'We only see each other once in a blue moon.',exampleCn:'我们很少见面，千载难逢。',distractors:['蓝月亮','经常见面','每天一次'],status:'new'},
 {id:'p29',phrase:'piece of cake',meaning:'小菜一碟，非常容易',example:'The exam was a piece of cake.',exampleCn:'考试小菜一碟。',distractors:['一块蛋糕','很难完成','甜点'],status:'new'},
-{id:'p30',phrase:'spill the beans',meaning:'泄露秘密，说漏嘴',example:'Come on, spill the beans — what happened?',exampleCn:'快说，别卖关子——发生了什么？',distractors:['洒豆子','保密','种豆子'],status:'new'}
+{id:'p30',phrase:'spill the beans',meaning:'泄露秘密，说漏嘴',example:"Come on, spill the beans — what happened?",exampleCn:'快说，别卖关子——发生了什么？',distractors:['洒豆子','保密','种豆子'],status:'new'}
 ];
-
+ 
 function seedStudy(){
   const s=getStudy();
   if(!s.seeded){
@@ -1495,7 +1505,7 @@ function seedStudy(){
     setStudy(s);
   }
 }
-
+ 
 function getStudyToday(){
   const s=getStudy();
   const today=todayStr();
@@ -1506,7 +1516,7 @@ function getStudyToday(){
   }
   return s;
 }
-
+ 
 function markStudyDone(id){
   const s=getStudyToday();
   if(!s.daily.done.includes(id)) s.daily.done.push(id);
@@ -1514,26 +1524,26 @@ function markStudyDone(id){
   if(e) e.status='learning';
   setStudy(s);
 }
-
+ 
 function markStudyMastered(id){
   const s=getStudyToday();
   const e=(s.exprs||[]).find(x=>x.id===id);
   if(e) e.status='mastered';
   setStudy(s);
 }
-
+ 
 function studyTodayList(){
   const s=getStudyToday();
   return (s.daily.ids||[]).map(id=>(s.exprs||[]).find(x=>x.id===id)).filter(Boolean);
 }
-
+ 
 function studyReviewList(){
   const s=getStudy();
   return shuffle((s.exprs||[]).filter(e=>e.status==='mastered')).slice(0,5);
 }
-
+ 
 const studySec=$('#study'), studyBody=$('#studyBody');
-
+ 
 function showStudy(){
   bankSec.classList.remove('show');
   studySec.classList.add('show');
@@ -1545,7 +1555,7 @@ function showStudy(){
   renderStudyHome();
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
+ 
 function renderStudyHome(){
   const s=getStudyToday();
   const list=studyTodayList();
@@ -1600,7 +1610,7 @@ function renderStudyHome(){
   };
   renderStudyCard('flash',current);
 }
-
+ 
 let studyFlipped=false;
 function renderStudyCard(mode,expr){
   const area=$('#studyCardArea');
@@ -1630,7 +1640,7 @@ function renderStudyCard(mode,expr){
     renderStudyTranslate(expr);
   }
 }
-
+ 
 function renderStudyTranslate(expr){
   const area=$('#studyCardArea');
   area.innerHTML=`
@@ -1649,13 +1659,12 @@ function renderStudyTranslate(expr){
   $('#studyTransSwitch').onclick=()=>renderStudyChoice(expr);
   $('#studyTransSubmit').onclick=()=>judgeStudyTranslate(expr);
 }
-
+ 
 async function judgeStudyTranslate(expr){
   const input=$('#studyTransInput').value.trim();
   if(!input){ toast('请输入英文'); return; }
   const cfg=getCfg();
   if(!cfg.key){
-    // fallback: local check
     const hasPhrase=input.toLowerCase().includes(expr.phrase.toLowerCase());
     const fb=$('#studyTransFeedback');
     if(hasPhrase){
@@ -1697,7 +1706,7 @@ async function judgeStudyTranslate(expr){
   }
   btn.disabled=false; btn.textContent='提交';
 }
-
+ 
 function renderStudyChoice(expr){
   const area=$('#studyCardArea');
   const opts=shuffle([{t:expr.meaning,ok:1},...expr.distractors.map(d=>({t:d,ok:0}))]);
@@ -1726,7 +1735,7 @@ function renderStudyChoice(expr){
     };
   });
 }
-
+ 
 function renderStudyReview(){
   const list=studyReviewList();
   if(!list.length){
@@ -1752,7 +1761,7 @@ function renderStudyReview(){
   });
   renderStudyReviewFlash(list,0);
 }
-
+ 
 function renderStudyReviewFlash(list,pos){
   const expr=list[pos];
   const area=$('#studyReviewArea');
@@ -1771,7 +1780,7 @@ function renderStudyReviewFlash(list,pos){
   $('#reviewFlash').onclick=function(){this.classList.toggle('flip');};
   $('#reviewNext').onclick=()=>{ if(pos+1<list.length) renderStudyReviewFlash(list,pos+1); else renderStudyHome(); };
 }
-
+ 
 function renderStudyReviewChoice(list,pos){
   const expr=list[pos];
   const area=$('#studyReviewArea');
@@ -1788,7 +1797,7 @@ function renderStudyReviewChoice(list,pos){
     };
   });
 }
-
+ 
 function renderStudyList(){
   const s=getStudy();
   const arr=s.exprs||[];
@@ -1811,7 +1820,7 @@ function renderStudyList(){
       </div>`).join('')}
     <div style="text-align:center;margin-top:20px"><button class="btn-primary" onclick="renderStudyHome()">返回今日任务</button></div>`;
 }
-
+ 
 function renderStudyAdd(){
   studyBody.innerHTML=`
     <div class="study-add-form">
@@ -1842,12 +1851,54 @@ function renderStudyAdd(){
     renderStudyHome();
   };
 }
-
+ 
 $('#studyListBtn').onclick=renderStudyList;
 $('#studyAddBtn').onclick=renderStudyAdd;
-
+ 
 // ---------- init ----------
 refreshCount(); updateApiHint(); updateFoot(); updateDueBadge();
+ 
+// ---------- i18n (locale switcher) ----------
+const LS_LOC='inkwell_locale';
+const SUPPORTED=['zh-CN','zh-TW','en'];
+const I18N={
+  'zh-CN':{
+    'tagline':'AI 英文写作批改 · Native Speaker 级别的修改与讲解',
+    'nav.history':'历史记录','nav.write':'写作','nav.bank':'表达库','nav.study':'每日背诵','nav.settings':'API 设置',
+    'editor.yourText':'你的原文','editor.placeholderNote':'Paste or write your English here',
+    'editor.apiHint':"还没有配置 API Key — 点击右上角「API 设置」填入你的 MiniMax Key 后开始真实批改；或先点「试试示例」查看演示效果。",
+    'bank.title':'表达库','study.titlePrefix':'每日','study.title':'背诵','study.sub':'每天新学 5 个 native expression，学完可复习'
+  },
+  'zh-TW':{
+    'tagline':'AI 英文寫作批改 · Native Speaker 等級的修改與講解',
+    'nav.history':'歷史紀錄','nav.write':'寫作','nav.bank':'表達庫','nav.study':'每日背誦','nav.settings':'API 設定',
+    'editor.yourText':'你的原文','editor.placeholderNote':'Paste or write your English here',
+    'editor.apiHint':"尚未設定 API Key — 點擊右上角「API 設定」填入你的 MiniMax Key 後開始真實批改；或先點「試試範例」查看示範效果。",
+    'bank.title':'表達庫','study.titlePrefix':'每日','study.title':'背誦','study.sub':'每天新學 5 個 native expression，學完可複習'
+  },
+  'en':{
+    'tagline':'AI English Writing Coach · Native-speaker edits & explanations',
+    'nav.history':'History','nav.write':'Write','nav.bank':'Bank','nav.study':'Daily','nav.settings':'API',
+    'editor.yourText':'Your text','editor.placeholderNote':'Paste or write your English here',
+    'editor.apiHint':'No API Key yet — click "API" on the top-right to enter your MiniMax key for real grading; or tap "Try sample" to preview the experience.',
+    'bank.title':'Bank','study.titlePrefix':'Daily','study.title':'Review','study.sub':'Learn 5 new native expressions every day; review when done'
+  }
+};
+function getLocale(){ let v=localStorage.getItem(LS_LOC); if(!SUPPORTED.includes(v)) v='zh-CN'; return v; }
+function t(k){ const l=getLocale(); return (I18N[l]&&I18N[l][k])||I18N['zh-CN'][k]||k; }
+function applyLocale(){
+  const l=getLocale();
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    el.textContent=t(k);
+  });
+  document.querySelectorAll('.locale-opt').forEach(b=>b.classList.toggle('active',b.dataset.loc===l));
+  document.documentElement.lang=(l==='en')?'en':'zh';
+}
+document.querySelectorAll('.locale-opt').forEach(b=>{
+  b.onclick=()=>{ localStorage.setItem(LS_LOC,b.dataset.loc); applyLocale(); };
+});
+applyLocale();
 </script>
 </body>
 </html>
