@@ -40,7 +40,7 @@ body{
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .028 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 ::selection{background:var(--red);color:#fff}
- 
+
 /* ---------- header ---------- */
 header{
   max-width:1180px;margin:0 auto;padding:26px 28px 0;
@@ -60,18 +60,18 @@ header{
 .btn-ghost:hover{border-color:var(--ink);color:var(--ink);transform:translateY(-1px)}
 .btn-ghost.active{background:#8B5E3C;color:var(--paper);border-color:#8B5E3C}
 .btn-ghost svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
- 
+
 /* ---------- locale switcher ---------- */
 .locale-switch{display:inline-flex;gap:0;border:1px solid var(--line-strong);border-radius:99px;padding:3px;background:var(--paper);align-self:center}
 .locale-opt{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:none;background:transparent;color:var(--ink-faint);cursor:pointer;border-radius:99px;transition:all .15s}
 .locale-opt:hover{color:var(--ink)}
 .locale-opt.active{background:var(--ink);color:var(--paper)}
- 
+
 /* ---------- layout ---------- */
 main{max-width:1180px;margin:0 auto;padding:26px 28px 90px}
 .rule{border:none;border-top:1px solid var(--line-strong);margin:18px 0 30px;position:relative}
 .rule::after{content:"";position:absolute;left:0;top:-1px;width:72px;border-top:3px solid var(--red)}
- 
+
 /* ---------- editor ---------- */
 .editor-wrap{display:grid;grid-template-columns:1fr;gap:18px}
 .editor-card{
@@ -123,7 +123,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 }
 .api-hint.show{display:block}
 .api-hint a{color:var(--gold);cursor:pointer;text-decoration:underline}
- 
+
 /* ---------- loading ---------- */
 .loading{display:none;padding:70px 20px;text-align:center}
 .loading.show{display:block}
@@ -136,7 +136,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .loading-bar{width:210px;height:2px;background:var(--line);margin:20px auto 0;overflow:hidden;border-radius:2px}
 .loading-bar i{display:block;height:100%;width:38%;background:var(--red);animation:slide 1.3s ease-in-out infinite}
 @keyframes slide{0%{transform:translateX(-110%)}100%{transform:translateX(320%)}}
- 
+
 /* ---------- results ---------- */
 #result{display:none}
 #result.show{display:block}
@@ -145,7 +145,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
 .reveal{animation:rise .55s cubic-bezier(.2,.7,.2,1) both}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
- 
+
 /* score card */
 .score-card{padding:26px 24px;text-align:center;position:relative;overflow:hidden}
 .score-card::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:var(--red)}
@@ -179,7 +179,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
   padding:6px 13px;cursor:pointer;color:var(--ink-soft);transition:all .15s;
 }
 .mini-btn:hover{border-color:var(--ink);color:var(--ink)}
- 
+
 /* tabs + panels */
 .workbench{overflow:hidden}
 .tabs{display:flex;border-bottom:1px solid var(--line);background:var(--paper);padding:0 10px}
@@ -194,7 +194,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .panel{display:none;padding:26px 28px}
 .panel.active{display:block}
 @media(max-width:640px){.panel{padding:20px 16px}}
- 
+
 /* annotated text */
 .annotated{
   font-family:var(--serif);font-size:16.5px;line-height:2.1;color:var(--ink);
@@ -209,7 +209,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .legend i{display:inline-block;width:22px;border-bottom:2px solid;margin-right:6px;vertical-align:middle}
 .legend .e i{border-color:var(--red)}
 .legend .p i{border-color:var(--blue)}
- 
+
 /* correction cards */
 .correction{
   border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px;
@@ -227,7 +227,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .c-change .new{color:var(--green);font-weight:600;font-family:var(--serif)}
 .c-why{font-size:13px;line-height:1.8;color:var(--ink-soft);background:var(--paper);border-left:3px solid var(--line-strong);border-radius:0 8px 8px 0;padding:10px 14px}
 .c-why::before{content:"为什么";display:block;font-size:10.5px;font-weight:600;letter-spacing:1.5px;color:var(--ink-faint);margin-bottom:4px}
- 
+
 /* polished */
 .polished-box{position:relative}
 .polished-text{
@@ -242,7 +242,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
   border-radius:99px;padding:7px 16px;cursor:pointer;transition:all .15s;
 }
 .btn-copy:hover{background:var(--red);border-color:var(--red)}
- 
+
 /* notes */
 .notes-sec{margin-bottom:30px}
 .notes-sec:last-child{margin-bottom:0}
@@ -269,7 +269,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 }
 .hl-phrase{font-family:var(--serif);font-size:15px;font-weight:600;margin-bottom:4px}
 .hl-note{font-size:13px;color:var(--ink-soft);line-height:1.7}
- 
+
 /* ---------- modal / drawer ---------- */
 .overlay{
   position:fixed;inset:0;background:rgba(34,28,20,.42);backdrop-filter:blur(3px);
@@ -296,7 +296,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .field input:focus{border-color:var(--red);box-shadow:0 0 0 3px var(--red-soft)}
 .field .tip{font-size:11.5px;color:var(--ink-faint);margin-top:5px;line-height:1.6}
 .modal-foot{display:flex;justify-content:flex-end;gap:10px;margin-top:22px}
- 
+
 /* save-to-bank modal */
 .pick-list{max-height:320px;overflow-y:auto;margin:14px 0;border:1px solid var(--line);border-radius:10px;padding:8px}
 .pick-item{display:flex;align-items:flex-start;gap:10px;padding:10px;border-radius:8px;cursor:pointer;transition:background .15s}
@@ -328,7 +328,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .h-time{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);margin-top:7px}
 .h-empty{text-align:center;color:var(--ink-faint);font-size:13px;padding:50px 20px;line-height:2}
 .h-clear{text-align:center;padding:12px}
- 
+
 /* ---------- expression bank ---------- */
 .due-badge{font-family:var(--mono);font-size:10px;background:var(--red);color:#fff;border-radius:8px;padding:1px 6px}
 #bank{display:none}
@@ -405,7 +405,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
   background:none;border:none;font-size:20px;color:var(--ink-faint);cursor:pointer;line-height:1;padding:2px 6px;
 }
 .drawer .close-x:hover,.modal .close-x:hover{color:var(--red)}
- 
+
 /* ======= daily study ======= */
 #study{display:none;max-width:880px;margin:56px auto 90px;animation:fadeUp .4s ease both}
 #study.show{display:block}
@@ -470,7 +470,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .study-add-form textarea{min-height:80px;resize:vertical}
 .study-add-actions{display:flex;gap:12px;justify-content:center;margin-top:20px}
 @media(max-width:640px){.study-body{padding:20px 16px}.study-head{flex-direction:column;align-items:flex-start}}
- 
+
 /* toast */
 .toast{
   position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(16px);
@@ -480,13 +480,13 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 }
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.err{background:var(--red)}
- 
+
 footer{max-width:1180px;margin:0 auto;padding:0 28px 34px;font-size:11.5px;color:var(--ink-faint);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
 footer span{font-family:var(--mono)}
 </style>
 </head>
 <body>
- 
+
 <header>
   <div>
     <div class="wordmark"><em>Inkwell</em><span class="dot">.</span></div>
@@ -520,10 +520,10 @@ footer span{font-family:var(--mono)}
     </button>
   </div>
 </header>
- 
+
 <main>
   <hr class="rule">
- 
+
   <!-- ======= editor ======= -->
   <section class="editor-wrap">
     <div class="editor-card">
@@ -548,14 +548,14 @@ footer span{font-family:var(--mono)}
       还没有配置 API Key — 点击右上角「API 设置」填入你的 MiniMax Key 后开始真实批改；或先点「试试示例」查看演示效果。
     </div>
   </section>
- 
+
   <!-- ======= loading ======= -->
   <div class="loading" id="loading">
     <svg class="quill" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8L2 22"/><path d="M17.5 15H9"/></svg>
     <div class="loading-step" id="loadingStep">正在通读全文…</div>
     <div class="loading-bar"><i></i></div>
   </div>
- 
+
   <!-- ======= results ======= -->
   <section id="result">
     <div class="result-grid">
@@ -579,7 +579,7 @@ footer span{font-family:var(--mono)}
           <button class="mini-btn" id="backEditBtn">返回修改原文</button>
         </div>
       </div>
- 
+
       <!-- workbench -->
       <div class="card workbench reveal" style="animation-delay:.08s">
         <div class="tabs">
@@ -587,7 +587,7 @@ footer span{font-family:var(--mono)}
           <button class="tab" data-tab="polished">润色全文</button>
           <button class="tab" data-tab="notes">学习笔记</button>
         </div>
- 
+
         <div class="panel active" id="panel-annotate">
           <div class="legend">
             <span class="e"><i></i>错误 · 必须修改</span>
@@ -597,7 +597,7 @@ footer span{font-family:var(--mono)}
           <div class="annotated" id="annotated"></div>
           <div id="corrList"></div>
         </div>
- 
+
         <div class="panel" id="panel-polished">
           <div class="copy-row">
             <div class="panel-note">在保留原意的基础上，以 native speaker 的方式重写</div>
@@ -605,7 +605,7 @@ footer span{font-family:var(--mono)}
           </div>
           <div class="polished-text" id="polishedText"></div>
         </div>
- 
+
         <div class="panel" id="panel-notes">
           <div class="notes-sec">
             <div class="notes-h">本次错误分布</div>
@@ -668,12 +668,12 @@ footer span{font-family:var(--mono)}
     </div>
   </section>
 </main>
- 
+
 <footer>
   <div>Inkwell · 为英语学习者与国际学校学生设计</div>
   <span id="footModel">model: –</span>
 </footer>
- 
+
 <!-- ======= settings modal ======= -->
 <div class="overlay" id="overlay"></div>
 <div class="modal" id="settingsModal">
@@ -700,7 +700,7 @@ footer span{font-family:var(--mono)}
     <button class="btn-primary" id="saveCfg">保存设置</button>
   </div>
 </div>
- 
+
 <!-- ======= save-to-bank modal ======= -->
 <div class="modal" id="bankPickModal">
   <div style="display:flex;justify-content:space-between;align-items:flex-start">
@@ -718,7 +718,7 @@ footer span{font-family:var(--mono)}
     <button class="btn-primary" id="pickConfirm">保存所选</button>
   </div>
 </div>
- 
+
 <!-- ======= history drawer ======= -->
 <div class="drawer" id="historyDrawer">
   <div class="drawer-head">
@@ -728,14 +728,14 @@ footer span{font-family:var(--mono)}
   <div class="drawer-body" id="historyList"></div>
   <div class="h-clear"><button class="mini-btn" id="clearHistory">清空全部记录</button></div>
 </div>
- 
+
 <div class="toast" id="toast"></div>
- 
+
 <script>
 /* ============================================================
    Inkwell — AI English Writing Coach（single-file, i18n-ready）
    ============================================================ */
- 
+
 // ---------- config ----------
 const DEFAULTS = {
   endpoint: 'https://api.minimaxi.com/v1/chat/completions',
@@ -747,7 +747,7 @@ const getCfg = () => ({
   endpoint: localStorage.getItem(LS.ep)    || DEFAULTS.endpoint,
   model:    localStorage.getItem(LS.model) || DEFAULTS.model
 });
- 
+
 // ---------- scoring weights (overall = Σ dimension × weight) ----------
 const WEIGHTS = {
   general:  { grammar:25, vocabulary:25, coherence:25, naturalness:25 },
@@ -765,7 +765,7 @@ function computeOverall(scores, type){
     s('coherence')*w.coherence/100 + s('naturalness')*w.naturalness/100
   );
 }
- 
+
 // ---------- writing types ----------
 const TYPES = [
   { id:'general',  label:'通用写作',   note:'Evaluate as general-purpose written English.' },
@@ -776,14 +776,14 @@ const TYPES = [
   { id:'speaking', label:'口语表达',   note:'Treat the text as a transcript of spoken English. Judge by conversational naturalness: contractions, fillers and informal phrasing are acceptable; the polished version must read like natural, fluent speech a native speaker would actually say, NOT formal written prose.' }
 ];
 let currentType = 'general';
- 
+
 // ---------- dom ----------
 const $ = s => document.querySelector(s);
 const editor=$('#editor'), chipsEl=$('#chips'), wordcount=$('#wordcount');
 const gradeBtn=$('#gradeBtn'), clearBtn=$('#clearBtn'), demoBtn=$('#demoBtn'), apiHint=$('#apiHint');
 const loading=$('#loading'), loadingStep=$('#loadingStep');
 const result=$('#result'), toastEl=$('#toast');
- 
+
 // ---------- helpers ----------
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let toastTimer;
@@ -794,7 +794,7 @@ function toast(msg, isErr){
   toastTimer = setTimeout(()=>toastEl.classList.remove('show'), isErr ? 4200 : 2200);
 }
 function countWords(t){ const w=t.trim().split(/\s+/).filter(Boolean); return w.length; }
- 
+
 // ---------- chips ----------
 TYPES.forEach(t=>{
   const c=document.createElement('button');
@@ -803,7 +803,7 @@ TYPES.forEach(t=>{
   c.onclick=()=>{ currentType=t.id; [...chipsEl.children].forEach(x=>x.classList.toggle('active',x.dataset.id===t.id)); };
   chipsEl.appendChild(c);
 });
- 
+
 // ---------- editor ----------
 function refreshCount(){
   const t=editor.value;
@@ -811,7 +811,7 @@ function refreshCount(){
 }
 editor.addEventListener('input', refreshCount);
 clearBtn.onclick=()=>{ editor.value=''; refreshCount(); editor.focus(); };
- 
+
 // ---------- settings ----------
 const overlay=$('#overlay'), settingsModal=$('#settingsModal'), historyDrawer=$('#historyDrawer');
 const bankPickModal=$('#bankPickModal');
@@ -832,14 +832,14 @@ overlay.onclick=closeAll;
 document.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeAll);
 function updateApiHint(){ apiHint.classList.toggle('show', !getCfg().key); }
 function updateFoot(){ $('#footModel').textContent = 'model: ' + getCfg().model; }
- 
+
 // ---------- prompt ----------
 function buildSystemPrompt(){
   const t = TYPES.find(x=>x.id===currentType);
   return `You are Inkwell, an English writing coach with native-speaker proficiency. Your students are Chinese-speaking English learners and international school students.
- 
+
 TASK: Review the user's text (type: ${t.label}). ${t.note}
- 
+
 Return ONLY a valid JSON object — no markdown fences, no commentary — with this exact schema:
 {
   "cefr": "<estimated CEFR level: A1/A2/B1/B2/C1/C2>",
@@ -860,7 +860,7 @@ Return ONLY a valid JSON object — no markdown fences, no commentary — with t
   ],
   "focus_points": ["<中文，本条文本暴露出的最值得记住的学习点，共 3 条，具体可执行>"]
 }
- 
+
 RULES:
 - Do NOT output any "overall_score" field. The overall score is computed downstream as a weighted average of the four dimension scores.
 - Score each dimension with these anchors: 90-100 = near-native, only minor slips; 75-89 = solid, occasional errors, generally fluent; 60-74 = frequent errors but meaning mostly clear; 40-59 = errors often impede understanding; below 40 = severe difficulty.
@@ -871,7 +871,7 @@ RULES:
 - If the input is not English or too short to assess, return the schema with low scores and explain in "summary".
 - Output raw JSON only.`;
 }
- 
+
 // ---------- API ----------
 async function callMiniMax(text){
   const cfg = getCfg();
@@ -910,7 +910,7 @@ function extractJSON(content){
   if(a>=0 && b>a){ try{ return JSON.parse(s.slice(a,b+1)); }catch(_){} }
   const e=new Error('模型返回内容无法解析为 JSON，请点击「重新批改」再试一次。'); e.code='PARSE'; throw e;
 }
- 
+
 // ---------- loading ----------
 const STEPS=['正在通读全文…','逐句检查语法与拼写…','评估词汇与连贯性…','以 native 水准重写润色…','整理学习笔记…'];
 let stepTimer;
@@ -921,7 +921,7 @@ function startLoading(){
   loading.scrollIntoView({behavior:'smooth',block:'center'});
 }
 function stopLoading(){ clearInterval(stepTimer); loading.classList.remove('show'); }
- 
+
 // ---------- main flow ----------
 let lastResult=null, lastText='';
 gradeBtn.onclick=async ()=>{
@@ -944,7 +944,7 @@ gradeBtn.onclick=async ()=>{
 };
 $('#regradeBtn').onclick=()=>{ if(lastText){ editor.value=lastText; refreshCount(); gradeBtn.click(); } };
 $('#backEditBtn').onclick=()=>{ editor.scrollIntoView({behavior:'smooth',block:'center'}); editor.focus(); };
- 
+
 // ---------- render ----------
 const DIMS = [['语法','grammar'],['词汇','vocabulary'],['连贯','coherence'],['地道','naturalness']];
 function renderResult(r, text){
@@ -954,46 +954,46 @@ function renderResult(r, text){
   $('#cefrVal').textContent = r.cefr || '–';
   const C=351.86;
   requestAnimationFrame(()=>{ $('#ringFg').style.strokeDashoffset = C*(1-score/100); });
- 
+
   // formula note (how overall is computed)
   const w = WEIGHTS[currentType] || WEIGHTS.general;
   $('#formulaNote').textContent =
     `总分 = 语法×${w.grammar}% + 词汇×${w.vocabulary}% + 连贯×${w.coherence}% + 地道×${w.naturalness}%`;
- 
+
   // radar chart
   renderRadar(r.scores);
- 
+
   // summary
   $('#summaryText').innerHTML = esc(r.summary||'').replace(/(亮点|提升|建议|注意)/g,'<b>$1</b>');
- 
+
   // corrections
   const corrs = Array.isArray(r.corrections)?r.corrections:[];
   $('#corrCnt').textContent = corrs.length;
   renderAnnotated(text, corrs);
   renderCorrList(corrs);
- 
+
   // polished
   $('#polishedText').textContent = r.polished || '（未生成润色稿）';
- 
+
   // notes
   renderNotes(corrs, r);
- 
+
   result.classList.add('show');
   result.scrollIntoView({behavior:'smooth',block:'start'});
 }
- 
+
 function renderRadar(scores){
   const size=240, c=size/2, R=66, LR=88;
   const ang=i=>-Math.PI/2+i*Math.PI/2;
   const pt=(i,r)=>[c+Math.cos(ang(i))*r, c+Math.sin(ang(i))*r];
   const vals=DIMS.map(([_,k])=>Math.max(0,Math.min(100,Math.round(Number(scores?.[k])||0))));
- 
+
   let rings='';
   [25,50,75,100].forEach(v=>{
     const p=DIMS.map((_,i)=>pt(i,R*v/100).map(n=>n.toFixed(1)).join(',')).join(' ');
     rings+=`<polygon points="${p}" fill="${v===100?'rgba(34,28,20,.03)':'none'}" stroke="#DCD3BE" stroke-width="1"/>`;
   });
- 
+
   let axes='', labels='';
   DIMS.forEach(([label],i)=>{
     const [x,y]=pt(i,R);
@@ -1003,11 +1003,11 @@ function renderRadar(scores){
     labels+=`<text x="${lx.toFixed(1)}" y="${(ly-5).toFixed(1)}" text-anchor="${anchor}" class="radar-label">${label}</text>`
           +`<text x="${lx.toFixed(1)}" y="${(ly+10).toFixed(1)}" text-anchor="${anchor}" class="radar-val">${vals[i]}</text>`;
   });
- 
+
   const pts=DIMS.map((_,i)=>pt(i,R*vals[i]/100));
   const poly=pts.map(p=>p.map(n=>n.toFixed(1)).join(',')).join(' ');
   const dots=pts.map(p=>`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3.2" fill="#C8391F"/>`).join('');
- 
+
   $('#radarWrap').innerHTML =
     `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" role="img" aria-label="四维评分雷达图">
        ${rings}${axes}
@@ -1018,7 +1018,7 @@ function renderRadar(scores){
        ${labels}
      </svg>`;
 }
- 
+
 function renderAnnotated(text, corrs){
   // locate each correction's original in the text (exact → case-insensitive)
   const ranges=[];
@@ -1048,7 +1048,7 @@ function renderAnnotated(text, corrs){
   });
 }
 function escapeReg(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
- 
+
 function renderCorrList(corrs){
   const box=$('#corrList');
   if(!corrs.length){ box.innerHTML='<div class="h-empty">没有发现需要修改的地方，写得很好！</div>'; return; }
@@ -1078,7 +1078,7 @@ function flash(idx){
   const card=document.getElementById('corr-'+idx);
   if(card){ card.classList.add('hl'); setTimeout(()=>card.classList.remove('hl'),1400); }
 }
- 
+
 function renderNotes(corrs, r){
   // category distribution
   const cats={};
@@ -1088,20 +1088,20 @@ function renderNotes(corrs, r){
   $('#catBars').innerHTML = entries.length
     ? entries.map(([k,v])=>`<div class="cat-row"><span class="name">${esc(k)}</span><div class="bar"><i style="width:${Math.round(v/max*100)}%"></i></div><span class="n">${v}</span></div>`).join('')
     : '<div class="panel-note">本次没有错误记录。</div>';
- 
+
   // focus points
   const fps=Array.isArray(r.focus_points)?r.focus_points:[];
   $('#focusList').innerHTML = fps.length
     ? fps.map(p=>`<li>${esc(p)}</li>`).join('')
     : '<li>继续保持，多读多写地道英文。</li>';
- 
+
   // highlights
   const hls=Array.isArray(r.highlights)?r.highlights:[];
   $('#hlList').innerHTML = hls.length
     ? hls.map(h=>`<div class="hl-item"><div class="hl-phrase">${esc(h.phrase||'')}</div><div class="hl-note">${esc(h.note||'')}</div></div>`).join('')
     : '<div class="panel-note">暂无推荐表达。</div>';
 }
- 
+
 // tabs
 document.querySelectorAll('.tab').forEach(t=>{
   t.onclick=()=>{
@@ -1109,7 +1109,7 @@ document.querySelectorAll('.tab').forEach(t=>{
     document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.id==='panel-'+t.dataset.tab));
   };
 });
- 
+
 // copy polished
 $('#copyPolished').onclick=async ()=>{
   const t=$('#polishedText').textContent;
@@ -1119,7 +1119,7 @@ $('#copyPolished').onclick=async ()=>{
     ta.select(); document.execCommand('copy'); ta.remove(); toast('润色稿已复制');
   }
 };
- 
+
 // ---------- history ----------
 function getHistory(){ try{ return JSON.parse(localStorage.getItem(LS.hist)||'[]'); }catch(_){ return []; } }
 function saveHistory(text, r){
@@ -1154,7 +1154,7 @@ function renderHistory(){
 }
 $('#historyBtn').onclick=()=>{ renderHistory(); overlay.classList.add('show'); historyDrawer.classList.add('show'); };
 $('#clearHistory').onclick=()=>{ localStorage.removeItem(LS.hist); renderHistory(); toast('历史记录已清空'); };
- 
+
 // ---------- demo ----------
 const DEMO_TEXT = `I am agree with the statement that technology brings more benefits than drawbacks. Firstly, it make our life more convenient. For example, we can use smart phones to paying bills and booking tickets, which saves a lots of time. Secondly, technology help students to study more efficiency. They can search informations on the internet at any time. However, every coin has two sides. Spend too much time on screens is harmful for our eyes and health. In conclusion, I think we should use technology in a right way, so that it can serve us better and better.`;
 const DEMO_RESULT = {
@@ -1193,7 +1193,7 @@ demoBtn.onclick=()=>{
   renderResult(DEMO_RESULT, DEMO_TEXT);
   toast('示例已载入，点「保存到表达库」可手动提炼表达');
 };
- 
+
 // ---------- expression bank（提炼 + 间隔重复 + 检测） ----------
 const LS_EXPR='inkwell_exprs';
 const BOX_DAYS=[0,1,2,4,7,15]; // Leitner 箱 1-5 的复习间隔（天）
@@ -1203,7 +1203,7 @@ const setExprs=a=>localStorage.setItem(LS_EXPR,JSON.stringify(a));
 const normPhrase=s=>String(s||'').toLowerCase().trim();
 const shuffle=a=>{ const x=[...a]; for(let i=x.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [x[i],x[j]]=[x[j],x[i]]; } return x; };
 const fmtDate=ts=>{ const d=new Date(ts); return `${d.getMonth()+1}/${d.getDate()}`; };
- 
+
 function collectFromResult(r){
   const hls=Array.isArray(r.highlights)?r.highlights:[];
   if(!hls.length) return 0;
@@ -1220,7 +1220,7 @@ function collectFromResult(r){
   updateDueBadge();
   return added;
 }
- 
+
 /* ---- 手动保存到表达库（选择模态框） ---- */
 let pickData=[]; // 当前可选的 highlights
 $('#saveToBankBtn').onclick=()=>{
@@ -1283,7 +1283,7 @@ function updateDueBadge(){
   const b=$('#dueBadge'); if(b){ b.textContent=n; b.style.display=n?'inline-block':'none'; }
   const c=$('#dueCnt'); if(c) c.textContent=n;
 }
- 
+
 /* 视图切换 */
 function showBank(){
   document.querySelector('.editor-wrap').style.display='none';
@@ -1306,7 +1306,7 @@ $('#navWrite').onclick=showWriter;
 $('#navWrite').classList.add('active');
 $('#bankBtn').onclick=showBank;
 $('#studyBtn').onclick=showStudy;
- 
+
 /* bank tabs */
 document.querySelectorAll('.btab').forEach(t=>{
   t.onclick=()=>{
@@ -1317,7 +1317,7 @@ document.querySelectorAll('.btab').forEach(t=>{
     if(t.dataset.btab==='all') renderBankAll();
   };
 });
- 
+
 /* 全部表达列表 */
 function renderBankAll(){
   const arr=getExprs();
@@ -1343,7 +1343,7 @@ function renderBankAll(){
     renderBankAll(); updateDueBadge(); toast('已删除');
   });
 }
- 
+
 /* 闪卡复习 */
 let flashQueue=[], flashPos=0;
 function startFlash(){
@@ -1397,7 +1397,7 @@ function nextFlash(){
     renderBankAll();
   } else renderFlash();
 }
- 
+
 /* 检测（四选一 · AI 生成干扰项） */
 let quizSet=[], quizPos=0, quizRight=0, quizAnswered=false;
 function quizPool(){
@@ -1456,14 +1456,14 @@ function nextQuiz(){
     renderBankAll(); updateDueBadge();
   } else renderQuizQ();
 }
- 
+
 // ---------- daily study ----------
 const LS_STUDY='inkwell_study';
 const DAILY_NEW=5;
 const getStudy=()=>{ try{return JSON.parse(localStorage.getItem(LS_STUDY)||'{}');}catch(_){return {};} };
 const setStudy=o=>localStorage.setItem(LS_STUDY,JSON.stringify(o));
 const todayStr=()=>{ const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; };
- 
+
 const PRESET=[
 {id:'p1',phrase:'play it by ear',meaning:'随机应变，到时再看情况',example:"Let's play it by ear and see how the weather turns out.",exampleCn:'我们随机应变，看看天气怎么样。',distractors:['提前精心计划','按乐谱演奏','充耳不闻'],status:'new'},
 {id:'p2',phrase:'hit the nail on the head',meaning:'一针见血，说得完全准确',example:"You hit the nail on the head — that's exactly the problem.",exampleCn:'你说得一针见血——问题正是如此。',distractors:['敲钉子','白费力气','半途而废'],status:'new'},
@@ -1496,7 +1496,7 @@ const PRESET=[
 {id:'p29',phrase:'piece of cake',meaning:'小菜一碟，非常容易',example:'The exam was a piece of cake.',exampleCn:'考试小菜一碟。',distractors:['一块蛋糕','很难完成','甜点'],status:'new'},
 {id:'p30',phrase:'spill the beans',meaning:'泄露秘密，说漏嘴',example:"Come on, spill the beans — what happened?",exampleCn:'快说，别卖关子——发生了什么？',distractors:['洒豆子','保密','种豆子'],status:'new'}
 ];
- 
+
 function seedStudy(){
   const s=getStudy();
   if(!s.seeded){
@@ -1505,7 +1505,7 @@ function seedStudy(){
     setStudy(s);
   }
 }
- 
+
 function getStudyToday(){
   const s=getStudy();
   const today=todayStr();
@@ -1516,7 +1516,7 @@ function getStudyToday(){
   }
   return s;
 }
- 
+
 function markStudyDone(id){
   const s=getStudyToday();
   if(!s.daily.done.includes(id)) s.daily.done.push(id);
@@ -1524,26 +1524,26 @@ function markStudyDone(id){
   if(e) e.status='learning';
   setStudy(s);
 }
- 
+
 function markStudyMastered(id){
   const s=getStudyToday();
   const e=(s.exprs||[]).find(x=>x.id===id);
   if(e) e.status='mastered';
   setStudy(s);
 }
- 
+
 function studyTodayList(){
   const s=getStudyToday();
   return (s.daily.ids||[]).map(id=>(s.exprs||[]).find(x=>x.id===id)).filter(Boolean);
 }
- 
+
 function studyReviewList(){
   const s=getStudy();
   return shuffle((s.exprs||[]).filter(e=>e.status==='mastered')).slice(0,5);
 }
- 
+
 const studySec=$('#study'), studyBody=$('#studyBody');
- 
+
 function showStudy(){
   bankSec.classList.remove('show');
   studySec.classList.add('show');
@@ -1555,7 +1555,7 @@ function showStudy(){
   renderStudyHome();
   window.scrollTo({top:0,behavior:'smooth'});
 }
- 
+
 function renderStudyHome(){
   const s=getStudyToday();
   const list=studyTodayList();
@@ -1610,7 +1610,7 @@ function renderStudyHome(){
   };
   renderStudyCard('flash',current);
 }
- 
+
 let studyFlipped=false;
 function renderStudyCard(mode,expr){
   const area=$('#studyCardArea');
@@ -1640,7 +1640,7 @@ function renderStudyCard(mode,expr){
     renderStudyTranslate(expr);
   }
 }
- 
+
 function renderStudyTranslate(expr){
   const area=$('#studyCardArea');
   area.innerHTML=`
@@ -1659,7 +1659,7 @@ function renderStudyTranslate(expr){
   $('#studyTransSwitch').onclick=()=>renderStudyChoice(expr);
   $('#studyTransSubmit').onclick=()=>judgeStudyTranslate(expr);
 }
- 
+
 async function judgeStudyTranslate(expr){
   const input=$('#studyTransInput').value.trim();
   if(!input){ toast('请输入英文'); return; }
@@ -1706,7 +1706,7 @@ async function judgeStudyTranslate(expr){
   }
   btn.disabled=false; btn.textContent='提交';
 }
- 
+
 function renderStudyChoice(expr){
   const area=$('#studyCardArea');
   const opts=shuffle([{t:expr.meaning,ok:1},...expr.distractors.map(d=>({t:d,ok:0}))]);
@@ -1735,7 +1735,7 @@ function renderStudyChoice(expr){
     };
   });
 }
- 
+
 function renderStudyReview(){
   const list=studyReviewList();
   if(!list.length){
@@ -1761,7 +1761,7 @@ function renderStudyReview(){
   });
   renderStudyReviewFlash(list,0);
 }
- 
+
 function renderStudyReviewFlash(list,pos){
   const expr=list[pos];
   const area=$('#studyReviewArea');
@@ -1780,7 +1780,7 @@ function renderStudyReviewFlash(list,pos){
   $('#reviewFlash').onclick=function(){this.classList.toggle('flip');};
   $('#reviewNext').onclick=()=>{ if(pos+1<list.length) renderStudyReviewFlash(list,pos+1); else renderStudyHome(); };
 }
- 
+
 function renderStudyReviewChoice(list,pos){
   const expr=list[pos];
   const area=$('#studyReviewArea');
@@ -1797,7 +1797,7 @@ function renderStudyReviewChoice(list,pos){
     };
   });
 }
- 
+
 function renderStudyList(){
   const s=getStudy();
   const arr=s.exprs||[];
@@ -1820,7 +1820,7 @@ function renderStudyList(){
       </div>`).join('')}
     <div style="text-align:center;margin-top:20px"><button class="btn-primary" onclick="renderStudyHome()">返回今日任务</button></div>`;
 }
- 
+
 function renderStudyAdd(){
   studyBody.innerHTML=`
     <div class="study-add-form">
@@ -1851,13 +1851,13 @@ function renderStudyAdd(){
     renderStudyHome();
   };
 }
- 
+
 $('#studyListBtn').onclick=renderStudyList;
 $('#studyAddBtn').onclick=renderStudyAdd;
- 
+
 // ---------- init ----------
 refreshCount(); updateApiHint(); updateFoot(); updateDueBadge();
- 
+
 // ---------- i18n (locale switcher) ----------
 const LS_LOC='inkwell_locale';
 const SUPPORTED=['zh-CN','zh-TW','en'];
