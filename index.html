@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inkwell · AI English Writing Coach</title>
+<title data-i18n="title">Inkwell · AI English Writing Coach</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Noto+Serif+SC:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -226,7 +226,7 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .c-change .arr{color:var(--ink-faint);margin:0 9px;font-size:12px}
 .c-change .new{color:var(--green);font-weight:600;font-family:var(--serif)}
 .c-why{font-size:13px;line-height:1.8;color:var(--ink-soft);background:var(--paper);border-left:3px solid var(--line-strong);border-radius:0 8px 8px 0;padding:10px 14px}
-.c-why::before{content:"为什么";display:block;font-size:10.5px;font-weight:600;letter-spacing:1.5px;color:var(--ink-faint);margin-bottom:4px}
+.c-why::before{content:attr(data-i18n-prefix);display:block;font-size:10.5px;font-weight:600;letter-spacing:1.5px;color:var(--ink-faint);margin-bottom:4px}
 
 /* polished */
 .polished-box{position:relative}
@@ -531,15 +531,14 @@ footer span{font-family:var(--mono)}
         <div class="editor-title"><span data-i18n="editor.yourText">你的原文</span> <span data-i18n="editor.placeholderNote">Paste or write your English here</span></div>
       </div>
       <div class="chips" id="chips"></div>
-      <textarea id="editor" placeholder="Write or paste your English text here…&#10;&#10;e.g. I am agree that technology brings more benefits than drawbacks…" spellcheck="false"></textarea>
+      <textarea id="editor" data-i18n-ph="editor.ph" placeholder="Write or paste your English text here…&#10;&#10;e.g. I am agree that technology brings more benefits than drawbacks…" spellcheck="false"></textarea>
       <div class="editor-foot">
-        <div class="wordcount" id="wordcount">0 words · 0 chars</div>
+        <div class="wordcount" id="wordcount" data-i18n="editor.wordcount">0 words · 0 chars</div>
         <div class="editor-btns">
-          <button class="btn-text" id="demoBtn">试试示例</button>
-          <button class="btn-text" id="clearBtn">清空</button>
+          <button class="btn-text" id="clearBtn"><span data-i18n="editor.clear">清空</span></button>
           <button class="btn-primary" id="gradeBtn">
             <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-            开始批改
+            <span data-i18n="editor.grade">开始批改</span>
           </button>
         </div>
       </div>
@@ -552,7 +551,7 @@ footer span{font-family:var(--mono)}
   <!-- ======= loading ======= -->
   <div class="loading" id="loading">
     <svg class="quill" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8L2 22"/><path d="M17.5 15H9"/></svg>
-    <div class="loading-step" id="loadingStep">正在通读全文…</div>
+    <div class="loading-step" id="loadingStep" data-i18n="loading.reading">正在通读全文…</div>
     <div class="loading-bar"><i></i></div>
   </div>
 
@@ -568,31 +567,31 @@ footer span{font-family:var(--mono)}
               stroke-linecap="round" stroke-dasharray="351.86" stroke-dashoffset="351.86"
               style="transition:stroke-dashoffset 1.1s cubic-bezier(.2,.7,.2,1)"/>
           </svg>
-          <div class="num"><b id="scoreNum">–</b><small>OVERALL</small></div>
+          <div class="num"><b id="scoreNum">–</b><small data-i18n="score.overall">OVERALL</small></div>
         </div>
         <div class="cefr">CEFR ≈ <b id="cefrVal">–</b></div>
-        <div><span class="formula" id="formulaNote" title="总分由四个维度分数按当前写作类型的权重加权合成，权重随类型调整">总分 = …</span></div>
+        <div><span class="formula" id="formulaNote" data-i18n-title="score.formulaTitle" title="总分由四个维度分数按当前写作类型的权重加权合成，权重随类型调整" data-i18n="score.formula">总分 = …</span></div>
         <div class="radar-wrap" id="radarWrap"></div>
         <div class="summary" id="summaryText"></div>
         <div class="result-actions">
-          <button class="mini-btn" id="regradeBtn">重新批改</button>
-          <button class="mini-btn" id="backEditBtn">返回修改原文</button>
+          <button class="mini-btn" id="regradeBtn"><span data-i18n="result.regrade">重新批改</span></button>
+          <button class="mini-btn" id="backEditBtn"><span data-i18n="result.backEdit">返回修改原文</span></button>
         </div>
       </div>
 
       <!-- workbench -->
       <div class="card workbench reveal" style="animation-delay:.08s">
         <div class="tabs">
-          <button class="tab active" data-tab="annotate">逐句批改<span class="cnt" id="corrCnt">0</span></button>
-          <button class="tab" data-tab="polished">润色全文</button>
-          <button class="tab" data-tab="notes">学习笔记</button>
+          <button class="tab active" data-tab="annotate"><span data-i18n="tab.annotate">逐句批改</span><span class="cnt" id="corrCnt">0</span></button>
+          <button class="tab" data-tab="polished"><span data-i18n="tab.polished">润色全文</span></button>
+          <button class="tab" data-tab="notes"><span data-i18n="tab.notes">学习笔记</span></button>
         </div>
 
         <div class="panel active" id="panel-annotate">
           <div class="legend">
-            <span class="e"><i></i>错误 · 必须修改</span>
-            <span class="p"><i></i>优化 · 更地道的表达</span>
-            <span style="margin-left:auto">点击高亮 ↔ 定位讲解</span>
+            <span class="e"><i></i><span data-i18n="legend.error">错误 · 必须修改</span></span>
+            <span class="p"><i></i><span data-i18n="legend.improve">优化 · 更地道的表达</span></span>
+            <span style="margin-left:auto" data-i18n="legend.hint">点击高亮 ↔ 定位讲解</span>
           </div>
           <div class="annotated" id="annotated"></div>
           <div id="corrList"></div>
@@ -600,25 +599,25 @@ footer span{font-family:var(--mono)}
 
         <div class="panel" id="panel-polished">
           <div class="copy-row">
-            <div class="panel-note">在保留原意的基础上，以 native speaker 的方式重写</div>
-            <button class="btn-copy" id="copyPolished">复制润色稿</button>
+            <div class="panel-note" data-i18n="polished.note">在保留原意的基础上，以 native speaker 的方式重写</div>
+            <button class="btn-copy" id="copyPolished"><span data-i18n="polished.copy">复制润色稿</span></button>
           </div>
           <div class="polished-text" id="polishedText"></div>
         </div>
 
         <div class="panel" id="panel-notes">
           <div class="notes-sec">
-            <div class="notes-h">本次错误分布</div>
+            <div class="notes-h" data-i18n="notes.distribution">本次错误分布</div>
             <div id="catBars"></div>
           </div>
           <div class="notes-sec">
-            <div class="notes-h">最值得记住的 3 点</div>
+            <div class="notes-h" data-i18n="notes.focus">最值得记住的 3 点</div>
             <ol class="focus-list" id="focusList"></ol>
           </div>
           <div class="notes-sec">
             <div class="notes-h" style="display:flex;justify-content:space-between;align-items:center">
-              <span>表达升级推荐 <span style="font-family:var(--mono);font-size:10px;font-weight:400;color:var(--gold);letter-spacing:1px">手动选择 · 保存到表达库</span></span>
-              <button class="btn-primary" id="saveToBankBtn" style="font-size:12px;padding:6px 14px">保存到表达库</button>
+              <span><span data-i18n="notes.highlights">表达升级推荐</span> <span style="font-family:var(--mono);font-size:10px;font-weight:400;color:var(--gold);letter-spacing:1px" data-i18n="notes.highlightsTip">手动选择 · 保存到表达库</span></span>
+              <button class="btn-primary" id="saveToBankBtn" style="font-size:12px;padding:6px 14px"><span data-i18n="notes.saveToBank">保存到表达库</span></button>
             </div>
             <div id="hlList"></div>
           </div>
@@ -635,9 +634,9 @@ footer span{font-family:var(--mono)}
       </div>
     </div>
     <div class="bank-tabs">
-      <button class="btab active" data-btab="all">全部表达</button>
-      <button class="btab" data-btab="flash">闪卡复习<span class="cnt" id="dueCnt">0</span></button>
-      <button class="btab" data-btab="quiz">检测</button>
+      <button class="btab active" data-btab="all"><span data-i18n="bank.tabAll">全部表达</span></button>
+      <button class="btab" data-btab="flash"><span data-i18n="bank.tabFlash">闪卡复习</span><span class="cnt" id="dueCnt">0</span></button>
+      <button class="btab" data-btab="quiz"><span data-i18n="bank.tabQuiz">检测</span></button>
     </div>
     <div class="bank-body">
       <div class="bpanel active" id="bpanel-all"><div id="exprList"></div></div>
@@ -655,11 +654,11 @@ footer span{font-family:var(--mono)}
       <div class="study-actions">
         <button class="btn-ghost" id="studyAddBtn">
           <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-          添加表达
+          <span data-i18n="study.addBtn">添加表达</span>
         </button>
         <button class="btn-ghost" id="studyListBtn">
           <svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
-          全部表达
+          <span data-i18n="study.listBtn">全部表达</span>
         </button>
       </div>
     </div>
@@ -670,20 +669,20 @@ footer span{font-family:var(--mono)}
 </main>
 
 <footer>
-  <div>Inkwell · 为英语学习者与国际学校学生设计</div>
-  <span id="footModel">model: –</span>
+  <div data-i18n="footer.tag">Inkwell · 为英语学习者与国际学校学生设计</div>
+    <span id="footModel" data-i18n="footer.model">model: –</span>
 </footer>
 
 <!-- ======= settings modal ======= -->
 <div class="overlay" id="overlay"></div>
 <div class="modal" id="settingsModal">
   <div style="display:flex;justify-content:space-between;align-items:flex-start">
-    <h3>API 设置</h3>
+    <h3 data-i18n="modal.settingsTitle">API 设置</h3>
     <button class="close-x" data-close>×</button>
   </div>
-  <div class="sub">填入你的 MiniMax API Key。Key 仅保存在本浏览器 localStorage，不会上传到任何其他服务器。</div>
+  <div class="sub" data-i18n="modal.settingsSub">填入你的 MiniMax API Key。Key 仅保存在本浏览器 localStorage，不会上传到任何其他服务器。</div>
   <div class="field">
-    <label>API KEY</label>
+    <label data-i18n="modal.apiKey">API KEY</label>
     <input type="password" id="cfgKey" placeholder="sk-…" autocomplete="off">
   </div>
   <div class="field">
@@ -693,40 +692,40 @@ footer span{font-family:var(--mono)}
   <div class="field">
     <label>MODEL</label>
     <input type="text" id="cfgModel" placeholder="MiniMax-M3">
-    <div class="tip">提示：若浏览器报跨域（CORS）错误，可改用本地代理地址，或在允许跨域的环境下打开本页面。</div>
+    <div class="tip" data-i18n="modal.corsTip">提示：若浏览器报跨域（CORS）错误，可改用本地代理地址，或在允许跨域的环境下打开本页面。</div>
   </div>
   <div class="modal-foot">
-    <button class="btn-ghost" data-close>取消</button>
-    <button class="btn-primary" id="saveCfg">保存设置</button>
+    <button class="btn-ghost" data-close><span data-i18n="modal.cancel">取消</span></button>
+    <button class="btn-primary" id="saveCfg"><span data-i18n="modal.save">保存设置</span></button>
   </div>
 </div>
 
 <!-- ======= save-to-bank modal ======= -->
 <div class="modal" id="bankPickModal">
   <div style="display:flex;justify-content:space-between;align-items:flex-start">
-    <h3>保存到表达库</h3>
+    <h3 data-i18n="modal.pickTitle">保存到表达库</h3>
     <button class="close-x" data-close>×</button>
   </div>
-  <div class="sub">勾选你想保存的 native 表达，已选 <b id="pickCnt">0</b> 条</div>
+  <div class="sub"><span data-i18n="modal.pickSub">勾选你想保存的 native 表达，已选</span> <b id="pickCnt">0</b> <span data-i18n="modal.pickSubCount">条</span></div>
   <div class="pick-actions">
-    <button class="btn-ghost" id="pickAll">全选</button>
-    <button class="btn-ghost" id="pickNone">全不选</button>
+    <button class="btn-ghost" id="pickAll"><span data-i18n="modal.pickAll">全选</span></button>
+    <button class="btn-ghost" id="pickNone"><span data-i18n="modal.pickNone">全不选</span></button>
   </div>
   <div class="pick-list" id="pickList"></div>
   <div class="modal-foot">
-    <button class="btn-ghost" data-close>取消</button>
-    <button class="btn-primary" id="pickConfirm">保存所选</button>
+    <button class="btn-ghost" data-close><span data-i18n="modal.cancel">取消</span></button>
+    <button class="btn-primary" id="pickConfirm"><span data-i18n="modal.pickConfirm">保存所选</span></button>
   </div>
 </div>
 
 <!-- ======= history drawer ======= -->
 <div class="drawer" id="historyDrawer">
   <div class="drawer-head">
-    <h3>历史记录</h3>
+    <h3 data-i18n="drawer.historyTitle">历史记录</h3>
     <button class="close-x" data-close>×</button>
   </div>
   <div class="drawer-body" id="historyList"></div>
-  <div class="h-clear"><button class="mini-btn" id="clearHistory">清空全部记录</button></div>
+  <div class="h-clear"><button class="mini-btn" id="clearHistory"><span data-i18n="drawer.clearAll">清空全部记录</span></button></div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -768,19 +767,19 @@ function computeOverall(scores, type){
 
 // ---------- writing types ----------
 const TYPES = [
-  { id:'general',  label:'通用写作',   note:'Evaluate as general-purpose written English.' },
-  { id:'essay',    label:'议论文',     note:'Evaluate argument structure, thesis clarity, and logical flow.' },
-  { id:'email',    label:'邮件',       note:'Evaluate tone appropriateness, politeness, and email conventions (greeting/closing).' },
-  { id:'academic', label:'学术论文',   note:'Require formal register, precise terminology, hedging where appropriate; no contractions or colloquialisms.' },
-  { id:'exam',     label:'考试作文',   note:'Evaluate against IELTS/TOEFL-style rubrics: task response, coherence, lexical resource, grammatical range and accuracy.' },
-  { id:'speaking', label:'口语表达',   note:'Treat the text as a transcript of spoken English. Judge by conversational naturalness: contractions, fillers and informal phrasing are acceptable; the polished version must read like natural, fluent speech a native speaker would actually say, NOT formal written prose.' }
+  { id:'general',  label_zh:'通用写作', label_en:'General',  label_tw:'通用寫作',   note:'Evaluate as general-purpose written English.' },
+  { id:'essay',    label_zh:'议论文',   label_en:'Essay',    label_tw:'議論文',     note:'Evaluate argument structure, thesis clarity, and logical flow.' },
+  { id:'email',    label_zh:'邮件',     label_en:'Email',    label_tw:'郵件',       note:'Evaluate tone appropriateness, politeness, and email conventions (greeting/closing).' },
+  { id:'academic', label_zh:'学术论文', label_en:'Academic', label_tw:'學術論文',   note:'Require formal register, precise terminology, hedging where appropriate; no contractions or colloquialisms.' },
+  { id:'exam',     label_zh:'考试作文', label_en:'Exam',     label_tw:'考試作文',   note:'Evaluate against IELTS/TOEFL-style rubrics: task response, coherence, lexical resource, grammatical range and accuracy.' },
+  { id:'speaking', label_zh:'口语表达', label_en:'Speaking', label_tw:'口語表達',   note:'Treat the text as a transcript of spoken English. Judge by conversational naturalness: contractions, fillers and informal phrasing are acceptable; the polished version must read like natural, fluent speech a native speaker would actually say, NOT formal written prose.' }
 ];
 let currentType = 'general';
 
 // ---------- dom ----------
 const $ = s => document.querySelector(s);
 const editor=$('#editor'), chipsEl=$('#chips'), wordcount=$('#wordcount');
-const gradeBtn=$('#gradeBtn'), clearBtn=$('#clearBtn'), demoBtn=$('#demoBtn'), apiHint=$('#apiHint');
+const gradeBtn=$('#gradeBtn'), clearBtn=$('#clearBtn'), apiHint=$('#apiHint');
 const loading=$('#loading'), loadingStep=$('#loadingStep');
 const result=$('#result'), toastEl=$('#toast');
 
@@ -799,15 +798,16 @@ function countWords(t){ const w=t.trim().split(/\s+/).filter(Boolean); return w.
 TYPES.forEach(t=>{
   const c=document.createElement('button');
   c.className='chip'+(t.id===currentType?' active':'');
-  c.textContent=t.label; c.dataset.id=t.id;
+  c.textContent=t.label_zh; c.dataset.id=t.id;
   c.onclick=()=>{ currentType=t.id; [...chipsEl.children].forEach(x=>x.classList.toggle('active',x.dataset.id===t.id)); };
   chipsEl.appendChild(c);
 });
 
 // ---------- editor ----------
 function refreshCount(){
-  const t=editor.value;
-  wordcount.textContent = `${countWords(t)} words · ${t.length} chars`;
+  const tt=editor.value;
+  const base=t('editor.wordcount');
+  wordcount.textContent = base.replace('{w}', countWords(tt)).replace('{c}', tt.length);
 }
 editor.addEventListener('input', refreshCount);
 clearBtn.onclick=()=>{ editor.value=''; refreshCount(); editor.focus(); };
@@ -826,7 +826,7 @@ $('#saveCfg').onclick=()=>{
   localStorage.setItem(LS.key, $('#cfgKey').value.trim());
   localStorage.setItem(LS.ep,  $('#cfgEndpoint').value.trim() || DEFAULTS.endpoint);
   localStorage.setItem(LS.model, $('#cfgModel').value.trim() || DEFAULTS.model);
-  closeAll(); updateApiHint(); updateFoot(); toast('设置已保存');
+  closeAll(); updateApiHint(); updateFoot(); toast(t('toast.saved'));
 };
 overlay.onclick=closeAll;
 document.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeAll);
@@ -836,36 +836,41 @@ function updateFoot(){ $('#footModel').textContent = 'model: ' + getCfg().model;
 // ---------- prompt ----------
 function buildSystemPrompt(){
   const t = TYPES.find(x=>x.id===currentType);
+  const loc=getLocale();
+  const localeName = loc==='en' ? 'English' : (loc==='zh-TW' ? 'Traditional Chinese (繁體中文)' : 'Simplified Chinese (简体中文)');
+  const typeLabel = loc==='en' ? t.label_en : (loc==='zh-TW' ? t.label_tw : t.label_zh);
   return `You are Inkwell, an English writing coach with native-speaker proficiency. Your students are Chinese-speaking English learners and international school students.
 
-TASK: Review the user's text (type: ${t.label}). ${t.note}
+OUTPUT LANGUAGE: Write all explanations, summary, category labels, focus_points, and the "note" fields in ${localeName}. The JSON keys must remain in English exactly as specified.
+
+TASK: Review the user's text (type: ${typeLabel}). ${t.note}
 
 Return ONLY a valid JSON object — no markdown fences, no commentary — with this exact schema:
 {
   "cefr": "<estimated CEFR level: A1/A2/B1/B2/C1/C2>",
   "scores": { "grammar": <0-100>, "vocabulary": <0-100>, "coherence": <0-100>, "naturalness": <0-100> },
-  "summary": "<中文总评，2-3 句：先肯定亮点，再指出最关键的一个提升方向>",
+  "summary": "<short overall comment, 2-3 sentences: first acknowledge strengths, then name the single most important area to improve>",
   "corrections": [
     {
-      "original": "<原文片段，必须与输入文本完全逐字一致，足够独特以便定位>",
-      "revised": "<修改后的对应片段>",
-      "severity": "<error=客观错误 | improve=可以更地道>",
-      "category": "<语法|拼写|标点|用词|句式|连贯|风格 之一>",
-      "explanation": "<中文讲解，教学式、具体，1-2 句说明规则或地道用法>"
+      "original": "<original snippet — must be an EXACT verbatim substring of the user's text, distinctive enough to be located>",
+      "revised": "<corrected version of that snippet>",
+      "severity": "<error = objective mistake | improve = could be more idiomatic>",
+      "category": "<one of: grammar | spelling | punctuation | word-choice | sentence-structure | coherence | style>",
+      "explanation": "<clear, teaching-style explanation in ${localeName}, 1-2 sentences on the rule or idiom>"
     }
   ],
-  "polished": "<完整润色稿：保留作者原意与语气，以 native speaker 水准重写全文>",
+  "polished": "<full polished draft: preserve the writer's meaning and voice, rewrite at native-speaker level>",
   "highlights": [
-    { "phrase": "<地道表达>", "note": "<中文说明：为什么好 / 对应学生常用的普通说法>", "distractors": ["<3 个迷惑性错误选项>"] }
+    { "phrase": "<idiomatic expression>", "note": "<short note in ${localeName}: why it works / what the learner would otherwise say>", "distractors": ["<3 wrong but tempting Chinese-learner alternatives>"] }
   ],
-  "focus_points": ["<中文，本条文本暴露出的最值得记住的学习点，共 3 条，具体可执行>"]
+  "focus_points": ["<3 most valuable, concrete, actionable takeaways the learner should remember from this text — in ${localeName}>"]
 }
 
 RULES:
 - Do NOT output any "overall_score" field. The overall score is computed downstream as a weighted average of the four dimension scores.
 - Score each dimension with these anchors: 90-100 = near-native, only minor slips; 75-89 = solid, occasional errors, generally fluent; 60-74 = frequent errors but meaning mostly clear; 40-59 = errors often impede understanding; below 40 = severe difficulty.
 - "original" must be an EXACT verbatim substring of the user's text.
-- Each highlight's "distractors" must be exactly 3 WRONG English alternatives a Chinese learner might plausibly write for the same idea (中式直译、错误搭配、近形词混淆). They must be clearly unidiomatic or ungrammatical, must NOT be correct English, and must differ from "phrase".
+- Each highlight's "distractors" must be exactly 3 WRONG English alternatives a Chinese learner might plausibly write for the same idea (literal-translation mistakes, wrong collocations, near-miss word confusion). They must be clearly unidiomatic or ungrammatical, must NOT be correct English, and must differ from "phrase".
 - Find every real error (grammar, spelling, punctuation, word choice). Add "improve" items where phrasing is understandable but not idiomatic.
 - Keep explanations concise and encouraging.
 - If the input is not English or too short to assess, return the schema with low scores and explain in "summary".
@@ -912,12 +917,12 @@ function extractJSON(content){
 }
 
 // ---------- loading ----------
-const STEPS=['正在通读全文…','逐句检查语法与拼写…','评估词汇与连贯性…','以 native 水准重写润色…','整理学习笔记…'];
+const STEPS=['loading.reading','loading.grammar','loading.vocab','loading.polished','loading.notes'];
 let stepTimer;
 function startLoading(){
   loading.classList.add('show'); result.classList.remove('show');
-  let i=0; loadingStep.textContent=STEPS[0];
-  stepTimer=setInterval(()=>{ i=(i+1)%STEPS.length; loadingStep.textContent=STEPS[i]; },1600);
+  let i=0; loadingStep.textContent=t(STEPS[0]);
+  stepTimer=setInterval(()=>{ i=(i+1)%STEPS.length; loadingStep.textContent=t(STEPS[i]); },1600);
   loading.scrollIntoView({behavior:'smooth',block:'center'});
 }
 function stopLoading(){ clearInterval(stepTimer); loading.classList.remove('show'); }
@@ -926,9 +931,9 @@ function stopLoading(){ clearInterval(stepTimer); loading.classList.remove('show
 let lastResult=null, lastText='';
 gradeBtn.onclick=async ()=>{
   const text=editor.value.trim();
-  if(!text){ toast('请先输入或粘贴英文文本', true); editor.focus(); return; }
-  if(countWords(text)<3){ toast('文本太短，至少写几个完整的词吧', true); return; }
-  if(!getCfg().key){ openSettings(); toast('请先填入 MiniMax API Key', true); return; }
+  if(!text){ toast(t('toast.empty'), true); editor.focus(); return; }
+  if(countWords(text)<3){ toast(t('toast.tooShort'), true); return; }
+  if(!getCfg().key){ openSettings(); toast(t('toast.needKey'), true); return; }
   gradeBtn.disabled=true; startLoading();
   try{
     const r = await callMiniMax(text);
@@ -936,8 +941,8 @@ gradeBtn.onclick=async ()=>{
     renderResult(r, text);
     saveHistory(text, r);
   }catch(err){
-    if(err.code==='NO_KEY'){ openSettings(); toast('请先填入 MiniMax API Key', true); }
-    else toast(err.message || '批改失败，请重试', true);
+    if(err.code==='NO_KEY'){ openSettings(); toast(t('toast.needKey'), true); }
+    else toast(err.message || t('toast.fail'), true);
   }finally{
     stopLoading(); gradeBtn.disabled=false;
   }
@@ -945,8 +950,8 @@ gradeBtn.onclick=async ()=>{
 $('#regradeBtn').onclick=()=>{ if(lastText){ editor.value=lastText; refreshCount(); gradeBtn.click(); } };
 $('#backEditBtn').onclick=()=>{ editor.scrollIntoView({behavior:'smooth',block:'center'}); editor.focus(); };
 
-// ---------- render ----------
-const DIMS = [['语法','grammar'],['词汇','vocabulary'],['连贯','coherence'],['地道','naturalness']];
+const DIM_KEYS=['grammar','vocabulary','coherence','naturalness'];
+const DIMS = DIM_KEYS.map(k=>[t('dims.'+k),k]);
 function renderResult(r, text){
   // overall = weighted average of dimensions, computed locally
   const score = computeOverall(r.scores, currentType);
@@ -958,7 +963,7 @@ function renderResult(r, text){
   // formula note (how overall is computed)
   const w = WEIGHTS[currentType] || WEIGHTS.general;
   $('#formulaNote').textContent =
-    `总分 = 语法×${w.grammar}% + 词汇×${w.vocabulary}% + 连贯×${w.coherence}% + 地道×${w.naturalness}%`;
+    t('score.formulaTpl').replace('{g}',w.grammar).replace('{v}',w.vocabulary).replace('{c}',w.coherence).replace('{n}',w.naturalness);
 
   // radar chart
   renderRadar(r.scores);
@@ -973,7 +978,7 @@ function renderResult(r, text){
   renderCorrList(corrs);
 
   // polished
-  $('#polishedText').textContent = r.polished || '（未生成润色稿）';
+  $('#polishedText').textContent = r.polished || t('result.noPolished');
 
   // notes
   renderNotes(corrs, r);
@@ -1009,7 +1014,7 @@ function renderRadar(scores){
   const dots=pts.map(p=>`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3.2" fill="#C8391F"/>`).join('');
 
   $('#radarWrap').innerHTML =
-    `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" role="img" aria-label="四维评分雷达图">
+    `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" role="img" aria-label="${esc(t('score.radarLabel'))}">
        ${rings}${axes}
        <g class="radar-data">
          <polygon points="${poly}" fill="rgba(200,57,31,.14)" stroke="#C8391F" stroke-width="2" stroke-linejoin="round"/>
@@ -1051,13 +1056,13 @@ function escapeReg(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
 
 function renderCorrList(corrs){
   const box=$('#corrList');
-  if(!corrs.length){ box.innerHTML='<div class="h-empty">没有发现需要修改的地方，写得很好！</div>'; return; }
+  if(!corrs.length){ box.innerHTML='<div class="h-empty">'+t('result.noErrors')+'</div>'; return; }
   box.innerHTML = corrs.map((c,i)=>{
     const sev=c.severity==='improve'?'imp':'err';
     return `<div class="correction" id="corr-${i}">
       <div class="c-top">
-        <span class="badge ${sev}">${sev==='err'?'错误':'优化'}</span>
-        <span class="c-cat">${esc(c.category||'其他')}</span>
+        <span class="badge ${sev}">${sev==='err'?t('badge.error'):t('badge.improve')}</span>
+        <span class="c-cat">${esc(c.category||t('result.other'))}</span>
       </div>
       <div class="c-change">
         <span class="old">${esc(c.original||'')}</span><span class="arr">→</span><span class="new">${esc(c.revised||'')}</span>
@@ -1072,6 +1077,8 @@ function renderCorrList(corrs){
       if(mark){ mark.scrollIntoView({behavior:'smooth',block:'center'}); mark.classList.add('hl'); setTimeout(()=>mark.classList.remove('hl'),1400); }
     };
   });
+  // set i18n prefix on each .c-why (CSS pseudo-element reads attr())
+  box.querySelectorAll('.c-why').forEach(el=>{ el.setAttribute('data-i18n-prefix', t('result.whyPrefix')); });
 }
 function flash(idx){
   document.querySelectorAll('.correction').forEach(c=>c.classList.remove('hl'));
@@ -1082,24 +1089,24 @@ function flash(idx){
 function renderNotes(corrs, r){
   // category distribution
   const cats={};
-  corrs.forEach(c=>{ const k=c.category||'其他'; cats[k]=(cats[k]||0)+1; });
+  corrs.forEach(c=>{ const k=c.category||t('result.other'); cats[k]=(cats[k]||0)+1; });
   const entries=Object.entries(cats).sort((a,b)=>b[1]-a[1]);
   const max=entries.length?entries[0][1]:1;
   $('#catBars').innerHTML = entries.length
     ? entries.map(([k,v])=>`<div class="cat-row"><span class="name">${esc(k)}</span><div class="bar"><i style="width:${Math.round(v/max*100)}%"></i></div><span class="n">${v}</span></div>`).join('')
-    : '<div class="panel-note">本次没有错误记录。</div>';
+    : '<div class="panel-note">'+t('result.noErrors2')+'</div>';
 
   // focus points
   const fps=Array.isArray(r.focus_points)?r.focus_points:[];
   $('#focusList').innerHTML = fps.length
     ? fps.map(p=>`<li>${esc(p)}</li>`).join('')
-    : '<li>继续保持，多读多写地道英文。</li>';
+    : '<li>'+t('result.keepGoing')+'</li>';
 
   // highlights
   const hls=Array.isArray(r.highlights)?r.highlights:[];
   $('#hlList').innerHTML = hls.length
     ? hls.map(h=>`<div class="hl-item"><div class="hl-phrase">${esc(h.phrase||'')}</div><div class="hl-note">${esc(h.note||'')}</div></div>`).join('')
-    : '<div class="panel-note">暂无推荐表达。</div>';
+    : '<div class="panel-note">'+t('result.noHighlights')+'</div>';
 }
 
 // tabs
@@ -1112,11 +1119,11 @@ document.querySelectorAll('.tab').forEach(t=>{
 
 // copy polished
 $('#copyPolished').onclick=async ()=>{
-  const t=$('#polishedText').textContent;
-  try{ await navigator.clipboard.writeText(t); toast('润色稿已复制'); }
+  const txt=$('#polishedText').textContent;
+  try{ await navigator.clipboard.writeText(txt); toast(t('toast.copied')); }
   catch(_){
-    const ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta);
-    ta.select(); document.execCommand('copy'); ta.remove(); toast('润色稿已复制');
+    const ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy'); ta.remove(); toast(t('toast.copied'));
   }
 };
 
@@ -1129,13 +1136,13 @@ function saveHistory(text, r){
 }
 function renderHistory(){
   const h=getHistory(), box=$('#historyList');
-  if(!h.length){ box.innerHTML='<div class="h-empty">还没有批改记录<br>完成一次批改后会自动保存在这里</div>'; return; }
+  if(!h.length){ box.innerHTML='<div class="h-empty">'+t('history.empty').replace('\n','<br>')+'</div>'; return; }
   box.innerHTML=h.map(it=>{
     const t=TYPES.find(x=>x.id===it.type);
     const d=new Date(it.ts);
     const ds=`${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
     return `<div class="h-item" data-id="${it.id}">
-      <div class="h-top"><span class="h-type">${t?t.label:it.type}</span><span class="h-score"><b>${it.score}</b> / 100</span></div>
+      <div class="h-top"><span class="h-type">${t?(getLocale()==='en'?t.label_en:(getLocale()==='zh-TW'?t.label_tw:t.label_zh)):it.type}</span><span class="h-score"><b>${it.score}</b> / 100</span></div>
       <div class="h-text">${esc(it.text.slice(0,120))}</div>
       <div class="h-time">${ds}</div>
     </div>`;
@@ -1148,51 +1155,12 @@ function renderHistory(){
       [...chipsEl.children].forEach(x=>x.classList.toggle('active',x.dataset.id===it.type));
       lastResult=it.result; lastText=it.text;
       renderResult(it.result, it.text);
-      closeAll(); toast('已载入历史批改');
+      closeAll(); toast(t('toast.loaded'));
     };
   });
 }
 $('#historyBtn').onclick=()=>{ renderHistory(); overlay.classList.add('show'); historyDrawer.classList.add('show'); };
-$('#clearHistory').onclick=()=>{ localStorage.removeItem(LS.hist); renderHistory(); toast('历史记录已清空'); };
-
-// ---------- demo ----------
-const DEMO_TEXT = `I am agree with the statement that technology brings more benefits than drawbacks. Firstly, it make our life more convenient. For example, we can use smart phones to paying bills and booking tickets, which saves a lots of time. Secondly, technology help students to study more efficiency. They can search informations on the internet at any time. However, every coin has two sides. Spend too much time on screens is harmful for our eyes and health. In conclusion, I think we should use technology in a right way, so that it can serve us better and better.`;
-const DEMO_RESULT = {
-  cefr: 'B1',
-  scores: { grammar: 58, vocabulary: 70, coherence: 78, naturalness: 62 },
-  summary: '文章结构清晰，论点明确，首尾呼应，这是很好的写作习惯。最需要提升的是**主谓一致**和**词性误用**——这两类基础错误出现了多次，建议写完后专门留一分钟逐句检查动词形式。',
-  corrections: [
-    { original:'I am agree', revised:'I agree', severity:'error', category:'语法', explanation:'agree 是实义动词，前面不需要 be 动词。"I am agree" 是中文"我是同意的"的直译，英文直接说 I agree。' },
-    { original:'it make our life more convenient', revised:'it makes our life more convenient', severity:'error', category:'语法', explanation:'主语 it 是第三人称单数，一般现在时下动词要加 -s：makes。' },
-    { original:'to paying bills and booking tickets', revised:'to pay bills and book tickets', severity:'error', category:'语法', explanation:'use sth. to do sth. 结构中 to 是不定式标记，后面接动词原形，不是动名词。' },
-    { original:'a lots of time', revised:'a lot of time', severity:'error', category:'用词', explanation:'固定搭配是 a lot of 或 lots of，不存在 "a lots of"。' },
-    { original:'technology help students', revised:'technology helps students', severity:'error', category:'语法', explanation:'technology 作不可数名词时是单数主语，动词用第三人称单数 helps。' },
-    { original:'study more efficiency', revised:'study more efficiently', severity:'error', category:'用词', explanation:'修饰动词 study 要用副词 efficiently；efficiency 是名词，不能作状语。' },
-    { original:'search informations', revised:'search for information', severity:'error', category:'用词', explanation:'information 是不可数名词，没有复数形式；search 表示"查找某物"时要用 search for。' },
-    { original:'Spend too much time on screens is', revised:'Spending too much time on screens is', severity:'error', category:'句式', explanation:'动词原形不能作主语，要用动名词 Spending 构成动名词短语作主语。' },
-    { original:'harmful for our eyes', revised:'harmful to our eyes', severity:'error', category:'用词', explanation:'be harmful to 是固定搭配，介词用 to 不用 for。' },
-    { original:'in a right way', revised:'in the right way', severity:'improve', category:'用词', explanation:'这里的"正确方式"是说话双方都知道的特指，用定冠词 the 更自然。' },
-    { original:'serve us better and better', revised:'serve us better', severity:'improve', category:'风格', explanation:'better and better 强调"越来越好"，与"以正确方式使用科技"的语境不搭；简洁的 serve us better 更有力。' }
-  ],
-  polished: `I agree that technology brings more benefits than drawbacks. First of all, it makes our lives far more convenient. With a smartphone, for instance, we can pay bills and book tickets in seconds, which saves us a great deal of time. On top of that, technology helps students learn more efficiently, since they can look up information online whenever they need to. That said, technology is a double-edged sword: spending too much time in front of screens is harmful to both our eyes and our overall health. In conclusion, we should use technology wisely so that it serves us well.`,
-  highlights: [
-    { phrase:'brings more benefits than drawbacks', note:'比 "have many advantages" 更简洁有力，benefit/drawback 是议论文高频正式词汇。', distractors:['takes more advantages than disadvantages','makes more benefits than drawbacks','brings more benefits than harms'] },
-    { phrase:'On top of that, …', note:'口语和写作都好用的递进连接语，比一味用 "Secondly" 更生动。', distractors:['On the top of that, …','Above of that, …','At the top of that, …'] },
-    { phrase:'look up information', note:'"查资料"的地道说法是 look up（及物），而不是 search informations。', distractors:['look up informations','look after information','look up for information'] },
-    { phrase:'a double-edged sword', note:'升级你的 "every coin has two sides"：这句语法没错，但它是中国学生的超高频套话，母语者很少这么写。表达"事物有两面性"，native 更常说 a double-edged sword（双刃剑）——润色稿里已为你替换。', distractors:['a two-sided sword','a double-edged knife','a sword with two edges'] }
-  ],
-  focus_points: [
-    '主谓一致：写完检查每个动词的第三人称单数形式（it makes / technology helps）。',
-    '区分词性：efficiency（名词）vs efficient（形容词）vs efficiently（副词），修饰动词必须用副词。',
-    '记住这些固定搭配：a lot of、search for、be harmful to、use sth. to do sth.'
-  ]
-};
-demoBtn.onclick=()=>{
-  editor.value=DEMO_TEXT; refreshCount();
-  lastResult=DEMO_RESULT; lastText=DEMO_TEXT;
-  renderResult(DEMO_RESULT, DEMO_TEXT);
-  toast('示例已载入，点「保存到表达库」可手动提炼表达');
-};
+$('#clearHistory').onclick=()=>{ localStorage.removeItem(LS.hist); renderHistory(); toast(t('toast.historyCleared')); };
 
 // ---------- expression bank（提炼 + 间隔重复 + 检测） ----------
 const LS_EXPR='inkwell_exprs';
@@ -1213,7 +1181,7 @@ function collectFromResult(r){
     if(arr.some(e=>normPhrase(e.phrase)===normPhrase(p))) return;
     arr.unshift({ id:Date.now()+Math.random().toString(36).slice(2,7), phrase:p, note:String(h.note||''),
       distractors:Array.isArray(h.distractors)?h.distractors.map(String).filter(Boolean).slice(0,3):[],
-      from:(TYPES.find(x=>x.id===currentType)||{}).label||'', addedAt:Date.now(), box:1, nextDue:Date.now(), ok:0, no:0 });
+      from:((()=>{ const x=TYPES.find(x=>x.id===currentType); if(!x) return ''; const loc=getLocale(); return loc==='en'?x.label_en:(loc==='zh-TW'?x.label_tw:x.label_zh); })()), addedAt:Date.now(), box:1, nextDue:Date.now(), ok:0, no:0 });
     added++;
   });
   if(added) setExprs(arr);
@@ -1225,7 +1193,7 @@ function collectFromResult(r){
 let pickData=[]; // 当前可选的 highlights
 $('#saveToBankBtn').onclick=()=>{
   const hls=(lastResult && Array.isArray(lastResult.highlights)) ? lastResult.highlights : [];
-  if(!hls.length){ toast('本次没有可保存的表达', true); return; }
+  if(!hls.length){ toast(t('toast.noHighlights'), true); return; }
   pickData=hls.map((h,i)=>({ idx:i, phrase:String(h.phrase||'').trim(), note:String(h.note||''), distractors:Array.isArray(h.distractors)?h.distractors.filter(Boolean).slice(0,3):[] }));
   // 默认全选
   pickData.forEach(p=>p.checked=true);
@@ -1259,17 +1227,17 @@ $('#pickAll').onclick=()=>{ pickData.forEach(p=>p.checked=true); renderPickList(
 $('#pickNone').onclick=()=>{ pickData.forEach(p=>p.checked=false); renderPickList(); };
 $('#pickConfirm').onclick=()=>{
   const sel=pickData.filter(p=>p.checked);
-  if(!sel.length){ toast('请至少勾选一条', true); return; }
+  if(!sel.length){ toast(t('toast.pickOne'), true); return; }
   const arr=getExprs(); let added=0;
   sel.forEach(p=>{
     if(arr.some(e=>normPhrase(e.phrase)===normPhrase(p.phrase))) return;
     arr.unshift({ id:Date.now()+Math.random().toString(36).slice(2,7), phrase:p.phrase, note:p.note,
-      distractors:p.distractors, from:(TYPES.find(x=>x.id===currentType)||{}).label||'', addedAt:Date.now(), box:1, nextDue:Date.now(), ok:0, no:0 });
+      distractors:p.distractors, from:((()=>{ const x=TYPES.find(x=>x.id===currentType); if(!x) return ''; const loc=getLocale(); return loc==='en'?x.label_en:(loc==='zh-TW'?x.label_tw:x.label_zh); })()), addedAt:Date.now(), box:1, nextDue:Date.now(), ok:0, no:0 });
     added++;
   });
   if(added){ setExprs(arr); updateDueBadge(); }
   closeAll();
-  toast(added>0?`已保存 ${added} 条表达到表达库`:'所选表达已存在，未重复添加');
+  toast(added>0?t('toast.savedN').replace('{n}',added):t('toast.dupSkip'));
 };
 const dueExprs=()=>{ const now=Date.now(); return getExprs().filter(e=>(e.nextDue||0)<=now); };
 function gradeExpr(id,okk){
@@ -1323,24 +1291,24 @@ function renderBankAll(){
   const arr=getExprs();
   const due=dueExprs().length;
   const mastered=arr.filter(e=>(e.box||1)>=4).length;
-  $('#bankStats').innerHTML=`共 <b>${arr.length}</b> 条表达 · <b>${due}</b> 条到期待复习 · <b>${mastered}</b> 条已掌握`;
+  $('#bankStats').innerHTML=t('bank.stats').replace('{n}',arr.length).replace('{d}',due).replace('{m}',mastered);
   const box=$('#exprList');
-  if(!arr.length){ box.innerHTML='<div class="empty-tip">表达库还是空的<br>每次批改后，推荐的 native 表达会自动提炼到这里</div>'; return; }
+  if(!arr.length){ box.innerHTML='<div class="empty-tip">'+t('bank.empty').replace('\n','<br>')+'</div>'; return; }
   box.innerHTML=arr.map(e=>{
     const dots=[1,2,3,4,5].map(i=>`<i class="${i<=(e.box||1)?'on':''}"></i>`).join('');
-    const dueTxt=(e.nextDue||0)<=Date.now()?'<span class="expr-due">待复习</span>':'下次复习 '+fmtDate(e.nextDue);
+    const dueTxt=(e.nextDue||0)<=Date.now()?'<span class="expr-due">'+t('bank.dueNow')+'</span>':t('bank.dueLater').replace('{d}',fmtDate(e.nextDue));
     return `<div class="expr">
       <div class="expr-main">
         <div class="expr-phrase">${esc(e.phrase)}</div>
         <div class="expr-note">${esc(e.note||'')}</div>
-        <div class="expr-meta"><span class="box-dots">${dots}</span><span>${dueTxt}</span>${e.from?`<span>来源：${esc(e.from)}</span>`:''}<span>对 ${e.ok||0} · 错 ${e.no||0}</span></div>
+        <div class="expr-meta"><span class="box-dots">${dots}</span><span>${dueTxt}</span>${e.from?`<span>${t('bank.from').replace('{f}',esc(e.from))}</span>`:''}<span>${t('bank.scoreFmt').replace('{ok}',e.ok||0).replace('{no}',e.no||0)}</span></div>
       </div>
-      <button class="expr-del" data-id="${e.id}" title="删除">×</button>
+      <button class="expr-del" data-id="${e.id}" title="`+t('bank.del')+`">×</button>
     </div>`;
   }).join('');
   box.querySelectorAll('.expr-del').forEach(b=>b.onclick=()=>{
     setExprs(getExprs().filter(x=>x.id!==b.dataset.id));
-    renderBankAll(); updateDueBadge(); toast('已删除');
+    renderBankAll(); updateDueBadge(); toast(t('toast.deleted'));
   });
 }
 
@@ -1350,7 +1318,7 @@ function startFlash(){
   flashQueue=shuffle(dueExprs()); flashPos=0;
   if(!flashQueue.length){
     const total=getExprs().length;
-    flashZone.innerHTML=`<div class="empty-tip">${total?'今天没有到期的表达<br>已掌握的会按 1→2→4→7→15 天的间隔回来找你':'表达库还是空的，先去完成一次批改吧'}</div>`;
+    flashZone.innerHTML=`<div class="empty-tip">${total?t('bank.flashEmpty1').replace('\n','<br>'):t('bank.flashEmpty2')}</div>`;
     return;
   }
   renderFlash();
@@ -1358,13 +1326,13 @@ function startFlash(){
 function renderFlash(){
   const e=flashQueue[flashPos];
   flashZone.innerHTML=`
-    <div class="flash-progress">第 ${flashPos+1} / ${flashQueue.length} 张</div>
+    <div class="flash-progress">${t('bank.flashProgress').replace('{p}',flashPos+1).replace('{t}',flashQueue.length)}</div>
     <div class="flashcard" id="flashcard">
       <div class="flash-inner">
         <div class="flash-face front">
-          <div class="flash-hint">根据中文提示回忆地道表达 · 点击翻面</div>
-          <div class="flash-note">${esc(e.note||'（无提示）')}</div>
-          ${e.from?`<div class="flash-src">来源：${esc(e.from)}</div>`:''}
+          <div class="flash-hint">${t('bank.flashFront')}</div>
+          <div class="flash-note">${esc(e.note||t('result.noHint'))}</div>
+          ${e.from?`<div class="flash-src">${t('bank.from').replace('{f}',esc(e.from))}</div>`:''}
         </div>
         <div class="flash-face back">
           <div class="flash-hint">NATIVE EXPRESSION</div>
@@ -1374,8 +1342,8 @@ function renderFlash(){
       </div>
     </div>
     <div class="flash-btns">
-      <button class="btn-dunno" id="flashNo">还不熟</button>
-      <button class="btn-know" id="flashYes">记住了</button>
+      <button class="btn-dunno" id="flashNo">${t('bank.flashNo')}</button>
+      <button class="btn-know" id="flashYes">${t('bank.flashYes')}</button>
     </div>`;
   $('#flashcard').onclick=()=>$('#flashcard').classList.toggle('flip');
   $('#flashYes').onclick=()=>{ gradeExpr(e.id,true); nextFlash(); };
@@ -1386,11 +1354,11 @@ function nextFlash(){
   if(flashPos>=flashQueue.length){
     const still=dueExprs().length;
     flashZone.innerHTML=`<div class="quiz-result">
-      <div class="big" style="font-size:30px">本轮复习完成</div>
-      <div class="sub">${still?`还有 ${still} 条没过关，会留到下一轮。`:'所有到期表达都过关了，到时间它们会自动回来。'}</div>
+      <div class="big" style="font-size:30px">${t('bank.flashDone')}</div>
+      <div class="sub">${still?t('bank.flashStill').replace('{n}',still):t('bank.flashAllDone')}</div>
       <div class="quiz-btns">
-        <button class="btn-ghost" id="flashBackAll">查看全部表达</button>
-        ${still?'<button class="btn-primary" id="flashAgain">立即再复习一轮</button>':''}
+        <button class="btn-ghost" id="flashBackAll">${t('bank.flashBackAll')}</button>
+        ${still?'<button class="btn-primary" id="flashAgain">'+t('bank.flashAgain')+'</button>':''}
       </div></div>`;
     $('#flashBackAll').onclick=()=>document.querySelector('.btab[data-btab="all"]').click();
     const again=$('#flashAgain'); if(again) again.onclick=startFlash;
@@ -1407,13 +1375,13 @@ function quizPool(){
 }
 function renderQuizIntro(){
   const total=getExprs().length;
-  if(!total){ quizZone.innerHTML='<div class="empty-tip">还没有可检测的表达<br>先完成一次批改，表达会自动入库</div>'; return; }
+  if(!total){ quizZone.innerHTML='<div class="empty-tip">'+t('bank.quizEmpty1').replace('\n','<br>')+'</div>'; return; }
   const n=quizPool().length;
-  if(!n){ quizZone.innerHTML='<div class="empty-tip">库里的表达还没有干扰项<br>再完成一次批改（或点「试试示例」），新入库的表达会自动带上选择题干扰项</div>'; return; }
+  if(!n){ quizZone.innerHTML='<div class="empty-tip">'+t('bank.quizEmpty2').replace('\n','<br>')+'</div>'; return; }
   quizZone.innerHTML=`<div class="quiz-result">
-    <div class="big" style="font-size:30px">准备检测</div>
-    <div class="sub">抽取 ${n} 条表达，根据中文意思从 4 个选项中选出地道的英文表达。<br>干扰项是 AI 生成的中式英语常见错误，别被坑。答错会重置该表达的复习进度。</div>
-    <div class="quiz-btns"><button class="btn-primary" id="quizStart">开始检测</button></div>
+    <div class="big" style="font-size:30px">${t('bank.quizIntroTitle')}</div>
+    <div class="sub">${t('bank.quizIntroSub').replace('{n}',n)}</div>
+    <div class="quiz-btns"><button class="btn-primary" id="quizStart">${t('bank.quizStart')}</button></div>
   </div>`;
   $('#quizStart').onclick=startQuiz;
 }
@@ -1423,10 +1391,10 @@ function renderQuizQ(){
   const e=quizSet[quizPos];
   const opts=shuffle([{t:e.phrase,ok:1},...e.distractors.slice(0,3).map(d=>({t:d,ok:0}))]);
   quizZone.innerHTML=`
-    <div class="flash-progress">第 ${quizPos+1} / ${quizSet.length} 题</div>
-    <div class="quiz-q"><small>根据中文意思，选出地道的英文表达</small>${esc(e.note||'（无提示）')}</div>
+    <div class="flash-progress">${t('bank.quizProgress').replace('{p}',quizPos+1).replace('{t}',quizSet.length)}</div>
+    <div class="quiz-q"><small>${t('bank.quizChooseTip')}</small>${esc(e.note||t('result.noHint'))}</div>
     <div class="quiz-opts">${opts.map((o,i)=>`<button class="quiz-opt" data-ok="${o.ok}"><span class="opt-letter">${'ABCD'[i]}</span><span>${esc(o.t)}</span></button>`).join('')}</div>
-    <div class="quiz-btns"><button class="btn-primary" id="quizNext" style="display:none">下一题</button></div>`;
+    <div class="quiz-btns"><button class="btn-primary" id="quizNext" style="display:none">${t('bank.quizNext')}</button></div>`;
   quizZone.querySelectorAll('.quiz-opt').forEach(btn=>{
     btn.onclick=()=>{
       if(quizAnswered) return;
@@ -1438,7 +1406,7 @@ function renderQuizQ(){
       if(!okk) btn.classList.add('wrong');
       const next=$('#quizNext');
       next.style.display='';
-      next.textContent=quizPos+1<quizSet.length?'下一题':'查看结果';
+      next.textContent=quizPos+1<quizSet.length?t('bank.quizNext'):t('bank.quizSeeResult');
       next.onclick=nextQuiz;
     };
   });
@@ -1449,8 +1417,8 @@ function nextQuiz(){
     const pct=Math.round(quizRight/quizSet.length*100);
     quizZone.innerHTML=`<div class="quiz-result">
       <div class="big">${quizRight} / ${quizSet.length}</div>
-      <div class="sub">正确率 ${pct}% · ${pct>=80?'掌握得不错，继续保持。':'答错的表达已重置复习进度，明天再来一次吧。'}</div>
-      <div class="quiz-btns"><button class="btn-primary" id="quizAgain">再来一组</button></div>
+      <div class="sub">${t('bank.quizAccuracy').replace('{p}',pct)} · ${pct>=80?t('bank.quizGood'):t('bank.quizBad')}</div>
+      <div class="quiz-btns"><button class="btn-primary" id="quizAgain">${t('bank.quizAgain')}</button></div>
     </div>`;
     $('#quizAgain').onclick=startQuiz;
     renderBankAll(); updateDueBadge();
@@ -1564,11 +1532,11 @@ function renderStudyHome(){
   const allMastered=(s.exprs||[]).every(e=>e.status==='mastered');
   if(!list.length){
     studyBody.innerHTML=`<div class="study-empty">
-      ${allMastered?'🎉 全部表达已掌握！<br>去「全部表达」里复习，或添加新表达':'今天没有新表达可学<br>去「添加表达」录入一些，或从「全部表达」里复习'}
+      ${allMastered?t('study.emptyAll').replace('\n','<br>'):t('study.emptyToday').replace('\n','<br>')}
     </div>
     <div style="text-align:center;margin-top:20px">
-      <button class="btn-primary" id="studyGoReview">去复习已掌握</button>
-      <button class="btn-ghost" id="studyGoAdd">添加新表达</button>
+      <button class="btn-primary" id="studyGoReview">${t('study.goReview')}</button>
+      <button class="btn-ghost" id="studyGoAdd">${t('study.goAdd')}</button>
     </div>`;
     $('#studyGoReview').onclick=renderStudyReview;
     $('#studyGoAdd').onclick=renderStudyAdd;
@@ -1581,13 +1549,13 @@ function renderStudyHome(){
       <div class="study-progress-text">${done.length} / ${list.length}</div>
     </div>
     <div class="study-tabs">
-      <button class="study-tab active" data-mode="flash">Flash Card</button>
-      <button class="study-tab" data-mode="translate">中英互译</button>
+      <button class="study-tab active" data-mode="flash">${t('study.tabFlash')}</button>
+      <button class="study-tab" data-mode="translate">${t('study.tabTrans')}</button>
     </div>
     <div class="study-card-area" id="studyCardArea"></div>
     <div style="display:flex;gap:12px;justify-content:center;margin-top:20px">
-      <button class="btn-ghost" id="studySkip">跳过今天</button>
-      <button class="btn-primary" id="studyMarkDone" ${current?'':'disabled'}>${current?'标记为已学会':'今日完成'}</button>
+      <button class="btn-ghost" id="studySkip">${t('study.skip')}</button>
+      <button class="btn-primary" id="studyMarkDone" ${current?'':'disabled'}>${current?t('study.markDone'):t('study.todayDone')}</button>
     </div>`;
   document.querySelectorAll('.study-tab').forEach(t=>{
     t.onclick=()=>{
@@ -1599,13 +1567,13 @@ function renderStudyHome(){
     const s=getStudyToday();
     s.daily.done=s.daily.ids.slice();
     setStudy(s);
-    toast('已跳过，明天会继续');
+    toast(t('toast.skipped'));
     renderStudyHome();
   };
   $('#studyMarkDone').onclick=()=>{
     if(!current) return;
     markStudyDone(current.id);
-    toast('已标记为已学会');
+    toast(t('toast.markedDone'));
     renderStudyHome();
   };
   renderStudyCard('flash',current);
@@ -1614,18 +1582,18 @@ function renderStudyHome(){
 let studyFlipped=false;
 function renderStudyCard(mode,expr){
   const area=$('#studyCardArea');
-  if(!expr){ area.innerHTML='<div class="study-empty">今日任务已完成！</div>'; return; }
+  if(!expr){ area.innerHTML='<div class="study-empty">'+t('study.allDone')+'</div>'; return; }
   if(mode==='flash'){
     studyFlipped=false;
     area.innerHTML=`
       <div class="study-flash-card" id="studyFlashCard">
         <div class="study-flash-inner">
           <div class="study-flash-face front">
-            <div class="study-flash-hint">点击翻面查看解释</div>
+            <div class="study-flash-hint">${t('study.flipHint')}</div>
             <div class="study-flash-phrase">${esc(expr.phrase)}</div>
           </div>
           <div class="study-flash-face back">
-            <div class="study-flash-hint">中文意思</div>
+            <div class="study-flash-hint">${t('study.backHint')}</div>
             <div class="study-flash-note">${esc(expr.meaning)}</div>
             <div class="study-flash-example">${esc(expr.example)}</div>
             <div class="study-flash-example-cn">${esc(expr.exampleCn)}</div>
@@ -1633,7 +1601,7 @@ function renderStudyCard(mode,expr){
         </div>
       </div>
       <div class="study-flash-nav">
-        <button class="study-btn-secondary" onclick="document.getElementById('studyFlashCard').classList.toggle('flip')">翻面</button>
+        <button class="study-btn-secondary" onclick="document.getElementById('studyFlashCard').classList.toggle('flip')">${t('study.flip')}</button>
       </div>`;
     $('#studyFlashCard').onclick=function(){ this.classList.toggle('flip'); studyFlipped=true; };
   } else {
@@ -1646,13 +1614,13 @@ function renderStudyTranslate(expr){
   area.innerHTML=`
     <div class="study-quiz-area">
       <div class="study-quiz-q">
-        <small>中译英 · 用上面的表达翻译</small>
+        <small>${t('study.transTip')}</small>
         ${esc(expr.meaning)}
       </div>
-      <textarea class="study-quiz-input" id="studyTransInput" placeholder="输入英文，必须使用表达：${esc(expr.phrase)}" rows="3"></textarea>
+      <textarea class="study-quiz-input" id="studyTransInput" placeholder="${t('study.transPh').replace('{p}',esc(expr.phrase))}" rows="3"></textarea>
       <div class="study-quiz-actions">
-        <button class="study-btn-secondary" id="studyTransSwitch">英译中（选择题）</button>
-        <button class="study-btn-primary" id="studyTransSubmit">提交</button>
+        <button class="study-btn-secondary" id="studyTransSwitch">${t('study.transToChoice')}</button>
+        <button class="study-btn-primary" id="studyTransSubmit">${t('study.transSubmit')}</button>
       </div>
       <div id="studyTransFeedback"></div>
     </div>`;
@@ -1662,22 +1630,22 @@ function renderStudyTranslate(expr){
 
 async function judgeStudyTranslate(expr){
   const input=$('#studyTransInput').value.trim();
-  if(!input){ toast('请输入英文'); return; }
+  if(!input){ toast(t('toast.emptyInput')); return; }
   const cfg=getCfg();
   if(!cfg.key){
     const hasPhrase=input.toLowerCase().includes(expr.phrase.toLowerCase());
     const fb=$('#studyTransFeedback');
     if(hasPhrase){
-      fb.innerHTML=`<div class="study-quiz-feedback ok">✓ 包含目标表达，意思正确（本地判分，建议配置 API 获得更准的语义判断）</div>`;
+      fb.innerHTML=`<div class="study-quiz-feedback ok">✓ ${t('study.transFbOk')}</div>`;
       markStudyDone(expr.id);
       setTimeout(renderStudyHome,1200);
     } else {
-      fb.innerHTML=`<div class="study-quiz-feedback no">✗ 未包含目标表达，请使用「${esc(expr.phrase)}」</div>`;
+      fb.innerHTML=`<div class="study-quiz-feedback no">✗ ${t('study.transFbBad').replace('{p}',esc(expr.phrase))}</div>`;
     }
     return;
   }
   const btn=$('#studyTransSubmit');
-  btn.disabled=true; btn.textContent='AI 判分中…';
+  btn.disabled=true; btn.textContent=t('study.transJudging');
   try{
     const res=await fetch(cfg.endpoint,{
       method:'POST',
@@ -1695,16 +1663,16 @@ async function judgeStudyTranslate(expr){
     const r=extractJSON(content);
     const fb=$('#studyTransFeedback');
     if(r.pass){
-      fb.innerHTML=`<div class="study-quiz-feedback ok">✓ ${esc(r.reason||'翻译正确')}</div>`;
+      fb.innerHTML=`<div class="study-quiz-feedback ok">✓ ${esc(r.reason||t('study.transOk'))}</div>`;
       markStudyDone(expr.id);
       setTimeout(renderStudyHome,1500);
     } else {
-      fb.innerHTML=`<div class="study-quiz-feedback no">✗ ${esc(r.reason||'翻译不正确')}</div>`;
+      fb.innerHTML=`<div class="study-quiz-feedback no">✗ ${esc(r.reason||t('study.transBad'))}</div>`;
     }
   }catch(err){
-    toast('判分失败：'+err.message);
+    toast(t('toast.judgeFail')+err.message);
   }
-  btn.disabled=false; btn.textContent='提交';
+  btn.disabled=false; btn.textContent=t('study.transSubmit');
 }
 
 function renderStudyChoice(expr){
@@ -1713,14 +1681,14 @@ function renderStudyChoice(expr){
   area.innerHTML=`
     <div class="study-quiz-area">
       <div class="study-quiz-q">
-        <small>英译中 · 选出正确的中文意思</small>
+        <small>${t('study.choiceTip')}</small>
         <b>${esc(expr.phrase)}</b>
       </div>
       <div class="study-quiz-options" id="studyChoiceOpts">
         ${opts.map((o,i)=>`<button class="study-quiz-opt" data-ok="${o.ok}">${esc(o.t)}</button>`).join('')}
       </div>
       <div class="study-quiz-actions">
-        <button class="study-btn-secondary" onclick="renderStudyTranslate(${JSON.stringify(expr).replace(/"/g,'&quot;')})">返回中译英</button>
+        <button class="study-btn-secondary" onclick="renderStudyTranslate(${JSON.stringify(expr).replace(/"/g,'&quot;')})">${t('study.backToTrans')}</button>
       </div>
     </div>`;
   area.querySelectorAll('.study-quiz-opt').forEach(btn=>{
@@ -1739,17 +1707,17 @@ function renderStudyChoice(expr){
 function renderStudyReview(){
   const list=studyReviewList();
   if(!list.length){
-    studyBody.innerHTML='<div class="study-empty">还没有已掌握的表达<br>先完成今日新学</div>';
+    studyBody.innerHTML='<div class="study-empty">'+t('study.reviewEmpty').replace('\n','<br>')+'</div>';
     return;
   }
   studyBody.innerHTML=`
     <div style="text-align:center;margin-bottom:20px">
-      <div style="font-size:16px;font-weight:600">复习模式</div>
-      <div style="font-size:13px;color:var(--ink-faint);margin-top:4px">随机抽取 ${list.length} 条已掌握表达</div>
+      <div style="font-size:16px;font-weight:600">${t('study.reviewTitle')}</div>
+      <div style="font-size:13px;color:var(--ink-faint);margin-top:4px">${t('study.reviewSub').replace('{n}',list.length)}</div>
     </div>
     <div class="study-tabs" style="justify-content:center">
-      <button class="study-tab active" data-rmode="flash">Flash Card</button>
-      <button class="study-tab" data-rmode="choice">英译中</button>
+      <button class="study-tab active" data-rmode="flash">${t('study.tabFlash')}</button>
+      <button class="study-tab" data-rmode="choice">${t('study.tabChoice')}</button>
     </div>
     <div class="study-card-area" id="studyReviewArea"></div>`;
   document.querySelectorAll('.study-tab[data-rmode]').forEach(t=>{
@@ -1766,7 +1734,7 @@ function renderStudyReviewFlash(list,pos){
   const expr=list[pos];
   const area=$('#studyReviewArea');
   area.innerHTML=`
-    <div style="text-align:center;margin-bottom:14px;font-family:var(--mono);font-size:12px;color:var(--ink-faint)">${pos+1} / ${list.length}</div>
+    <div style="text-align:center;margin-bottom:14px;font-family:var(--mono);font-size:12px;color:var(--ink-faint)">${t('study.reviewProgress').replace('{p}',pos+1).replace('{t}',list.length)}</div>
     <div class="study-flash-card" id="reviewFlash">
       <div class="study-flash-inner">
         <div class="study-flash-face front"><div class="study-flash-phrase">${esc(expr.phrase)}</div></div>
@@ -1774,8 +1742,8 @@ function renderStudyReviewFlash(list,pos){
       </div>
     </div>
     <div class="study-flash-nav">
-      <button class="study-btn-secondary" onclick="document.getElementById('reviewFlash').classList.toggle('flip')">翻面</button>
-      <button class="study-btn-primary" id="reviewNext">${pos+1<list.length?'下一个':'完成'}</button>
+      <button class="study-btn-secondary" onclick="document.getElementById('reviewFlash').classList.toggle('flip')">${t('study.flip')}</button>
+      <button class="study-btn-primary" id="reviewNext">${pos+1<list.length?t('study.next'):t('study.finish')}</button>
     </div>`;
   $('#reviewFlash').onclick=function(){this.classList.toggle('flip');};
   $('#reviewNext').onclick=()=>{ if(pos+1<list.length) renderStudyReviewFlash(list,pos+1); else renderStudyHome(); };
@@ -1786,8 +1754,8 @@ function renderStudyReviewChoice(list,pos){
   const area=$('#studyReviewArea');
   const opts=shuffle([{t:expr.meaning,ok:1},...expr.distractors.map(d=>({t:d,ok:0}))]);
   area.innerHTML=`
-    <div style="text-align:center;margin-bottom:14px;font-family:var(--mono);font-size:12px;color:var(--ink-faint)">${pos+1} / ${list.length}</div>
-    <div class="study-quiz-q"><small>英译中</small><b>${esc(expr.phrase)}</b></div>
+    <div style="text-align:center;margin-bottom:14px;font-family:var(--mono);font-size:12px;color:var(--ink-faint)">${t('study.reviewProgress').replace('{p}',pos+1).replace('{t}',list.length)}</div>
+    <div class="study-quiz-q"><small>${t('study.tabChoice')}</small><b>${esc(expr.phrase)}</b></div>
     <div class="study-quiz-options">${opts.map((o,i)=>`<button class="study-quiz-opt" data-ok="${o.ok}">${esc(o.t)}</button>`).join('')}</div>`;
   area.querySelectorAll('.study-quiz-opt').forEach(btn=>{
     btn.onclick=()=>{
@@ -1806,32 +1774,32 @@ function renderStudyList(){
   const masteredN=arr.filter(e=>e.status==='mastered').length;
   studyBody.innerHTML=`
     <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap">
-      <span class="study-status new">新 ${newN}</span>
-      <span class="study-status learning">学习中 ${learningN}</span>
-      <span class="study-status mastered">已掌握 ${masteredN}</span>
+      <span class="study-status new">${t('study.statusNew').replace('{n}',newN)}</span>
+      <span class="study-status learning">${t('study.statusLearning').replace('{n}',learningN)}</span>
+      <span class="study-status mastered">${t('study.statusMastered').replace('{n}',masteredN)}</span>
     </div>
     ${arr.map(e=>`
       <div class="study-list-item">
         <div class="study-list-phrase">${esc(e.phrase)}</div>
         <div class="study-list-note">${esc(e.meaning)}</div>
         <div class="study-list-meta">
-          <span class="study-status ${e.status}">${e.status==='new'?'新':e.status==='learning'?'学习中':'已掌握'}</span>
+          <span class="study-status ${e.status}">${e.status==='new'?t('study.stNew'):e.status==='learning'?t('study.stLearning'):t('study.stMastered')}</span>
         </div>
       </div>`).join('')}
-    <div style="text-align:center;margin-top:20px"><button class="btn-primary" onclick="renderStudyHome()">返回今日任务</button></div>`;
+    <div style="text-align:center;margin-top:20px"><button class="btn-primary" onclick="renderStudyHome()">${t('study.backToToday')}</button></div>`;
 }
 
 function renderStudyAdd(){
   studyBody.innerHTML=`
     <div class="study-add-form">
-      <div class="field"><label>英文表达</label><input id="addPhrase" placeholder="e.g. play it by ear"></div>
-      <div class="field"><label>中文意思</label><input id="addMeaning" placeholder="e.g. 随机应变，到时再看情况"></div>
-      <div class="field"><label>英文例句</label><textarea id="addExample" placeholder="Let's play it by ear."></textarea></div>
-      <div class="field"><label>中文翻译</label><textarea id="addExampleCn" placeholder="我们随机应变。"></textarea></div>
-      <div class="field"><label>干扰项（3个，用 | 分隔）</label><input id="addDistractors" placeholder="提前计划 | 按乐谱演奏 | 充耳不闻"></div>
+      <div class="field"><label>${t('study.addPhrase')}</label><input id="addPhrase" placeholder="${t('study.addPhrasePh')}"></div>
+      <div class="field"><label>${t('study.addMeaning')}</label><input id="addMeaning" placeholder="${t('study.addMeaningPh')}"></div>
+      <div class="field"><label>${t('study.addExample')}</label><textarea id="addExample" placeholder="${t('study.addExamplePh')}"></textarea></div>
+      <div class="field"><label>${t('study.addExampleCn')}</label><textarea id="addExampleCn" placeholder="${t('study.addExampleCnPh')}"></textarea></div>
+      <div class="field"><label>${t('study.addDistractors')}</label><input id="addDistractors" placeholder="${t('study.addDistractorsPh')}"></div>
       <div class="study-add-actions">
-        <button class="study-btn-secondary" onclick="renderStudyHome()">取消</button>
-        <button class="study-btn-primary" id="addSubmit">保存</button>
+        <button class="study-btn-secondary" onclick="renderStudyHome()">${t('study.cancel')}</button>
+        <button class="study-btn-primary" id="addSubmit">${t('study.save')}</button>
       </div>
     </div>`;
   $('#addSubmit').onclick=()=>{
@@ -1840,14 +1808,14 @@ function renderStudyAdd(){
     const example=$('#addExample').value.trim();
     const exampleCn=$('#addExampleCn').value.trim();
     const distractors=$('#addDistractors').value.split('|').map(s=>s.trim()).filter(Boolean).slice(0,3);
-    if(!phrase||!meaning){ toast('英文表达和中文意思必填'); return; }
-    if(distractors.length<3){ toast('请提供3个干扰项，用 | 分隔'); return; }
+    if(!phrase||!meaning){ toast(t('toast.requiredField')); return; }
+    if(distractors.length<3){ toast(t('toast.needDistractors')); return; }
     const s=getStudy();
-    if((s.exprs||[]).some(e=>e.phrase.toLowerCase()===phrase.toLowerCase())){ toast('该表达已存在'); return; }
+    if((s.exprs||[]).some(e=>e.phrase.toLowerCase()===phrase.toLowerCase())){ toast(t('toast.exists')); return; }
     s.exprs=s.exprs||[];
     s.exprs.unshift({id:Date.now(),phrase,meaning,example,exampleCn,distractors,status:'new',addedAt:Date.now()});
     setStudy(s);
-    toast('已保存');
+    toast(t('toast.saved'));
     renderStudyHome();
   };
 }
@@ -1863,25 +1831,225 @@ const LS_LOC='inkwell_locale';
 const SUPPORTED=['zh-CN','zh-TW','en'];
 const I18N={
   'zh-CN':{
+    // core
+    'title':'Inkwell · AI 英文写作批改',
     'tagline':'AI 英文写作批改 · Native Speaker 级别的修改与讲解',
     'nav.history':'历史记录','nav.write':'写作','nav.bank':'表达库','nav.study':'每日背诵','nav.settings':'API 设置',
+    // editor
     'editor.yourText':'你的原文','editor.placeholderNote':'Paste or write your English here',
-    'editor.apiHint':"还没有配置 API Key — 点击右上角「API 设置」填入你的 MiniMax Key 后开始真实批改；或先点「试试示例」查看演示效果。",
-    'bank.title':'表达库','study.titlePrefix':'每日','study.title':'背诵','study.sub':'每天新学 5 个 native expression，学完可复习'
+    'editor.ph':'Write or paste your English text here…&#10;&#10;e.g. I am agree that technology brings more benefits than drawbacks…',
+    'editor.wordcount':'{w} words · {c} chars',
+    'editor.demo':'试试示例','editor.clear':'清空','editor.grade':'开始批改',
+    'editor.apiHint':'还没有配置 API Key — 点击右上角「API 设置」填入你的 MiniMax Key 后开始真实批改。',
+    // loading
+    'loading.reading':'正在通读全文…','loading.grammar':'逐句检查语法与拼写…','loading.vocab':'评估词汇与连贯性…','loading.polished':'以 native 水准重写润色…','loading.notes':'整理学习笔记…',
+    // score + result
+    'score.overall':'OVERALL','score.formula':'总分 = …','score.formulaTpl':'总分 = 语法×{g}% + 词汇×{v}% + 连贯×{c}% + 地道×{n}%','score.formulaTitle':'总分由四个维度分数按当前写作类型的权重加权合成，权重随类型调整',
+    'score.radarLabel':'四维评分雷达图',
+    'dims.grammar':'语法','dims.vocabulary':'词汇','dims.coherence':'连贯','dims.naturalness':'地道',
+    'result.regrade':'重新批改','result.backEdit':'返回修改原文',
+    'tab.annotate':'逐句批改','tab.polished':'润色全文','tab.notes':'学习笔记',
+    'legend.error':'错误 · 必须修改','legend.improve':'优化 · 更地道的表达','legend.hint':'点击高亮 ↔ 定位讲解',
+    'badge.error':'错误','badge.improve':'优化',
+    'polished.note':'在保留原意的基础上，以 native speaker 的方式重写','polished.copy':'复制润色稿',
+    'notes.distribution':'本次错误分布','notes.focus':'最值得记住的 3 点','notes.highlights':'表达升级推荐','notes.highlightsTip':'手动选择 · 保存到表达库','notes.saveToBank':'保存到表达库',
+    'result.noErrors':'没有发现需要修改的地方，写得很好！','result.noErrors2':'本次没有错误记录。','result.keepGoing':'继续保持，多读多写地道英文。','result.noHighlights':'暂无推荐表达。','result.noPolished':'（未生成润色稿）','result.other':'其他','result.noHint':'（无提示）','result.whyPrefix':'为什么',
+    // bank
+    'bank.title':'表达库',
+    'bank.tabAll':'全部表达','bank.tabFlash':'闪卡复习','bank.tabQuiz':'检测',
+    'bank.stats':'共 <b>{n}</b> 条表达 · <b>{d}</b> 条到期待复习 · <b>{m}</b> 条已掌握',
+    'bank.empty':'表达库还是空的\n每次批改后，推荐的 native 表达会自动提炼到这里',
+    'bank.dueNow':'待复习','bank.dueLater':'下次复习 {d}','bank.from':'来源：{f}','bank.del':'删除','bank.scoreFmt':'对 {ok} · 错 {no}',
+    'bank.flashEmpty1':'今天没有到期的表达\n已掌握的会按 1→2→4→7→15 天的间隔回来找你','bank.flashEmpty2':'表达库还是空的，先去完成一次批改吧',
+    'bank.flashProgress':'第 {p} / {t} 张','bank.flashFront':'根据中文提示回忆地道表达 · 点击翻面',
+    'bank.flashNo':'还不熟','bank.flashYes':'记住了',
+    'bank.flashDone':'本轮复习完成','bank.flashStill':'还有 {n} 条没过关，会留到下一轮。','bank.flashAllDone':'所有到期表达都过关了，到时间它们会自动回来。',
+    'bank.flashBackAll':'查看全部表达','bank.flashAgain':'立即再复习一轮',
+    'bank.quizEmpty1':'还没有可检测的表达\n先完成一次批改，表达会自动入库','bank.quizEmpty2':'库里的表达还没有干扰项\n再完成一次批改，新入库的表达会自动带上选择题干扰项',
+    'bank.quizIntroTitle':'准备检测','bank.quizIntroSub':'抽取 {n} 条表达，根据中文意思从 4 个选项中选出地道的英文表达。干扰项是 AI 生成的中式英语常见错误，别被坑。答错会重置该表达的复习进度。',
+    'bank.quizStart':'开始检测','bank.quizProgress':'第 {p} / {t} 题','bank.quizChooseTip':'根据中文意思，选出地道的英文表达',
+    'bank.quizNext':'下一题','bank.quizSeeResult':'查看结果','bank.quizAccuracy':'正确率 {p}%','bank.quizGood':'掌握得不错，继续保持。','bank.quizBad':'答错的表达已重置复习进度，明天再来一次吧。','bank.quizAgain':'再来一组',
+    // study
+    'study.titlePrefix':'每日','study.title':'背诵','study.sub':'每天新学 5 个 native expression，学完可复习',
+    'study.addBtn':'添加表达','study.listBtn':'全部表达',
+    'study.emptyAll':'🎉 全部表达已掌握！\n去「全部表达」里复习，或添加新表达','study.emptyToday':'今天没有新表达可学\n去「添加表达」录入一些，或从「全部表达」里复习',
+    'study.goReview':'去复习已掌握','study.goAdd':'添加新表达',
+    'study.tabFlash':'Flash Card','study.tabTrans':'中英互译','study.tabChoice':'英译中',
+    'study.skip':'跳过今天','study.markDone':'标记为已学会','study.todayDone':'今日完成',
+    'study.allDone':'今日任务已完成！','study.flipHint':'点击翻面查看解释','study.backHint':'中文意思','study.flip':'翻面',
+    'study.transTip':'中译英 · 用上面的表达翻译','study.transPh':'输入英文，必须使用表达：{p}','study.transToChoice':'英译中（选择题）','study.transSubmit':'提交','study.transJudging':'AI 判分中…',
+    'study.transFbOk':'包含目标表达，意思正确（本地判分，建议配置 API 获得更准的语义判断）','study.transFbBad':'未包含目标表达，请使用「{p}」','study.transOk':'翻译正确','study.transBad':'翻译不正确',
+    'study.choiceTip':'英译中 · 选出正确的中文意思','study.backToTrans':'返回中译英',
+    'study.reviewEmpty':'还没有已掌握的表达\n先完成今日新学','study.reviewTitle':'复习模式','study.reviewSub':'随机抽取 {n} 条已掌握表达','study.reviewProgress':'{p} / {t}','study.next':'下一个','study.finish':'完成',
+    'study.statusNew':'新 {n}','study.statusLearning':'学习中 {n}','study.statusMastered':'已掌握 {n}',
+    'study.stNew':'新','study.stLearning':'学习中','study.stMastered':'已掌握','study.backToToday':'返回今日任务',
+    'study.addPhrase':'英文表达','study.addPhrasePh':'e.g. play it by ear','study.addMeaning':'中文意思','study.addMeaningPh':'e.g. 随机应变，到时再看情况',
+    'study.addExample':'英文例句','study.addExamplePh':"Let's play it by ear.",'study.addExampleCn':'中文翻译','study.addExampleCnPh':'我们随机应变。',
+    'study.addDistractors':'干扰项（3个，用 | 分隔）','study.addDistractorsPh':'提前计划 | 按乐谱演奏 | 充耳不闻',
+    'study.cancel':'取消','study.save':'保存',
+    // modal
+    'modal.settingsTitle':'API 设置','modal.settingsSub':'填入你的 MiniMax API Key。Key 仅保存在本浏览器 localStorage，不会上传到任何其他服务器。',
+    'modal.apiKey':'API KEY','modal.corsTip':'提示：若浏览器报跨域（CORS）错误，可改用本地代理地址，或在允许跨域的环境下打开本页面。',
+    'modal.cancel':'取消','modal.save':'保存设置',
+    'modal.pickTitle':'保存到表达库','modal.pickSub':'勾选你想保存的 native 表达，已选','modal.pickSubCount':'条',
+    'modal.pickAll':'全选','modal.pickNone':'全不选','modal.pickConfirm':'保存所选',
+    // drawer
+    'drawer.historyTitle':'历史记录','drawer.clearAll':'清空全部记录',
+    // history empty
+    'history.empty':'还没有批改记录\n完成一次批改后会自动保存在这里',
+    // footer
+    'footer.tag':'Inkwell · 为英语学习者与国际学校学生设计','footer.model':'model: –',
+    // toasts
+    'toast.saved':'设置已保存','toast.empty':'请先输入或粘贴英文文本','toast.tooShort':'文本太短，至少写几个完整的词吧',
+    'toast.needKey':'请先填入 MiniMax API Key','toast.fail':'批改失败，请重试',
+    'toast.copied':'润色稿已复制','toast.loaded':'已载入历史批改','toast.historyCleared':'历史记录已清空',
+    'toast.demoLoaded':'示例已载入',
+    'toast.noHighlights':'本次没有可保存的表达','toast.pickOne':'请至少勾选一条',
+    'toast.savedN':'已保存 {n} 条表达到表达库','toast.dupSkip':'所选表达已存在，未重复添加',
+    'toast.deleted':'已删除',
+    'toast.skipped':'已跳过，明天会继续','toast.markedDone':'已标记为已学会',
+    'toast.emptyInput':'请输入英文','toast.judgeFail':'判分失败：',
+    'toast.requiredField':'英文表达和中文意思必填','toast.needDistractors':'请提供3个干扰项，用 | 分隔','toast.exists':'该表达已存在'
   },
   'zh-TW':{
+    'title':'Inkwell · AI 英文寫作批改',
     'tagline':'AI 英文寫作批改 · Native Speaker 等級的修改與講解',
     'nav.history':'歷史紀錄','nav.write':'寫作','nav.bank':'表達庫','nav.study':'每日背誦','nav.settings':'API 設定',
     'editor.yourText':'你的原文','editor.placeholderNote':'Paste or write your English here',
-    'editor.apiHint':"尚未設定 API Key — 點擊右上角「API 設定」填入你的 MiniMax Key 後開始真實批改；或先點「試試範例」查看示範效果。",
-    'bank.title':'表達庫','study.titlePrefix':'每日','study.title':'背誦','study.sub':'每天新學 5 個 native expression，學完可複習'
+    'editor.ph':"Write or paste your English text here…\n\ne.g. I am agree that technology brings more benefits than drawbacks…",
+    'editor.wordcount':'{w} words · {c} chars',
+    'editor.demo':'試試範例','editor.clear':'清空','editor.grade':'開始批改',
+    'editor.apiHint':'尚未設定 API Key — 點擊右上角「API 設定」填入你的 MiniMax Key 後開始真實批改。',
+    'loading.reading':'正在通讀全文…','loading.grammar':'逐句檢查語法與拼字…','loading.vocab':'評估詞彙與連貫性…','loading.polished':'以 native 水準重寫潤色…','loading.notes':'整理學習筆記…',
+    'score.overall':'OVERALL','score.formula':'總分 = …','score.formulaTpl':'總分 = 語法×{g}% + 詞彙×{v}% + 連貫×{c}% + 地道×{n}%','score.formulaTitle':'總分由四個維度分數按當前寫作類型的權重加權合成，權重隨類型調整',
+    'score.radarLabel':'四維評分雷達圖',
+    'dims.grammar':'語法','dims.vocabulary':'詞彙','dims.coherence':'連貫','dims.naturalness':'地道',
+    'result.regrade':'重新批改','result.backEdit':'返回修改原文',
+    'tab.annotate':'逐句批改','tab.polished':'潤色全文','tab.notes':'學習筆記',
+    'legend.error':'錯誤 · 必須修改','legend.improve':'優化 · 更地道的表達','legend.hint':'點擊高亮 ↔ 定位講解',
+    'badge.error':'錯誤','badge.improve':'優化',
+    'polished.note':'在保留原意的基礎上，以 native speaker 的方式重寫','polished.copy':'複製潤色稿',
+    'notes.distribution':'本次錯誤分佈','notes.focus':'最值得記住的 3 點','notes.highlights':'表達升級推薦','notes.highlightsTip':'手動選擇 · 儲存到表達庫','notes.saveToBank':'儲存到表達庫',
+    'result.noErrors':'沒有發現需要修改的地方，寫得很好！','result.noErrors2':'本次沒有錯誤記錄。','result.keepGoing':'繼續保持，多讀多寫地道英文。','result.noHighlights':'暫無推薦表達。','result.noPolished':'（未生成潤色稿）','result.other':'其他','result.noHint':'（無提示）','result.whyPrefix':'為什麼',
+    'bank.title':'表達庫',
+    'bank.tabAll':'全部表達','bank.tabFlash':'閃卡複習','bank.tabQuiz':'檢測',
+    'bank.stats':'共 <b>{n}</b> 條表達 · <b>{d}</b> 條到期待複習 · <b>{m}</b> 條已掌握',
+    'bank.empty':'表達庫還是空的\n每次批改後，推薦的 native 表達會自動提煉到這裡',
+    'bank.dueNow':'待複習','bank.dueLater':'下次複習 {d}','bank.from':'來源：{f}','bank.del':'刪除','bank.scoreFmt':'對 {ok} · 錯 {no}',
+    'bank.flashEmpty1':'今天沒有到期的表達\n已掌握的會按 1→2→4→7→15 天的間隔回來找你','bank.flashEmpty2':'表達庫還是空的，先去完成一次批改吧',
+    'bank.flashProgress':'第 {p} / {t} 張','bank.flashFront':'根據中文提示回憶地道表達 · 點擊翻面',
+    'bank.flashNo':'還不熟','bank.flashYes':'記住了',
+    'bank.flashDone':'本輪複習完成','bank.flashStill':'還有 {n} 條沒過關，會留到下一輪。','bank.flashAllDone':'所有到期表達都過關了，到時間它們會自動回來。',
+    'bank.flashBackAll':'查看全部表達','bank.flashAgain':'立即再複習一輪',
+    'bank.quizEmpty1':'還沒有可檢測的表達\n先完成一次批改，表達會自動入庫','bank.quizEmpty2':'庫裡的表達還沒有干擾項\n再完成一次批改，新入庫的表達會自動帶上選擇題干擾項',
+    'bank.quizIntroTitle':'準備檢測','bank.quizIntroSub':'抽取 {n} 條表達，根據中文意思從 4 個選項中選出地道的英文表達。干擾項是 AI 生成的中式英語常見錯誤，別被坑。答錯會重置該表達的複習進度。',
+    'bank.quizStart':'開始檢測','bank.quizProgress':'第 {p} / {t} 題','bank.quizChooseTip':'根據中文意思，選出地道的英文表達',
+    'bank.quizNext':'下一題','bank.quizSeeResult':'查看結果','bank.quizAccuracy':'正確率 {p}%','bank.quizGood':'掌握得不錯，繼續保持。','bank.quizBad':'答錯的表達已重置複習進度，明天再來一次吧。','bank.quizAgain':'再來一組',
+    'study.titlePrefix':'每日','study.title':'背誦','study.sub':'每天新學 5 個 native expression，學完可複習',
+    'study.addBtn':'添加表達','study.listBtn':'全部表達',
+    'study.emptyAll':'🎉 全部表達已掌握！\n去「全部表達」裡複習，或添加新表達','study.emptyToday':'今天沒有新表達可學\n去「添加表達」錄入一些，或從「全部表達」裡複習',
+    'study.goReview':'去複習已掌握','study.goAdd':'添加新表達',
+    'study.tabFlash':'Flash Card','study.tabTrans':'中英互譯','study.tabChoice':'英譯中',
+    'study.skip':'跳過今天','study.markDone':'標記為已學會','study.todayDone':'今日完成',
+    'study.allDone':'今日任務已完成！','study.flipHint':'點擊翻面查看解釋','study.backHint':'中文意思','study.flip':'翻面',
+    'study.transTip':'中譯英 · 用上面的表達翻譯','study.transPh':'輸入英文，必須使用表達：{p}','study.transToChoice':'英譯中（選擇題）','study.transSubmit':'提交','study.transJudging':'AI 判分中…',
+    'study.transFbOk':'包含目標表達，意思正確（本地判分，建議設定 API 獲得更準的語義判斷）','study.transFbBad':'未包含目標表達，請使用「{p}」','study.transOk':'翻譯正確','study.transBad':'翻譯不正確',
+    'study.choiceTip':'英譯中 · 選出正確的中文意思','study.backToTrans':'返回中譯英',
+    'study.reviewEmpty':'還沒有已掌握的表達\n先完成今日新學','study.reviewTitle':'複習模式','study.reviewSub':'隨機抽取 {n} 條已掌握表達','study.reviewProgress':'{p} / {t}','study.next':'下一個','study.finish':'完成',
+    'study.statusNew':'新 {n}','study.statusLearning':'學習中 {n}','study.statusMastered':'已掌握 {n}',
+    'study.stNew':'新','study.stLearning':'學習中','study.stMastered':'已掌握','study.backToToday':'返回今日任務',
+    'study.addPhrase':'英文表達','study.addPhrasePh':'e.g. play it by ear','study.addMeaning':'中文意思','study.addMeaningPh':'e.g. 隨機應變，到時再看情況',
+    'study.addExample':'英文例句','study.addExamplePh':"Let's play it by ear.",'study.addExampleCn':'中文翻譯','study.addExampleCnPh':'我們隨機應變。',
+    'study.addDistractors':'干擾項（3個，用 | 分隔）','study.addDistractorsPh':'提前計劃 | 按樂譜演奏 | 充耳不聞',
+    'study.cancel':'取消','study.save':'保存',
+    'modal.settingsTitle':'API 設定','modal.settingsSub':'填入你的 MiniMax API Key。Key 僅保存在本瀏覽器 localStorage，不會上傳到任何其他伺服器。',
+    'modal.apiKey':'API KEY','modal.corsTip':'提示：若瀏覽器報跨域（CORS）錯誤，可改用本地代理地址，或在允許跨域的環境下打開本頁面。',
+    'modal.cancel':'取消','modal.save':'保存設定',
+    'modal.pickTitle':'儲存到表達庫','modal.pickSub':'勾選你想保存的 native 表達，已選','modal.pickSubCount':'條',
+    'modal.pickAll':'全選','modal.pickNone':'全不選','modal.pickConfirm':'保存所選',
+    'drawer.historyTitle':'歷史紀錄','drawer.clearAll':'清空全部紀錄',
+    'history.empty':'還沒有批改紀錄\n完成一次批改後會自動保存在這裡',
+    'footer.tag':'Inkwell · 為英語學習者與國際學校學生設計','footer.model':'model: –',
+    'toast.saved':'設定已儲存','toast.empty':'請先輸入或貼上英文文本','toast.tooShort':'文本太短，至少寫幾個完整的詞吧',
+    'toast.needKey':'請先填入 MiniMax API Key','toast.fail':'批改失敗，請重試',
+    'toast.copied':'潤色稿已複製','toast.loaded':'已載入歷史批改','toast.historyCleared':'歷史紀錄已清空',
+    'toast.demoLoaded':'範例已載入',
+    'toast.noHighlights':'本次沒有可保存的表達','toast.pickOne':'請至少勾選一條',
+    'toast.savedN':'已儲存 {n} 條表達到表達庫','toast.dupSkip':'所選表達已存在，未重複添加',
+    'toast.deleted':'已刪除',
+    'toast.skipped':'已跳過，明天會繼續','toast.markedDone':'已標記為已學會',
+    'toast.emptyInput':'請輸入英文','toast.judgeFail':'判分失敗：',
+    'toast.requiredField':'英文表達和中文意思必填','toast.needDistractors':'請提供3個干擾項，用 | 分隔','toast.exists':'該表達已存在'
   },
   'en':{
+    'title':'Inkwell · AI English Writing Coach',
     'tagline':'AI English Writing Coach · Native-speaker edits & explanations',
     'nav.history':'History','nav.write':'Write','nav.bank':'Bank','nav.study':'Daily','nav.settings':'API',
     'editor.yourText':'Your text','editor.placeholderNote':'Paste or write your English here',
-    'editor.apiHint':'No API Key yet — click "API" on the top-right to enter your MiniMax key for real grading; or tap "Try sample" to preview the experience.',
-    'bank.title':'Bank','study.titlePrefix':'Daily','study.title':'Review','study.sub':'Learn 5 new native expressions every day; review when done'
+    'editor.ph':"Write or paste your English text here…\n\ne.g. I am agree that technology brings more benefits than drawbacks…",
+    'editor.wordcount':'{w} words · {c} chars',
+    'editor.demo':'Try sample','editor.clear':'Clear','editor.grade':'Grade',
+    'editor.apiHint':'No API Key yet — click "API" on the top-right and enter your MiniMax key to start real grading.',
+    'loading.reading':'Reading the full text…','loading.grammar':'Checking grammar & spelling…','loading.vocab':'Assessing vocabulary & coherence…','loading.polished':'Polishing to native-speaker level…','loading.notes':'Compiling study notes…',
+    'score.overall':'OVERALL','score.formula':'Overall = …','score.formulaTpl':'Overall = Grammar×{g}% + Vocab×{v}% + Coherence×{c}% + Naturalness×{n}%','score.formulaTitle':'Overall is a weighted average of the four dimension scores using the current writing type weights.',
+    'score.radarLabel':'Four-dimension scoring radar chart',
+    'dims.grammar':'Grammar','dims.vocabulary':'Vocab','dims.coherence':'Coherence','dims.naturalness':'Naturalness',
+    'result.regrade':'Re-grade','result.backEdit':'Back to edit',
+    'tab.annotate':'Line edits','tab.polished':'Polished','tab.notes':'Notes',
+    'legend.error':'Error · must fix','legend.improve':'Improve · more idiomatic','legend.hint':'Click highlight ↔ jump to explanation',
+    'badge.error':'Error','badge.improve':'Improve',
+    'polished.note':'Rewritten at native-speaker level while preserving your meaning','polished.copy':'Copy polished',
+    'notes.distribution':'Error breakdown','notes.focus':'Top 3 takeaways','notes.highlights':'Upgrade suggestions','notes.highlightsTip':'manual · save to bank','notes.saveToBank':'Save to bank',
+    'result.noErrors':'Nothing to fix — nicely done!','result.noErrors2':'No error records this time.','result.keepGoing':'Keep it up — read & write more natural English.','result.noHighlights':'No suggested phrases yet.','result.noPolished':'(No polished draft generated)','result.other':'Other','result.noHint':'(no hint)','result.whyPrefix':'Why',
+    'bank.title':'Bank',
+    'bank.tabAll':'All','bank.tabFlash':'Flash review','bank.tabQuiz':'Quiz',
+    'bank.stats':'<b>{n}</b> expressions · <b>{d}</b> due · <b>{m}</b> mastered',
+    'bank.empty':"Your bank is empty.\nAfter each grading, suggested native expressions will be added automatically.",
+    'bank.dueNow':'Due now','bank.dueLater':'Next: {d}','bank.from':'From: {f}','bank.del':'Delete','bank.scoreFmt':'✓ {ok} · ✗ {no}',
+    'bank.flashEmpty1':'Nothing is due today.\nMastered expressions come back at 1→2→4→7→15 day intervals.','bank.flashEmpty2':'Your bank is empty. Grade a draft first to fill it up.',
+    'bank.flashProgress':'Card {p} / {t}','bank.flashFront':'Recall the idiom from the hint · tap to flip',
+    'bank.flashNo':'Not yet','bank.flashYes':'Got it',
+    'bank.flashDone':'Round complete','bank.flashStill':'{n} still need work — they\'ll stay for the next round.','bank.flashAllDone':'All due expressions mastered. They\'ll come back on schedule.',
+    'bank.flashBackAll':'View all','bank.flashAgain':'Review again now',
+    'bank.quizEmpty1':'Nothing to quiz yet.\nGrade a draft first to populate the bank.','bank.quizEmpty2':'Expressions in your bank have no distractors yet.\nGrade one more draft — newly-saved expressions will get distractors.',
+    'bank.quizIntroTitle':'Ready to quiz','bank.quizIntroSub':'Pulled {n} expressions. Pick the natural English for each meaning from 4 options. AI-generated distractors mimic common Chinese-learner errors. Wrong answers reset that expression\'s review schedule.',
+    'bank.quizStart':'Start quiz','bank.quizProgress':'Question {p} / {t}','bank.quizChooseTip':'Pick the natural English expression',
+    'bank.quizNext':'Next','bank.quizSeeResult':'See result','bank.quizAccuracy':'Accuracy {p}%','bank.quizGood':'Nice work — keep it up.','bank.quizBad':'Wrong answers reset their review schedule. Try again tomorrow.','bank.quizAgain':'New round',
+    'study.titlePrefix':'Daily','study.title':'Review','study.sub':'Learn 5 new native expressions every day; review when done',
+    'study.addBtn':'Add phrase','study.listBtn':'All phrases',
+    'study.emptyAll':'🎉 All expressions mastered!\nReview them in "All phrases" or add new ones.','study.emptyToday':'No new phrases today.\nAdd some via "Add phrase", or review from "All phrases".',
+    'study.goReview':'Review mastered','study.goAdd':'Add phrase',
+    'study.tabFlash':'Flash Card','study.tabTrans':'Translate','study.tabChoice':'Pick meaning',
+    'study.skip':'Skip today','study.markDone':'Mark learned','study.todayDone':'Done for today',
+    'study.allDone':'Today\'s tasks done!','study.flipHint':'Tap to flip for meaning','study.backHint':'Meaning','study.flip':'Flip',
+    'study.transTip':'Translate it into English using the phrase','study.transPh':'Type English — must include: {p}','study.transToChoice':'Multiple choice','study.transSubmit':'Submit','study.transJudging':'AI judging…',
+    'study.transFbOk':'Contains the phrase and meaning is correct (local check — add API for semantic grading)','study.transFbBad':'Please include the phrase "{p}".','study.transOk':'Translation correct','study.transBad':'Translation incorrect',
+    'study.choiceTip':'Pick the Chinese meaning of the phrase','study.backToTrans':'Back to translate',
+    'study.reviewEmpty':'No mastered phrases yet.\nFinish today\'s new ones first.','study.reviewTitle':'Review mode','study.reviewSub':'Picked {n} mastered expressions at random','study.reviewProgress':'{p} / {t}','study.next':'Next','study.finish':'Finish',
+    'study.statusNew':'New {n}','study.statusLearning':'Learning {n}','study.statusMastered':'Mastered {n}',
+    'study.stNew':'New','study.stLearning':'Learning','study.stMastered':'Mastered','study.backToToday':'Back to today',
+    'study.addPhrase':'English phrase','study.addPhrasePh':'e.g. play it by ear','study.addMeaning':'Chinese meaning','study.addMeaningPh':'e.g. play it by ear',
+    'study.addExample':'English example','study.addExamplePh':"Let's play it by ear.",'study.addExampleCn':'Chinese translation','study.addExampleCnPh':"Let's decide as we go.",
+    'study.addDistractors':'Distractors (3, separated by |)','study.addDistractorsPh':'plan ahead | read music | ignore',
+    'study.cancel':'Cancel','study.save':'Save',
+    'modal.settingsTitle':'API Settings','modal.settingsSub':'Enter your MiniMax API Key. The key stays in this browser\'s localStorage — never uploaded elsewhere.',
+    'modal.apiKey':'API KEY','modal.corsTip':'Tip: if the browser shows a CORS error, switch to a local proxy URL or open this page in an environment that allows cross-origin requests.',
+    'modal.cancel':'Cancel','modal.save':'Save settings',
+    'modal.pickTitle':'Save to bank','modal.pickSub':'Pick the native expressions you want to save —','modal.pickSubCount':'selected',
+    'modal.pickAll':'Select all','modal.pickNone':'Clear all','modal.pickConfirm':'Save selected',
+    'drawer.historyTitle':'History','drawer.clearAll':'Clear all history',
+    'history.empty':'No grading records yet.\nRecords save here automatically after each grade.',
+    'footer.tag':'Inkwell · for English learners and international-school students','footer.model':'model: –',
+    'toast.saved':'Settings saved','toast.empty':'Please paste or type some English first','toast.tooShort':'Too short — write at least a few full words',
+    'toast.needKey':'Please enter your MiniMax API Key first','toast.fail':'Grading failed — please try again',
+    'toast.copied':'Polished draft copied','toast.loaded':'Historical grade loaded','toast.historyCleared':'History cleared',
+    'toast.demoLoaded':'Sample loaded',
+    'toast.noHighlights':'No phrases to save from this grade','toast.pickOne':'Please pick at least one',
+    'toast.savedN':'Saved {n} expression(s) to the bank','toast.dupSkip':'Selected expressions already exist — no duplicates added',
+    'toast.deleted':'Deleted',
+    'toast.skipped':'Skipped — continues tomorrow','toast.markedDone':'Marked as learned',
+    'toast.emptyInput':'Please type English first','toast.judgeFail':'Judging failed: ',
+    'toast.requiredField':'Phrase and meaning are required','toast.needDistractors':'Please provide 3 distractors (separated by |)','toast.exists':'This expression already exists'
   }
 };
 function getLocale(){ let v=localStorage.getItem(LS_LOC); if(!SUPPORTED.includes(v)) v='zh-CN'; return v; }
@@ -1892,8 +2060,36 @@ function applyLocale(){
     const k=el.getAttribute('data-i18n');
     el.textContent=t(k);
   });
-  document.querySelectorAll('.locale-opt').forEach(b=>b.classList.toggle('active',b.dataset.loc===l));
   document.documentElement.lang=(l==='en')?'en':'zh';
+  // <title>
+  document.title=t('title');
+  // textarea placeholder
+  const ta=document.getElementById('editor');
+  if(ta){ ta.placeholder=t('editor.ph').replace('\n','\n'); }
+  // chips labels
+  if(typeof TYPES!=='undefined'){
+    TYPES.forEach(tp=>{
+      const c=document.querySelector(`#chips .chip[data-id="${tp.id}"]`);
+      if(c){
+        const lt = l==='en'?tp.label_en:(l==='zh-TW'?tp.label_tw:tp.label_zh);
+        c.textContent = lt;
+      }
+    });
+  }
+  // DIMS radar labels
+  if(typeof DIM_KEYS!=='undefined'){
+    const radar=document.querySelector('#radarWrap'); if(radar) rerenderRadar();
+  }
+  // c-why prefix (CSS pseudo reads attr())
+  document.querySelectorAll('.c-why').forEach(el=>{ el.setAttribute('data-i18n-prefix',t('result.whyPrefix')); });
+  // locale-switch active state
+  document.querySelectorAll('.locale-opt').forEach(b=>b.classList.toggle('active',b.dataset.loc===l));
+}
+function rerenderRadar(){
+  // re-render radar chart to refresh dimension labels
+  if(typeof lastResult!=='undefined' && lastResult){
+    renderRadar(lastResult.scores||{grammar:0,vocabulary:0,coherence:0,naturalness:0});
+  }
 }
 document.querySelectorAll('.locale-opt').forEach(b=>{
   b.onclick=()=>{ localStorage.setItem(LS_LOC,b.dataset.loc); applyLocale(); };
