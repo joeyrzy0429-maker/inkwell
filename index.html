@@ -61,11 +61,6 @@ header{
 .btn-ghost.active{background:#8B5E3C;color:var(--paper);border-color:#8B5E3C}
 .btn-ghost svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8}
 
-/* ---------- locale switcher ---------- */
-.locale-switch{display:inline-flex;gap:0;border:1px solid var(--line-strong);border-radius:99px;padding:3px;background:var(--paper);align-self:center}
-.locale-opt{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:none;background:transparent;color:var(--ink-faint);cursor:pointer;border-radius:99px;transition:all .15s}
-.locale-opt:hover{color:var(--ink)}
-.locale-opt.active{background:var(--ink);color:var(--paper)}
 
 /* ---------- layout ---------- */
 main{max-width:1180px;margin:0 auto;padding:26px 28px 90px}
@@ -509,11 +504,6 @@ footer span{font-family:var(--mono)}
       <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
       <span data-i18n="nav.study">每日背诵</span>
     </button>
-    <div class="locale-switch" id="localeSwitch">
-      <button class="locale-opt" data-loc="zh-CN">中</button>
-      <button class="locale-opt" data-loc="zh-TW">繁</button>
-      <button class="locale-opt" data-loc="en">EN</button>
-    </div>
     <button class="btn-ghost" id="settingsBtn">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
       <span data-i18n="nav.settings">API 设置</span>
@@ -738,8 +728,6 @@ footer span{font-family:var(--mono)}
 // ---------- i18n (locale switcher) ----------
 let lastResult=null, lastText='';   // declared early: applyLocale() reads it
 
-const LS_LOC='inkwell_locale';
-const SUPPORTED=['zh-CN','zh-TW','en'];
 const I18N={
   'zh-CN':{
     // core
@@ -963,7 +951,7 @@ const I18N={
     'toast.requiredField':'Phrase and meaning are required','toast.needDistractors':'Please provide 3 distractors (separated by |)','toast.exists':'This expression already exists'
   }
 };
-function getLocale(){ let v=localStorage.getItem(LS_LOC); if(!SUPPORTED.includes(v)) v='zh-CN'; return v; }
+function getLocale(){ return 'zh-CN'; }
 function t(k){ const l=getLocale(); return (I18N[l]&&I18N[l][k])||I18N['zh-CN'][k]||k; }
 function applyLocale(){
   const l=getLocale();
@@ -989,16 +977,11 @@ function applyLocale(){
   if(typeof rerenderRadar==='function' && document.querySelector('#radarWrap svg')) rerenderRadar();
   // c-why prefix (CSS pseudo reads attr())
   document.querySelectorAll('.c-why').forEach(el=>{ el.setAttribute('data-i18n-prefix',t('result.whyPrefix')); });
-  // locale-switch active state
-  document.querySelectorAll('.locale-opt').forEach(b=>b.classList.toggle('active',b.dataset.loc===l));
 }
 function rerenderRadar(){
   if(typeof lastResult==='undefined' || !lastResult) return;
   renderRadar(lastResult.scores||{grammar:0,vocabulary:0,coherence:0,naturalness:0});
 }
-document.querySelectorAll('.locale-opt').forEach(b=>{
-  b.onclick=()=>{ localStorage.setItem(LS_LOC,b.dataset.loc); applyLocale(); };
-});
 applyLocale();
 
 // ---------- config ----------
