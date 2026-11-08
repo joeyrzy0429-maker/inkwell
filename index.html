@@ -174,6 +174,11 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
   padding:6px 13px;cursor:pointer;color:var(--ink-soft);transition:all .15s;
 }
 .mini-btn:hover{border-color:var(--ink);color:var(--ink)}
+.mini-btn.is-on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* 每日新学条数选择 */
+.study-daily-set{display:flex;align-items:center;gap:8px;margin-bottom:18px;font-size:12px;color:var(--ink-soft)}
+.study-daily-set .sds-label{font-family:var(--mono);font-size:11px;letter-spacing:.5px;color:var(--ink-faint)}
 
 /* tabs + panels */
 .workbench{overflow:hidden}
@@ -607,7 +612,10 @@ footer span{font-family:var(--mono)}
           <div class="notes-sec">
             <div class="notes-h" style="display:flex;justify-content:space-between;align-items:center">
               <span><span data-i18n="notes.highlights">表达升级推荐</span> <span style="font-family:var(--mono);font-size:10px;font-weight:400;color:var(--gold);letter-spacing:1px" data-i18n="notes.highlightsTip">手动选择 · 保存到表达库</span></span>
-              <button class="btn-primary" id="saveToBankBtn" style="font-size:12px;padding:6px 14px"><span data-i18n="notes.saveToBank">保存到表达库</span></button>
+              <div style="display:flex;gap:8px;align-items:center">
+                <button class="btn-primary" id="saveToBankBtn" style="font-size:12px;padding:6px 14px"><span data-i18n="notes.saveToBank">保存到表达库</span></button>
+                <button class="btn-ghost" id="saveToStudyBtn" style="font-size:12px;padding:6px 14px"><span data-i18n="notes.saveToStudy">保存到背诵库</span></button>
+              </div>
             </div>
             <div id="hlList"></div>
           </div>
@@ -751,7 +759,7 @@ const I18N={
     'legend.error':'错误 · 必须修改','legend.improve':'优化 · 更地道的表达','legend.hint':'点击高亮 ↔ 定位讲解',
     'badge.error':'错误','badge.improve':'优化',
     'polished.note':'在保留原意的基础上，以 native speaker 的方式重写','polished.copy':'复制润色稿',
-    'notes.distribution':'本次错误分布','notes.focus':'最值得记住的 3 点','notes.highlights':'表达升级推荐','notes.highlightsTip':'手动选择 · 保存到表达库','notes.saveToBank':'保存到表达库',
+    'notes.distribution':'本次错误分布','notes.focus':'最值得记住的 3 点','notes.highlights':'表达升级推荐','notes.highlightsTip':'手动选择 · 保存到表达库','notes.saveToBank':'保存到表达库','notes.saveToStudy':'保存到背诵库',
     'result.noErrors':'没有发现需要修改的地方，写得很好！','result.noErrors2':'本次没有错误记录。','result.keepGoing':'继续保持，多读多写地道英文。','result.noHighlights':'暂无推荐表达。','result.noPolished':'（未生成润色稿）','result.other':'其他','result.noHint':'（无提示）','result.whyPrefix':'为什么',
     // bank
     'bank.title':'表达库',
@@ -786,11 +794,12 @@ const I18N={
     'study.addExample':'英文例句','study.addExamplePh':"Let's play it by ear.",'study.addExampleCn':'中文翻译','study.addExampleCnPh':'我们随机应变。',
     'study.addDistractors':'干扰项（3个，用 | 分隔）','study.addDistractorsPh':'提前计划 | 按乐谱演奏 | 充耳不闻',
     'study.cancel':'取消','study.save':'保存',
+    'study.dailyCount':'每日新学','study.dailyCountUnit':'条',
     // modal
     'modal.settingsTitle':'API 设置','modal.settingsSub':'填入你的 MiniMax API Key。Key 仅保存在本浏览器 localStorage，不会上传到任何其他服务器。',
     'modal.apiKey':'API KEY','modal.corsTip':'提示：若浏览器报跨域（CORS）错误，可改用本地代理地址，或在允许跨域的环境下打开本页面。',
     'modal.cancel':'取消','modal.save':'保存设置',
-    'modal.pickTitle':'保存到表达库','modal.pickSub':'勾选你想保存的 native 表达，已选','modal.pickSubCount':'条',
+    'modal.pickTitle':'保存到表达库','modal.pickTitleStudy':'保存到背诵库','modal.pickSub':'勾选你想保存的 native 表达，已选','modal.pickSubCount':'条',
     'modal.pickAll':'全选','modal.pickNone':'全不选','modal.pickConfirm':'保存所选',
     // drawer
     'drawer.historyTitle':'历史记录','drawer.clearAll':'清空全部记录',
@@ -804,9 +813,9 @@ const I18N={
     'toast.copied':'润色稿已复制','toast.loaded':'已载入历史批改','toast.historyCleared':'历史记录已清空',
     'toast.demoLoaded':'示例已载入',
     'toast.noHighlights':'本次没有可保存的表达','toast.pickOne':'请至少勾选一条',
-    'toast.savedN':'已保存 {n} 条表达到表达库','toast.dupSkip':'所选表达已存在，未重复添加',
+    'toast.savedN':'已保存 {n} 条表达到表达库','toast.savedStudy':'已保存 {n} 条表达到背诵库','toast.dupSkip':'所选表达已存在，未重复添加',
     'toast.deleted':'已删除',
-    'toast.skipped':'已跳过，明天会继续','toast.markedDone':'已标记为已学会',
+    'toast.skipped':'已跳过，明天会继续','toast.markedDone':'已标记为已学会','toast.dailyCountSet':'每日新学条数已设为 {n} 条',
     'toast.emptyInput':'请输入英文','toast.judgeFail':'判分失败：',
     'toast.requiredField':'英文表达和中文意思必填','toast.needDistractors':'请提供3个干扰项，用 | 分隔','toast.exists':'该表达已存在'
   },
@@ -1440,17 +1449,23 @@ function collectFromResult(r){
   return added;
 }
 
-/* ---- 手动保存到表达库（选择模态框） ---- */
+/* ---- 手动保存（表达库 / 背诵库 共用一个选择模态框） ---- */
 let pickData=[]; // 当前可选的 highlights
-$('#saveToBankBtn').onclick=()=>{
+let pickTarget='bank'; // 'bank' | 'study'
+function openPick(target){
   const hls=(lastResult && Array.isArray(lastResult.highlights)) ? lastResult.highlights : [];
   if(!hls.length){ toast(t('toast.noHighlights'), true); return; }
+  pickTarget=target;
+  const titleEl=bankPickModal.querySelector('h3');
+  if(titleEl) titleEl.textContent=t(target==='study'?'modal.pickTitleStudy':'modal.pickTitle');
   pickData=hls.map((h,i)=>({ idx:i, phrase:String(h.phrase||'').trim(), note:String(h.note||''), distractors:Array.isArray(h.distractors)?h.distractors.filter(Boolean).slice(0,3):[] }));
   // 默认全选
   pickData.forEach(p=>p.checked=true);
   renderPickList();
   overlay.classList.add('show'); bankPickModal.classList.add('show');
-};
+}
+$('#saveToBankBtn').onclick=()=>openPick('bank');
+$('#saveToStudyBtn').onclick=()=>openPick('study');
 function renderPickList(){
   const list=$('#pickList'); const cnt=$('#pickCnt');
   const n=pickData.filter(p=>p.checked).length;
@@ -1479,6 +1494,7 @@ $('#pickNone').onclick=()=>{ pickData.forEach(p=>p.checked=false); renderPickLis
 $('#pickConfirm').onclick=()=>{
   const sel=pickData.filter(p=>p.checked);
   if(!sel.length){ toast(t('toast.pickOne'), true); return; }
+  if(pickTarget==='study'){ savePickToStudy(sel); return; }
   const arr=getExprs(); let added=0;
   sel.forEach(p=>{
     if(arr.some(e=>normPhrase(e.phrase)===normPhrase(p.phrase))) return;
@@ -1490,6 +1506,21 @@ $('#pickConfirm').onclick=()=>{
   closeAll();
   toast(added>0?t('toast.savedN').replace('{n}',added):t('toast.dupSkip'));
 };
+/* 保存所选到背诵库：新增表达直接进入每日背诵候选（状态 new） */
+function savePickToStudy(sel){
+  const s=getStudy();
+  s.exprs=s.exprs||[];
+  let added=0;
+  sel.forEach(p=>{
+    if(s.exprs.some(e=>normPhrase(e.phrase)===normPhrase(p.phrase))) return;
+    s.exprs.push({ id:'s'+Date.now()+Math.random().toString(36).slice(2,7), phrase:p.phrase,
+      meaning:p.note||'', example:'', exampleCn:'', distractors:p.distractors||[], status:'new', addedAt:Date.now() });
+    added++;
+  });
+  if(added) setStudy(s);
+  closeAll();
+  toast(added>0?t('toast.savedStudy').replace('{n}',added):t('toast.dupSkip'));
+}
 const dueExprs=()=>{ const now=Date.now(); return getExprs().filter(e=>(e.nextDue||0)<=now); };
 function gradeExpr(id,okk){
   const arr=getExprs(); const e=arr.find(x=>x.id===id); if(!e) return;
@@ -1719,7 +1750,8 @@ const PRESET=[
 function seedStudy(){
   const s=getStudy();
   if(!s.seeded){
-    s.exprs=PRESET.map(p=>({...p,addedAt:Date.now()}));
+    // 预置词库 + 已保存的自定义表达（避免覆盖用户已存入背诵库的内容）
+    s.exprs=[...PRESET.map(p=>({...p,addedAt:Date.now()})), ...(s.exprs||[])];
     s.seeded=true;
     setStudy(s);
   }
@@ -1729,11 +1761,36 @@ function getStudyToday(){
   const s=getStudy();
   const today=todayStr();
   if(!s.daily||s.daily.date!==today){
-    const newExprs=(s.exprs||[]).filter(e=>e.status==='new').slice(0,DAILY_NEW);
-    s.daily={date:today,ids:newExprs.map(e=>e.id),done:[],current:0};
+    const ids=pickDailyIds(s);
+    s.daily={date:today,ids,done:[],current:0};
     setStudy(s);
   }
   return s;
+}
+
+/* 每天从词库随机抽取：优先没学过的，不足时补学习中的，偶尔混入已掌握；
+   最近两天出现过的表达排除，保证每天不重样 */
+function pickDailyIds(s){
+  const exprs=s.exprs||[];
+  const count=Math.min(Math.max(parseInt(s.dailyCount)||DAILY_NEW,3),12);
+  const recent=(s.dailyHistory||[]).slice(-2).flatMap(h=>(h&&h.ids)||[]);
+  const avail=exprs.filter(e=>!recent.includes(e.id));
+  const news=shuffle(avail.filter(e=>e.status==='new'));
+  const mids=shuffle(avail.filter(e=>e.status==='learning'));
+  const done=shuffle(avail.filter(e=>e.status==='mastered'));
+  const ids=[];
+  const put=e=>{ if(e&&!ids.includes(e.id)) ids.push(e.id); };
+  news.slice(0,count).forEach(put);
+  let left=count-ids.length;
+  if(left>0){ mids.slice(0,left).forEach(put); left=count-ids.length; }
+  if(left>0){ done.slice(0,left).forEach(put); }
+  // 偶尔混入一条已掌握（约 25%），替换掉最后一条
+  if(done.length && Math.random()<0.25){
+    const m=done.find(e=>!ids.includes(e.id));
+    if(m){ if(ids.length>=count) ids[ids.length-1]=m.id; else ids.push(m.id); }
+  }
+  s.dailyHistory=[...(s.dailyHistory||[]),{date:todayStr(),ids:ids.slice()}].slice(-7);
+  return ids;
 }
 
 function markStudyDone(id){
@@ -1775,26 +1832,52 @@ function showStudy(){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
+function dailySetHTML(s){
+  const cur=Math.min(Math.max(parseInt(s.dailyCount)||DAILY_NEW,3),12);
+  return `<div class="study-daily-set">
+    <span class="sds-label">${t('study.dailyCount')}</span>
+    ${[5,8,10].map(n=>`<button class="mini-btn${n===cur?' is-on':''}" data-cnt="${n}">${n}</button>`).join('')}
+    <span class="sds-label">${t('study.dailyCountUnit')}</span>
+  </div>`;
+}
+function bindDailySet(){
+  document.querySelectorAll('.study-daily-set [data-cnt]').forEach(b=>{
+    b.onclick=()=>{
+      const s=getStudy();
+      const n=Number(b.dataset.cnt);
+      if((parseInt(s.dailyCount)||DAILY_NEW)===n) return;
+      s.dailyCount=n;
+      s.daily=null; // 立即按新条数重新抽取今天的任务
+      setStudy(s);
+      renderStudyHome();
+      toast(t('toast.dailyCountSet').replace('{n}',n));
+    };
+  });
+}
+
 function renderStudyHome(){
   const s=getStudyToday();
   const list=studyTodayList();
   const done=s.daily.done||[];
   const pct=list.length?Math.round(done.length/list.length*100):0;
   const allMastered=(s.exprs||[]).every(e=>e.status==='mastered');
+  const setHTML=dailySetHTML(s);
   if(!list.length){
-    studyBody.innerHTML=`<div class="study-empty">
+    studyBody.innerHTML=`${setHTML}<div class="study-empty">
       ${allMastered?t('study.emptyAll').replace('\n','<br>'):t('study.emptyToday').replace('\n','<br>')}
     </div>
     <div style="text-align:center;margin-top:20px">
       <button class="btn-primary" id="studyGoReview">${t('study.goReview')}</button>
       <button class="btn-ghost" id="studyGoAdd">${t('study.goAdd')}</button>
     </div>`;
+    bindDailySet();
     $('#studyGoReview').onclick=renderStudyReview;
     $('#studyGoAdd').onclick=renderStudyAdd;
     return;
   }
   const current=list.find(e=>!done.includes(e.id));
   studyBody.innerHTML=`
+    ${setHTML}
     <div class="study-progress">
       <div class="study-progress-bar"><div class="study-progress-fill" style="width:${pct}%"></div></div>
       <div class="study-progress-text">${done.length} / ${list.length}</div>
@@ -1808,6 +1891,7 @@ function renderStudyHome(){
       <button class="btn-ghost" id="studySkip">${t('study.skip')}</button>
       <button class="btn-primary" id="studyMarkDone" ${current?'':'disabled'}>${current?t('study.markDone'):t('study.todayDone')}</button>
     </div>`;
+  bindDailySet();
   document.querySelectorAll('.study-tab').forEach(t=>{
     t.onclick=()=>{
       document.querySelectorAll('.study-tab').forEach(x=>x.classList.toggle('active',x===t));
@@ -1846,8 +1930,8 @@ function renderStudyCard(mode,expr){
           <div class="study-flash-face back">
             <div class="study-flash-hint">${t('study.backHint')}</div>
             <div class="study-flash-note">${esc(expr.meaning)}</div>
-            <div class="study-flash-example">${esc(expr.example)}</div>
-            <div class="study-flash-example-cn">${esc(expr.exampleCn)}</div>
+            ${expr.example?`<div class="study-flash-example">${esc(expr.example)}</div>`:''}
+            ${expr.exampleCn?`<div class="study-flash-example-cn">${esc(expr.exampleCn)}</div>`:''}
           </div>
         </div>
       </div>
