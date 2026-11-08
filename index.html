@@ -1888,7 +1888,6 @@ function renderStudyHome(){
     </div>
     <div class="study-card-area" id="studyCardArea"></div>
     <div style="display:flex;gap:12px;justify-content:center;margin-top:20px">
-      <button class="btn-ghost" id="studySkip">${t('study.skip')}</button>
       <button class="btn-primary" id="studyMarkDone" ${current?'':'disabled'}>${current?t('study.markDone'):t('study.todayDone')}</button>
     </div>`;
   bindDailySet();
@@ -1898,13 +1897,6 @@ function renderStudyHome(){
       renderStudyCard(t.dataset.mode,current);
     };
   });
-  $('#studySkip').onclick=()=>{
-    const s=getStudyToday();
-    s.daily.done=s.daily.ids.slice();
-    setStudy(s);
-    toast(t('toast.skipped'));
-    renderStudyHome();
-  };
   $('#studyMarkDone').onclick=()=>{
     if(!current) return;
     markStudyDone(current.id);
