@@ -429,11 +429,15 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .study-flash-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--line);border-radius:18px;background:#FFFEFA;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;box-shadow:var(--shadow)}
 .study-flash-face.back{transform:rotateY(180deg);background:var(--ink);color:var(--paper)}
 .study-flash-hint{font-size:10.5px;letter-spacing:2px;color:var(--ink-faint);margin-bottom:16px;font-family:var(--mono)}
-.study-flash-face.back .study-flash-hint{color:#A89F8C}
 .study-flash-phrase{font-family:var(--serif);font-size:28px;font-weight:600;line-height:1.4;text-align:center}
 .study-flash-note{font-size:15px;line-height:1.9;color:var(--ink-soft);margin-top:16px;text-align:center}
 .study-flash-example{margin-top:14px;font-size:13px;color:var(--ink-faint);font-style:italic}
 .study-flash-example-cn{margin-top:6px;font-size:12px;color:var(--ink-faint)}
+/* 背面为深色底，文字需要单独提亮 */
+.study-flash-face.back .study-flash-hint{color:#C9BFA8}
+.study-flash-face.back .study-flash-note{color:#FBF7EC}
+.study-flash-face.back .study-flash-example{color:#EFE6D2}
+.study-flash-face.back .study-flash-example-cn{color:#DED3B9}
 .study-flash-nav{display:flex;justify-content:center;gap:12px;margin-top:8px}
 .study-flash-nav button{padding:10px 24px;border-radius:99px;font-size:13px;cursor:pointer;transition:all .15s}
 .study-btn-secondary{background:none;border:1px solid var(--line-strong);color:var(--ink-soft)}
