@@ -782,7 +782,7 @@ const I18N={
     'study.emptyAll':'🎉 全部表达已掌握！\n去「全部表达」里复习，或添加新表达','study.emptyToday':'今天没有新表达可学\n去「添加表达」录入一些，或从「全部表达」里复习',
     'study.goReview':'去复习已掌握','study.goAdd':'添加新表达',
     'study.tabFlash':'Flash Card','study.tabTrans':'中英互译','study.tabChoice':'英译中',
-    'study.skip':'跳过今天','study.markDone':'标记为已学会','study.todayDone':'今日完成',
+    'study.skip':'跳过今天','study.markDone':'标记为已学会','study.todayDone':'今日完成','study.resetToday':'重置今天',
     'study.allDone':'今日任务已完成！','study.flipHint':'点击翻面查看解释','study.backHint':'中文意思','study.flip':'翻面',
     'study.transTip':'中译英 · 用上面的表达翻译','study.transPh':'输入英文，必须使用表达：{p}','study.transToChoice':'英译中（选择题）','study.transSubmit':'提交','study.transJudging':'AI 判分中…',
     'study.transFbOk':'包含目标表达，意思正确（本地判分，建议配置 API 获得更准的语义判断）','study.transFbBad':'未包含目标表达，请使用「{p}」','study.transOk':'翻译正确','study.transBad':'翻译不正确',
@@ -815,7 +815,7 @@ const I18N={
     'toast.noHighlights':'本次没有可保存的表达','toast.pickOne':'请至少勾选一条',
     'toast.savedN':'已保存 {n} 条表达到表达库','toast.savedStudy':'已保存 {n} 条表达到背诵库','toast.dupSkip':'所选表达已存在，未重复添加',
     'toast.deleted':'已删除',
-    'toast.skipped':'已跳过，明天会继续','toast.markedDone':'已标记为已学会','toast.dailyCountSet':'每日新学条数已设为 {n} 条',
+    'toast.skipped':'已跳过，明天会继续','toast.markedDone':'已标记为已学会','toast.dailyCountSet':'每日新学条数已设为 {n} 条','toast.resetToday':'今日任务已重置',
     'toast.emptyInput':'请输入英文','toast.judgeFail':'判分失败：',
     'toast.requiredField':'英文表达和中文意思必填','toast.needDistractors':'请提供3个干扰项，用 | 分隔','toast.exists':'该表达已存在'
   },
@@ -1888,6 +1888,7 @@ function renderStudyHome(){
     </div>
     <div class="study-card-area" id="studyCardArea"></div>
     <div style="display:flex;gap:12px;justify-content:center;margin-top:20px">
+      <button class="btn-ghost" id="studyResetToday">${t('study.resetToday')}</button>
       <button class="btn-primary" id="studyMarkDone" ${current?'':'disabled'}>${current?t('study.markDone'):t('study.todayDone')}</button>
     </div>`;
   bindDailySet();
@@ -1897,6 +1898,13 @@ function renderStudyHome(){
       renderStudyCard(t.dataset.mode,current);
     };
   });
+  $('#studyResetToday').onclick=()=>{
+    const s=getStudy();
+    s.daily=null; // 清空今天任务，重新随机抽取
+    setStudy(s);
+    toast(t('toast.resetToday'));
+    renderStudyHome();
+  };
   $('#studyMarkDone').onclick=()=>{
     if(!current) return;
     markStudyDone(current.id);
