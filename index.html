@@ -423,6 +423,16 @@ textarea::placeholder{color:#B6AB94;font-style:italic}
 .study-tab.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .study-card-area{min-height:300px}
 .study-empty{text-align:center;color:var(--ink-faint);font-size:14px;padding:60px 20px;line-height:2}
+.study-summary-wrap{border:1px solid var(--line);border-radius:14px;background:var(--paper);padding:24px;margin-bottom:26px}
+.study-summary-title{font-family:var(--serif);font-size:18px;font-weight:600;text-align:center;margin-bottom:6px}
+.study-summary-sub{font-size:12px;color:var(--ink-faint);text-align:center;margin-bottom:18px;font-family:var(--mono)}
+.study-summary-table{width:100%;border-collapse:collapse;table-layout:fixed}
+.study-summary-table th{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--ink-faint);font-weight:500;text-align:left;padding:8px 12px;border-bottom:1px solid var(--line-strong);white-space:nowrap}
+.study-summary-table th:first-child{width:42%}
+.study-summary-table td{padding:12px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:top;word-break:break-word}
+.study-summary-table tr:last-child td{border-bottom:none}
+.study-summary-table td.s-phrase{font-family:var(--serif);font-weight:600;font-size:15px}
+.study-summary-table td.s-meaning{color:var(--ink-soft);font-size:13.5px;line-height:1.7}
 .study-flash-card{perspective:1200px;height:280px;cursor:pointer;margin:0 auto 24px;max-width:480px}
 .study-flash-inner{position:relative;width:100%;height:100%;transition:transform .55s cubic-bezier(.2,.7,.3,1);transform-style:preserve-3d}
 .study-flash-card.flip .study-flash-inner{transform:rotateY(180deg)}
@@ -786,7 +796,8 @@ const I18N={
     'study.emptyAll':'🎉 全部表达已掌握！\n去「全部表达」里复习，或添加新表达','study.emptyToday':'今天没有新表达可学\n去「添加表达」录入一些，或从「全部表达」里复习',
     'study.goReview':'去复习已掌握','study.goAdd':'添加新表达',
     'study.tabFlash':'Flash Card','study.tabTrans':'中英互译','study.tabChoice':'英译中',
-    'study.skip':'跳过今天','study.markDone':'标记为已学会','study.todayDone':'今日完成','study.resetToday':'重置今天',
+    'study.skip':'跳过今天','study.markDone':'标记为已学会','study.todayDone':'今日完成','study.again':'再背一次',
+    'study.summaryTitle':'今日已完成','study.summarySub':'共 {n} 条','study.thPhrase':'词组','study.thMeaning':'意思',
     'study.allDone':'今日任务已完成！','study.flipHint':'点击翻面查看解释','study.backHint':'中文意思','study.flip':'翻面',
     'study.transTip':'中译英 · 用上面的表达翻译','study.transPh':'输入英文，必须使用表达：{p}','study.transToChoice':'英译中（选择题）','study.transSubmit':'提交','study.transJudging':'AI 判分中…',
     'study.transFbOk':'包含目标表达，意思正确（本地判分，建议配置 API 获得更准的语义判断）','study.transFbBad':'未包含目标表达，请使用「{p}」','study.transOk':'翻译正确','study.transBad':'翻译不正确',
@@ -862,7 +873,8 @@ const I18N={
     'study.emptyAll':'🎉 全部表達已掌握！\n去「全部表達」裡複習，或添加新表達','study.emptyToday':'今天沒有新表達可學\n去「添加表達」錄入一些，或從「全部表達」裡複習',
     'study.goReview':'去複習已掌握','study.goAdd':'添加新表達',
     'study.tabFlash':'Flash Card','study.tabTrans':'中英互譯','study.tabChoice':'英譯中',
-    'study.skip':'跳過今天','study.markDone':'標記為已學會','study.todayDone':'今日完成',
+    'study.skip':'跳過今天','study.markDone':'標記為已學會','study.todayDone':'今日完成','study.again':'再背一次',
+    'study.summaryTitle':'今日已完成','study.summarySub':'共 {n} 條','study.thPhrase':'詞組','study.thMeaning':'意思',
     'study.allDone':'今日任務已完成！','study.flipHint':'點擊翻面查看解釋','study.backHint':'中文意思','study.flip':'翻面',
     'study.transTip':'中譯英 · 用上面的表達翻譯','study.transPh':'輸入英文，必須使用表達：{p}','study.transToChoice':'英譯中（選擇題）','study.transSubmit':'提交','study.transJudging':'AI 判分中…',
     'study.transFbOk':'包含目標表達，意思正確（本地判分，建議設定 API 獲得更準的語義判斷）','study.transFbBad':'未包含目標表達，請使用「{p}」','study.transOk':'翻譯正確','study.transBad':'翻譯不正確',
@@ -932,7 +944,8 @@ const I18N={
     'study.emptyAll':'🎉 All expressions mastered!\nReview them in "All phrases" or add new ones.','study.emptyToday':'No new phrases today.\nAdd some via "Add phrase", or review from "All phrases".',
     'study.goReview':'Review mastered','study.goAdd':'Add phrase',
     'study.tabFlash':'Flash Card','study.tabTrans':'Translate','study.tabChoice':'Pick meaning',
-    'study.skip':'Skip today','study.markDone':'Mark learned','study.todayDone':'Done for today',
+    'study.skip':'Skip today','study.markDone':'Mark learned','study.todayDone':'Done for today','study.again':'Practice again',
+    'study.summaryTitle':"Today's done",'study.summarySub':'{n} items','study.thPhrase':'Phrase','study.thMeaning':'Meaning',
     'study.allDone':'Today\'s tasks done!','study.flipHint':'Tap to flip for meaning','study.backHint':'Meaning','study.flip':'Flip',
     'study.transTip':'Translate it into English using the phrase','study.transPh':'Type English — must include: {p}','study.transToChoice':'Multiple choice','study.transSubmit':'Submit','study.transJudging':'AI judging…',
     'study.transFbOk':'Contains the phrase and meaning is correct (local check — add API for semantic grading)','study.transFbBad':'Please include the phrase "{p}".','study.transOk':'Translation correct','study.transBad':'Translation incorrect',
@@ -1880,6 +1893,34 @@ function renderStudyHome(){
     return;
   }
   const current=list.find(e=>!done.includes(e.id));
+  if(!current){
+    // 今天已背完：表格展示今天的词组与意思，只提供「再背一次」
+    studyBody.innerHTML=`
+      ${setHTML}
+      <div class="study-progress">
+        <div class="study-progress-bar"><div class="study-progress-fill" style="width:100%"></div></div>
+        <div class="study-progress-text">${done.length} / ${list.length}</div>
+      </div>
+      <div class="study-summary-wrap">
+        <div class="study-summary-title">${t('study.summaryTitle')}</div>
+        <div class="study-summary-sub">${t('study.summarySub').replace('{n}',list.length)}</div>
+        <table class="study-summary-table">
+          <thead><tr><th>${t('study.thPhrase')}</th><th>${t('study.thMeaning')}</th></tr></thead>
+          <tbody>${list.map(e=>`<tr><td class="s-phrase">${esc(e.phrase)}</td><td class="s-meaning">${esc(e.meaning)}</td></tr>`).join('')}</tbody>
+        </table>
+      </div>
+      <div style="display:flex;justify-content:center">
+        <button class="btn-primary" id="studyAgain">${t('study.again')}</button>
+      </div>`;
+    bindDailySet();
+    $('#studyAgain').onclick=()=>{
+      const st=getStudy();
+      st.daily.done=[]; // 保留同一组词组，重新背一遍
+      setStudy(st);
+      renderStudyHome();
+    };
+    return;
+  }
   studyBody.innerHTML=`
     ${setHTML}
     <div class="study-progress">
@@ -1892,8 +1933,7 @@ function renderStudyHome(){
     </div>
     <div class="study-card-area" id="studyCardArea"></div>
     <div style="display:flex;gap:12px;justify-content:center;margin-top:20px">
-      <button class="btn-ghost" id="studyResetToday">${t('study.resetToday')}</button>
-      <button class="btn-primary" id="studyMarkDone" ${current?'':'disabled'}>${current?t('study.markDone'):t('study.todayDone')}</button>
+      <button class="btn-primary" id="studyMarkDone">${t('study.markDone')}</button>
     </div>`;
   bindDailySet();
   document.querySelectorAll('.study-tab').forEach(t=>{
@@ -1902,15 +1942,7 @@ function renderStudyHome(){
       renderStudyCard(t.dataset.mode,current);
     };
   });
-  $('#studyResetToday').onclick=()=>{
-    const s=getStudy();
-    s.daily=null; // 清空今天任务，重新随机抽取
-    setStudy(s);
-    toast(t('toast.resetToday'));
-    renderStudyHome();
-  };
   $('#studyMarkDone').onclick=()=>{
-    if(!current) return;
     markStudyDone(current.id);
     toast(t('toast.markedDone'));
     renderStudyHome();
